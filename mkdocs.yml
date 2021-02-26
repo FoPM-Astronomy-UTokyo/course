@@ -1,1 +1,10 @@
-site_name: My Docs
+site_name: FoPM Learning Program
+nav:
+  - index.md
+theme:
+  name: material
+markdown_extensions:
+  - mdx_math
+  - admonition
+  - footnotes
+  - def_list
