@@ -1,10 +1,20 @@
 site_name: FoPM Learning Program
+site_description: FoPM Learning Program
+site_author: Ryou Ohsawa
+copyright: Ryou Ohsawa 2021
 nav:
   - index.md
+  - GitHub: https://github.com/FoPM-Astronomy-UTokyo/course
 theme:
-  name: material
+  name: 'material'
+  language: 'en'
+plugins:
+  - search:
+      lang: 'ja'
 markdown_extensions:
   - mdx_math
   - admonition
   - footnotes
   - def_list
+extra_css: []
+extra_javascript: []
