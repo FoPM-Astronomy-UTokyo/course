@@ -8,13 +8,31 @@ nav:
 theme:
   name: 'material'
   language: 'en'
+  palette:
+    scheme: default
+    primary: teal
+    accent: deep orange
+extra_css: []
+extra_javascript:
+  - js/config_mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+markdown_extensions:
+  - extra
+  - admonition
+  - smarty
+  - sane_lists
+  - meta
+  - markdown_checklist.extension
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.snippets:
+      check_paths: True
 plugins:
   - search:
       lang: 'ja'
-markdown_extensions:
-  - mdx_math
-  - admonition
-  - footnotes
-  - def_list
-extra_css: []
-extra_javascript: []
+#  - pdf-export
+#  - with-pdf
