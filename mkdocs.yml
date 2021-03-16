@@ -1,4 +1,4 @@
-site_name: FoPM Learning Program
+site_name: FoPM Learning Program &ndash; Institute of Astronomy
 site_description: FoPM Learning Program
 site_author: Ryou Ohsawa
 copyright: Ryou Ohsawa 2021
@@ -19,7 +19,8 @@ theme:
     scheme: default
     primary: teal
     accent: deep orange
-extra_css: []
+extra_css:
+  - css/config_local.css
 extra_javascript:
   - js/config_mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
