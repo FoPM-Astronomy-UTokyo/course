@@ -3,7 +3,14 @@ site_description: FoPM Learning Program
 site_author: Ryou Ohsawa
 copyright: Ryou Ohsawa 2021
 nav:
-  - index.md
+  - トップページ: index.md
+  - 実習テキスト:
+    - MCMC:
+      - mcmc/index.md
+      - mcmc/generate.md
+      - mcmc/static_mcmc.md
+      - mcmc/refs.md
+  - FoPM Home: https://www.s.u-tokyo.ac.jp/ja/FoPM/
   - GitHub: https://github.com/FoPM-Astronomy-UTokyo/course
 theme:
   name: 'material'
