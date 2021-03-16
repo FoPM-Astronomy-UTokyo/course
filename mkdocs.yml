@@ -5,7 +5,7 @@ copyright: Ryou Ohsawa 2021
 nav:
   - トップページ: index.md
   - 実習テキスト:
-    - MCMC:
+    - MCMC 入門:
       - mcmc/index.md
       - mcmc/generate.md
       - mcmc/static_mcmc.md
