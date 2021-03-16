@@ -13,7 +13,7 @@ u = gen.uniform(0,1,size=(5))
 print(u)
 ```
 
-??? done "計算結果"
+??? summary "計算結果"
     ``` python
     [0.75694783 0.94138187 0.59246304 0.31884171 0.62607384]
     ```
@@ -34,7 +34,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-??? done "計算結果"
+??? summary "計算結果"
     ![一様分布のサンプル](./img/uniform.png)
 
 
@@ -112,12 +112,12 @@ lam = 3.0
 X = np.linspace(0,5,100)
 Y = lam*np.exp(-lam*X)
 
-u = gen.uniform(0,1,size=(1000))
+u = gen.uniform(0,1,size=(10000))
 x = -1.0/lam*np.log(1.0-u)
 
 fig = plt.figure()
 ax = fig.add_subplot()
-ax.hist(x, bins=20, density=True)
+ax.hist(x, bins=50, density=True)
 ax.plot(X,Y)
 ax.set_ylabel('frequency')
 ax.set_xlabel('variable: x')
@@ -125,7 +125,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-??? done "計算結果"
+??? summary "計算結果"
     ![指数分布に従う乱数](img/exponential.png)
 
 
@@ -172,8 +172,8 @@ gen = default_rng(2021)
 X = np.linspace(-5,5,500)
 Y = np.exp(-X*X/2.0)/np.sqrt(2*np.pi)
 
-u = gen.uniform(0,1,size=(3000))
-v = gen.uniform(0,1,size=(3000))
+u = gen.uniform(0,1,size=(30000))
+v = gen.uniform(0,1,size=(30000))
 
 r = np.sqrt(-2*np.log(1-u))
 t = 2*np.pi*v
@@ -182,7 +182,7 @@ y = r*np.sin(t)
 
 fig = plt.figure()
 ax = fig.add_subplot()
-ax.hist(x, bins=20, density=True)
+ax.hist(x, bins=50, density=True)
 ax.plot(X,Y)
 ax.set_ylabel('frequency')
 ax.set_xlabel('variable: x')
@@ -190,7 +190,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-??? done "計算結果"
+??? summary "計算結果"
     ![Box-Muller 変換による正規分布](img/box-muller.png)
 
 
@@ -201,14 +201,14 @@ plt.show()
 
 ### 棄却法による乱数生成
 
-棄却法は極めてシンプルな手続きによって乱数を生成する方法です. 例えば以下のような手続きによって生成することができます.[^3]
+棄却法は極めてシンプルな手続きによって乱数を生成する方法です. 例えば以下のような手続きによって生成することができます.
 
-[^3]: ここでは $X$ を一様な分布からサンプルしていますが, 必ずしも一様にサンプルスル必要はありません (一様分布以外を用いた場合は棄却の条件が少し変わります). 最初のステップをより $P(X)$ に近い分布を用いることでサンプリングを効率化する (棄却率を下げる) ことができます.
-
-1. 変数の domain を定めて一様分布から候補 $X$ をサンプルする.
-1. $[0,\alpha)$ の一様分布 ${\operatorname{Unif}}(0,\alpha)$ から $u$ をサンプルする. ただし $\alpha \geq \max\limits_X P(X)$ とする.
+1. 一様分布から候補 $X$ をサンプルする.
+1. $[0,\alpha)$ の一様分布 ${\operatorname{Unif}}(0,\alpha)$ から $u$ をサンプルする.[^3]
 1. $u \leq P(X)$ であれば $X$ を採用する. そうでなければ $X$ を棄却する.
 1. 必要なサンプル数が揃うまで上記の手続きを繰り返す.
+
+[^3]: ただし $\alpha \geq \max\limits_X P(X)$ とします.
 
 $P(X)$ の値に応じて採用される確率が高くなるため, 必然的に $P(X)$ に従う乱数を得ることができます. $P(X)$ の値を評価することができれば適用することができるため, ほぼ任意の形状の確率密度分布に対して使うことができます.
 
@@ -216,7 +216,7 @@ $P(X)$ の値に応じて採用される確率が高くなるため, 必然的�
 
 [^4]: 確率を Bayes 的に評価しようとするとこのケースには頻繁に遭遇します. 特に多次元の量を扱っている場合には, 規格化するために多次元空間での積分が必要になるため「2 点の確率の比」さえ分かれば適用できる手法はとても有用です (そして今回 MCMC で用いる Metropolis-Hasting 法もこのケースに該当します).
 
-以下のサンプルでは確率密度関数 $P(X) \propto \sqrt{1-X^2}$ に従う乱数を棄却法によって生成しています. 生成した乱数のヒストグラムが確率密度関数と相違がないことを確認しています.
+以下のサンプルでは確率密度関数 $P(X) \propto \sqrt{1-X^2}$ に従う乱数を棄却法によって生成しています. 生成した乱数のヒストグラムが確率密度関数と相違がないことを確認しています. また合計で 30000 件のデータを生成するために合計で何回上記の手続きを繰り返したのかを表示します.
 
 ``` python
 import matplotlib.pyplot as plt
@@ -229,17 +229,20 @@ func = lambda x: np.sqrt(np.clip(1-x*x,0,1))/np.pi*2.0
 X = np.linspace(-1.2,1.2,500)
 Y = func(X)
 
+trial = 0
 x = []
-while len(x)<3000:
+while len(x)<30000:
   u = gen.uniform(-2,2)
   v = gen.uniform(0,2.0/np.pi)
   if v<func(u):
     x.append(u)
+  trial += 1
 x = np.array(x)
+print(f'total trial: {trial}')
 
 fig = plt.figure()
 ax = fig.add_subplot()
-ax.hist(x, bins=20, density=True)
+ax.hist(x, bins=50, density=True)
 ax.plot(X,Y)
 ax.set_ylabel('frequency')
 ax.set_xlabel('variable: x')
@@ -247,8 +250,67 @@ plt.tight_layout()
 plt.show()
 ```
 
-??? done "計算結果"
-    ![棄却法によって生成された乱数](img/reject.png)
+??? summary "計算結果"
+    ``` python
+    total trial: 76247
+    ```
+    ![棄却法によって生成された乱数](img/reject_uniform.png)
+
+
+### 提案分布による効率化
+上記の手続きでは $X$ を一様な分布からサンプルしていました. ここで, 最初に $X$ を抽出する分布のことを提案分布と呼びます. 提案分布は一様分布である必要はありません. 提案分布として $P(X)$ に近い分布を用いることで, サンプリングを効率化する (棄却率を下げる) ことができます. 提案分布として $Q(X)$ をもちいた場合の手続きを以下に示します.[^5]
+
+[^5]: ここでは例外的に確率分布関数に $Q(X)$ という表現を使っています. 実態を反映しているわけではないが使いやすい分布関数として $P(X)$ を近似するための確率分布関数という立ち位置です.
+
+1. 提案分布 $Q(X)$ から候補 $X$ をサンプルする.
+1. $[0,\alpha)$ の一様分布 ${\operatorname{Unif}}(0,\alpha)$ から $u$ をサンプルする.[^6]
+1. $u \leq P(X)/Q(X)$ であれば $X$ を採用する. そうでなければ $X$ を棄却する.
+1. 必要なサンプル数が揃うまで上記の手続きを繰り返す.
+
+[^6]: ただし $\alpha \geq \max\limits_X {P(X)}/{Q(X)}$ とします.
+
+以下のサンプルでは標準正規分布を提案分布として採用した確率密度関数 $P(X) \propto \sqrt{1-X^2}$ に従う乱数を棄却法によって生成しています. 生成した乱数のヒストグラムが確率密度関数と相違がないことを確認しています. また合計で 30000 件のデータを生成するために合計で何回上記の手続きを繰り返したのかを表示します.
+
+``` python
+import matplotlib.pyplot as plt
+from numpy.random import default_rng
+import numpy as np
+gen = default_rng(2021)
+
+func = lambda x: np.sqrt(np.clip(1-x*x,0,1))/np.pi*2.0
+prop = lambda x: np.exp(-x*x/2.0)/np.sqrt(2.0*np.pi)
+
+X = np.linspace(-1.2,1.2,500)
+Y = func(X)
+
+trial = 0
+x = []
+while len(x)<30000:
+  u = gen.normal(0,1)
+  v = gen.uniform(0,np.sqrt(8/np.pi))
+  if v<func(u)/prop(u):
+    x.append(u)
+  trial += 1
+x = np.array(x)
+print(f'total trial: {trial}')
+
+fig = plt.figure()
+ax = fig.add_subplot()
+ax.hist(x, bins=50, density=True)
+ax.plot(X,Y)
+ax.set_ylabel('frequency')
+ax.set_xlabel('variable: x')
+plt.tight_layout()
+plt.show()
+```
+
+??? summary "計算結果"
+    ``` python
+    total trial: 47650
+    ```
+    ![棄却法によって生成された乱数](img/reject_normal.png)
+
+目的とする分布に近い分布を提案分布として用いることによって, 効率的にサンプリングできていることが分かります.
 
 
 ### 棄却法の弱点
@@ -268,14 +330,14 @@ func = lambda x: lam*np.exp(-lam*x)/(1.0-np.exp(-lam*ub))
 
 x = gen.uniform(0,ub, size=(10000))
 a = gen.uniform(0,lam, size=(10000))
-rejected = func(x) < a
+rejected = a > func(x)
 
 print('rejected fraction: {}'.format(rejected.sum()/rejected.size))
 ```
 
-??? done "計算結果"
+??? summary "計算結果"
     ``` python
     rejected fraction: 0.9693
     ```
 
-今回のケースではおよそ 96% の試行が reject されました. 望んだ数だけ乱数を得るためにおよそ 30 倍以上の試行を費やさなければならないことになります. 棄却法は実装しやすく, 適用範囲の広い方法ではあるのですが, 問題によっては必ずしも効率の良い方法とはならないことがあります.
+今回のケースではおよそ 96% の試行が reject されました. 望んだ数だけ乱数を得るためにおよそ 30 倍以上の試行を費やさなければならないことになります. 棄却法は実装しやすく, 適用範囲の広い方法ではあるのですが, 問題によっては必ずしも効率の良い方法とは言えません.

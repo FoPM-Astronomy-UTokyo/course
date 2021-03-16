@@ -7,8 +7,8 @@ gen = default_rng(2021)
 X = np.linspace(-5,5,500)
 Y = np.exp(-X*X/2.0)/np.sqrt(2*np.pi)
 
-u = gen.uniform(0,1,size=(3000))
-v = gen.uniform(0,1,size=(3000))
+u = gen.uniform(0,1,size=(30000))
+v = gen.uniform(0,1,size=(30000))
 
 r = np.sqrt(-2*np.log(1-u))
 t = 2*np.pi*v
@@ -17,7 +17,7 @@ y = r*np.sin(t)
 
 fig = plt.figure()
 ax = fig.add_subplot()
-ax.hist(x, bins=20, density=True)
+ax.hist(x, bins=50, density=True)
 ax.plot(X,Y)
 ax.set_ylabel('frequency')
 ax.set_xlabel('variable: x')
