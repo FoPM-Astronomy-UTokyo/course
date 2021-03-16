@@ -64,8 +64,8 @@ plt.show()
 逆関数法とは以下の手続きによって乱数を生成する方法です.
 
 1. 累積確率密度関数 $C(x) = \int P(x') \mathrm{d}x'$ の逆関数 $C^{-1}(y)$ を用意する.[^2]
-1. $[0,1)$ の一様分布 ${\operatorname{Unif}}(0,1)$ から乱数 $u$ をサンプルする.
-1. $u$ より ${x'} \leftarrow C^{-1}(u)$ によって乱数 ${x'}$ を定義する.
+1. $[0,1)$ の一様分布 ${\operatorname{Unif}}(0,1)$ から $u$ をサンプルする.
+1. ${x'} \leftarrow C^{-1}(u)$ によって ${x'}$ を定義する.
 
 累積確率密度関数 $C(x)$ は単調増加関数なので常に逆関数を持ちます. $C(x)$ の range は $[0,1)$ なので, 逆関数 $C^{-1}(y)$ の domain は $[0,1)$ なので $u$ を入力として与えると, $C^{-1}(y)$ の domain 全体に対して一様の密度で入力を与えることになります. ここで $u$ を $\mathrm{d}u$ だけ動かしたときに ${x'}$ がどれだけ動くかを考えると,
 
@@ -107,11 +107,11 @@ import numpy as np
 gen = default_rng(2021)
 
 lam = 3.0
-u = gen.uniform(0,1,size=(1000))
-x = -1.0/lam*np.log(1.0-u)
-
 X = np.linspace(0,5,100)
 Y = lam*np.exp(-lam*X)
+
+u = gen.uniform(0,1,size=(1000))
+x = -1.0/lam*np.log(1.0-u)
 
 fig = plt.figure()
 ax = fig.add_subplot()
@@ -167,6 +167,9 @@ from numpy.random import default_rng
 import numpy as np
 gen = default_rng(2021)
 
+X = np.linspace(-5,5,500)
+Y = np.exp(-X*X/2.0)/np.sqrt(2*np.pi)
+
 u = gen.uniform(0,1,size=(3000))
 v = gen.uniform(0,1,size=(3000))
 
@@ -174,9 +177,6 @@ r = np.sqrt(-2*np.log(1-u))
 t = 2*np.pi*v
 x = r*np.cos(t)
 y = r*np.sin(t)
-
-X = np.linspace(-5,5,500)
-Y = np.exp(-X*X/2.0)/np.sqrt(2*np.pi)
 
 fig = plt.figure()
 ax = fig.add_subplot()
