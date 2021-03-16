@@ -1,17 +1,11 @@
-# Welcome to MkDocs
+# FoPM Learning Program (Astronomy)
+## 変革を駆動する先端物理・数学プログラム
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+[変革を駆動する先端物理・数学プログラム (FoPM)](https://www.s.u-tokyo.ac.jp/ja/FoPM/) は, 修士博士一貫の 5 年間の学位プログラムです. 基礎科学の専門人材に, 科学技術や社会イノベーションに広く影響を与えるためのスキルを提供することで, 彼らのポテンシャルを最大化するプログラムです.
 
-## Commands
+このページでは FoPM で実施した実習 (天文学) のテキストを公開しています. テキストへは以下のリンクからアクセスしてください.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+ 実習年度 | 実習タイトル
+ -------- | -----------
+ 2020     | [マルコフ連鎖モンテカルロ法入門](./mcmc/index.md)
