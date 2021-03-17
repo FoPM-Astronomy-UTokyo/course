@@ -9,6 +9,7 @@ nav:
       - mcmc/index.md
       - mcmc/generate_random_variables.md
       - mcmc/static_monte_carlo.md
+      - mcmc/markov_chain.md
       - mcmc/references.md
   - FoPM Home: https://www.s.u-tokyo.ac.jp/ja/FoPM/
   - GitHub repository: https://github.com/FoPM-Astronomy-UTokyo/course
