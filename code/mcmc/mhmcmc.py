@@ -4,61 +4,10 @@ from numpy.random import default_rng
 import numpy as np
 
 
-class MHMCMCSampler:
-  ''' MCMC sampler with the Metropolis-Hastings algorithm. '''
-
-  def __init__(self, likelihood, proposal_dist, seed=2021):
-    ''' Generate a MCMC sampler instatnce.
-
-    Parameters:
-      likelihood (obj): Likelihood class.
-      proposal_dist (obj): ProposalDistribution class.
-      seed (float, optional): Random seed value.
-    '''
-    self.likelihood = likelihood
-    self.proposal_dist = proposal_dist
-    self.random = default_rng(seed)
-    self.initialize(None)
-
-  def initialize(self, x0):
-    ''' Initialize state.
-
-    Parameters:
-      x0 (numpy.ndarray): An initial state (1-dimensional vector).
-    '''
-    self.state = x0
-
-  def step(self):
-    ''' Draw a next Monte-Carlo step.
-
-    Returns:
-      numpy.ndarray: the next state.
-    '''
-    proposal = self.proposal_dist.draw(self.state)
-    log_alpha = \
-      self.likelihood.eval(proposal) - self.likelihood.eval(self.state) \
-      + self.proposal_dist.eval(self.state, proposal) \
-      - self.proposal_dist.eval(proposal, self.state)
-    log_u = np.log(self.random.uniform(0, 1))
-    return proposal if (log_u < log_alpha) else self.state
-
-  def generate(self, n_sample):
-    ''' Generate N-samples
-
-    Parameters:
-      n_samples (int): Number of MCMC samples to generate.
-    '''
-    samples = []
-    for n in range(n_sample):
-      samples.append(self.state)
-      self.state = self.step()
-    return np.vstack(samples)
-
-
 class AbstractLikelihood:
   ''' A template of likelihood function.'''
 
-  def eval(self, x):
+  def eval(self, x: np.ndarray):
     ''' Evaluate the log-likelihood for the state `x`.
 
     Parameters:
@@ -73,7 +22,7 @@ class AbstractLikelihood:
 class AbstractProposalDistribution:
   ''' A template of proposed distribution. '''
 
-  def draw(self, x0):
+  def draw(self, x0: np.ndarray):
     ''' Propose a new state.
 
     Parameters:
@@ -83,7 +32,7 @@ class AbstractProposalDistribution:
       numpy.ndarray: A newly-proposed state.
     '''
 
-  def eval(self, x, x0):
+  def eval(self, x: np.ndarray, x0: np.ndarray):
     ''' Evaluate the log-probability for the state `x`.
 
     Parameters:
@@ -95,7 +44,65 @@ class AbstractProposalDistribution:
     '''
 
 
-def display_results(res, dim=None, skip=1, output=None):
+class MHMCMCSampler:
+  ''' MCMC sampler with the Metropolis-Hastings algorithm. '''
+
+  def __init__(self, likelihood: AbstractLikelihood,
+               proposal_dist: AbstractProposalDistribution, seed: int=2021):
+    ''' Generate a MCMC sampler instatnce.
+
+    Parameters:
+      likelihood (obj): An instance to calculate log-likelihood.
+        A sub-class of AbstractLikelihood is preferred.
+      proposal_dist (obj): An instance to draw from a proposal distribution.
+        A sub-class of AbstractProposalDistribution is preferred.
+      seed (float, optional): Random seed value.
+    '''
+    self.likelihood = likelihood
+    self.proposal_dist = proposal_dist
+    self.random = default_rng(seed)
+    self.initialize(None)
+
+  def initialize(self, x0: np.ndarray):
+    ''' Initialize state.
+
+    Parameters:
+      x0 (numpy.ndarray): An initial state (1-dimensional vector).
+    '''
+    self.state = x0
+
+  def step(self):
+    ''' Draw a next Monte-Carlo step.
+
+    Returns:
+      numpy.ndarray: The newly generated next state.
+    '''
+    proposal = self.proposal_dist.draw(self.state)
+    log_alpha = \
+      self.likelihood.eval(proposal) - self.likelihood.eval(self.state) \
+      + self.proposal_dist.eval(self.state, proposal) \
+      - self.proposal_dist.eval(proposal, self.state)
+    log_u = np.log(self.random.uniform(0, 1))
+    return proposal if (log_u < log_alpha) else self.state
+
+  def generate(self, n_sample: int):
+    ''' Generate N-samples
+
+    Parameters:
+      n_samples (int): Number of MCMC samples to generate.
+
+    Returns:
+      numpyn.ndarray: A table of generated MCMC samples.
+    '''
+    samples = []
+    for n in range(n_sample):
+      samples.append(self.state)
+      self.state = self.step()
+    return np.vstack(samples)
+
+
+def display_results(res: np.ndarray, dim: object=None, skip: int=1,
+                    output: str=None):
   ''' Display the trace and histogram of samples.
 
   Parameters:
