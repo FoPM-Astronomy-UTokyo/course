@@ -1,0 +1,933 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="FoPM Learning Program at Institute of Astronomy">
+      
+      
+      
+        <meta name="author" content="Ryou Ohsawa">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>乱数を生成する - FoPM Learning Program &ndash; Institute of Astronomy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.7fa14f5b.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/config_local.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="deep-orange">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="FoPM Learning Program &amp;ndash; Institute of Astronomy" class="md-header__button md-logo" aria-label="FoPM Learning Program &ndash; Institute of Astronomy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FoPM Learning Program &ndash; Institute of Astronomy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              乱数を生成する
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="FoPM Learning Program &amp;ndash; Institute of Astronomy" class="md-nav__button md-logo" aria-label="FoPM Learning Program &ndash; Institute of Astronomy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    FoPM Learning Program &ndash; Institute of Astronomy
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        トップページ
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        実習テキスト
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="実習テキスト" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          実習テキスト
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      <label class="md-nav__link" for="__nav_2_1">
+        MCMC 入門
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="MCMC 入門" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          MCMC 入門
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        はじめに
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          乱数を生成する
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        乱数を生成する
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    前提/一様乱数を生成する関数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    逆関数法
+  </a>
+  
+    <nav class="md-nav" aria-label="逆関数法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    逆関数法による乱数生成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    指数分布に従う乱数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-box-muller" class="md-nav__link">
+    正規分布に従う乱数 --- Box-Muller 変換
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    棄却法
+  </a>
+  
+    <nav class="md-nav" aria-label="棄却法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    棄却法による乱数生成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    提案分布による効率化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    棄却法の弱点
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static_monte_carlo/" class="md-nav__link">
+        静的なモンテカルロ法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../markov_chain/" class="md-nav__link">
+        動的なモンテカルロ法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scratchbuild_mcmc/" class="md-nav__link">
+        MCMC -- Do it Yourself
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/" class="md-nav__link">
+        参考文献
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.s.u-tokyo.ac.jp/ja/FoPM/" class="md-nav__link">
+        FoPM Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/FoPM-Astronomy-UTokyo/course" class="md-nav__link">
+        GitHub repository
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    前提/一様乱数を生成する関数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    逆関数法
+  </a>
+  
+    <nav class="md-nav" aria-label="逆関数法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    逆関数法による乱数生成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    指数分布に従う乱数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-box-muller" class="md-nav__link">
+    正規分布に従う乱数 --- Box-Muller 変換
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    棄却法
+  </a>
+  
+    <nav class="md-nav" aria-label="棄却法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    棄却法による乱数生成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    提案分布による効率化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    棄却法の弱点
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="_1">乱数を生成する</h1>
+<p>ここでは任意の確率分布関数に従う乱数を発生させる方法として, 逆関数法と棄却法という 2 つの方法を紹介します. MCMC の理解にはさほど重要ではないのですが, MCMC と対比させる手法としてここで簡単に触れておきます.</p>
+<h2 id="_2">前提/一様乱数を生成する関数</h2>
+<p>前提として私たちは <span class="arithmatex">\([0,1)\)</span> の範囲に一様に分布する乱数を生成できるとします. まず, 何らかの乱数を発生させる能力がないと以下の議論は成立しません.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> Python では以下のようにして乱数生成器を生成することができます.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">default_rng</span>  <span class="c1"># 乱数生成器</span>
+<span class="n">gen</span> <span class="o">=</span> <span class="n">default_rng</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>               <span class="c1"># seed 値を与えて初期化する</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+</code></pre></div>
+<details class="summary"><summary>計算結果</summary><div class="highlight"><pre><span></span><code><span class="p">[</span><span class="mf">0.75694783</span> <span class="mf">0.94138187</span> <span class="mf">0.59246304</span> <span class="mf">0.31884171</span> <span class="mf">0.62607384</span><span class="p">]</span>
+</code></pre></div>
+</details>
+<p>散布図を作成して生成された乱数がどんな分布になっているのか確認してみましょう. <span class="arithmatex">\([0,1)\)</span> の範囲に一様に分布していることが確認できると思います.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">default_rng</span>
+<span class="n">gen</span> <span class="o">=</span> <span class="n">default_rng</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">1000</span><span class="p">)),</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;uniform random value&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;sample number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<details class="summary"><summary>計算結果</summary><p><img alt="一様分布のサンプル" src="../img/uniform.png" /></p>
+</details>
+<p><code>numpy</code> にはさまざまな確率分布に従う乱数を生成するための関数が備わっていますが, ここでは一様乱数 <code>uniform()</code> を使って任意の確率分布に従う乱数を生成する方法について紹介します.</p>
+<details class="tip"><summary>乱数生成器をカスタマイズしたい場合</summary><p>上記のサンプルではデフォルトの乱数生成器を使用しました. 乱数生成器を自分でカスタマイズしたい場合には以下のように <code>Generator()</code> を呼び出してください.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">PCG64</span>
+<span class="n">gen</span> <span class="o">=</span> <span class="n">Generator</span><span class="p">(</span><span class="n">PCG64</span><span class="p">(</span><span class="mi">2021</span><span class="p">))</span>          <span class="c1"># PCG64 に seed 値を与えて初期化する</span>
+</code></pre></div>
+<p>デフォルトでは <code>PCG64</code> が使用されますが, もしメルセンヌツイスタを使用したい場合には <code>MT19937</code> を使用してください.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">MT19937</span>
+<span class="n">gen</span> <span class="o">=</span> <span class="n">Generator</span><span class="p">(</span><span class="n">MT19937</span><span class="p">(</span><span class="mi">2021</span><span class="p">))</span>        <span class="c1"># MT19937 に seed 値を与えて初期化する</span>
+</code></pre></div>
+</details>
+<h2 id="_3">逆関数法</h2>
+<h3 id="_4">逆関数法による乱数生成</h3>
+<p>逆関数法とは以下の手続きによって乱数を生成する方法です.</p>
+<ol>
+<li>累積確率分布 <span class="arithmatex">\(C(x) = \int P(x') \mathrm{d}x'\)</span> の逆関数 <span class="arithmatex">\(C^{-1}(y)\)</span> を用意する.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></li>
+<li><span class="arithmatex">\([0,1)\)</span> の一様分布 <span class="arithmatex">\({\operatorname{Unif}}(0,1)\)</span> から <span class="arithmatex">\(u\)</span> をサンプルする.</li>
+<li><span class="arithmatex">\({x'} \gets C^{-1}(u)\)</span> によって <span class="arithmatex">\({x'}\)</span> を定義する.</li>
+</ol>
+<p>累積確率分布 <span class="arithmatex">\(C(x)\)</span> は単調増加関数なので常に逆関数を持ちます. <span class="arithmatex">\(C(x)\)</span> の range は <span class="arithmatex">\([0,1)\)</span> なので, 逆関数 <span class="arithmatex">\(C^{-1}(y)\)</span> の domain は <span class="arithmatex">\([0,1)\)</span> なので <span class="arithmatex">\(u\)</span> を入力として与えると, <span class="arithmatex">\(C^{-1}(y)\)</span> の domain 全体に対して一様の密度で入力を与えることになります. ここで <span class="arithmatex">\(u\)</span> を <span class="arithmatex">\(\mathrm{d}u\)</span> だけ動かしたときに <span class="arithmatex">\({x'}\)</span> がどれだけ動くかを考えると,</p>
+<div class="arithmatex">\[
+\mathrm{d}{x'}
+= \frac{\mathrm{d}C^{-1}(u)}{\mathrm{d}u} \mathrm{d}u
+= \frac{1}{P({x'})} \mathrm{d}u.
+\]</div>
+<p>となります. <span class="arithmatex">\(u\)</span> &rrarr; <span class="arithmatex">\({x'}\)</span> の変換で <span class="arithmatex">\(\mathrm{d}u\)</span> の幅に一様に分布していたデータは <span class="arithmatex">\(\mathrm{d}{x'} = P({x'})^{-1}\mathrm{d}u\)</span> の範囲に分布することになるので, <span class="arithmatex">\({x'}\)</span> の空間では密度は <span class="arithmatex">\(P({x'})\)</span> 倍になります. これによって, 上記の変換によって得られた乱数 <span class="arithmatex">\(x'\)</span> の分布はは確率分布関数 <span class="arithmatex">\(P(x)\)</span> に従います.</p>
+<p>逆関数法の概念図を以下に示します. 累積確率分布 <span class="arithmatex">\(C(x)\)</span> を黒実線で示しました. ここで <span class="arithmatex">\([0,1)\)</span> の範囲で一様に値をサンプルして, その値を高さにもち <span class="arithmatex">\(x\)</span> 軸と並行にな線 (黄色) を引きます. ここでは線を 30 本引いています. 線が <span class="arithmatex">\(C(x)\)</span> とぶつかったところで <span class="arithmatex">\(x\)</span> 軸に落とします. この操作は <span class="arithmatex">\(u\)</span> &rrarr; <span class="arithmatex">\({x'}\)</span> の変換に相当しています. 確率分布 <span class="arithmatex">\(P(x)\)</span> の値が大きいところでは <span class="arithmatex">\(C(x)\)</span> の傾きが大きくなるため, <span class="arithmatex">\(x\)</span> 軸上では黄色い線の密度が高くなっていることが分かります.</p>
+<p><img alt="逆関数法の概念図" src="../img/inverse.png" /></p>
+<h3 id="_5">指数分布に従う乱数</h3>
+<p>逆関数法を使って指数分布に従う乱数を生成してみましょう. 指数分布とは <span class="arithmatex">\(x \geq 0\)</span> で定義される確率分布で, 減衰の速さを示すパラメタを 1 つ持ちます.</p>
+<div class="arithmatex">\[
+{\operatorname{Exponential}}(\lambda):
+P(x;\lambda) = \lambda\exp(-{\lambda}x).
+\]</div>
+<p>累積確率分布は <span class="arithmatex">\(C(x;\lambda) = 1-\exp(-{\lambda}x)\)</span> となるので, 一様分布から生成した乱数 <span class="arithmatex">\(u\)</span> をつかって以下の変換をすることで指数分布に従う乱数を生成することができます.</p>
+<div class="arithmatex">\[
+x' \gets -\frac{1}{\lambda}\log(1-u).
+\]</div>
+<p>以下のサンプルでは一様乱数 <span class="arithmatex">\(u\)</span> を 1000 個生成して, <span class="arithmatex">\(\lambda = 3\)</span> の指数分布に従う乱数に変換しています. 生成した乱数のヒストグラムと確率分布 <span class="arithmatex">\(P(x;\lambda)\)</span> を同じ図にプロットして相違がないことを確認しています.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">default_rng</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">gen</span> <span class="o">=</span> <span class="n">default_rng</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+
+<span class="n">lam</span> <span class="o">=</span> <span class="mf">3.0</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">lam</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">lam</span><span class="o">*</span><span class="n">X</span><span class="p">)</span>
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10000</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span><span class="o">/</span><span class="n">lam</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">u</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;variable: x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<details class="summary"><summary>計算結果</summary><p><img alt="指数分布に従う乱数" src="../img/exponential.png" /></p>
+</details>
+<h3 id="-box-muller">正規分布に従う乱数 &mdash; Box-Muller 変換</h3>
+<p>もうひとつ, 逆関数法のサンプルとして平均が 0 で分散が 1 の標準正規分布 <span class="arithmatex">\(\mathcal{N}(0,1)\)</span> を導出します. 標準正規分布は累積確率分布を陽に計算することはできないため, 逆関数法を単純に当てはめることができません. しかし, Box-Muller 変換という手法を使うことで一様分布に従う 2 つの乱数から 2 つの独立した標準正規分布からなる確率変数 <span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(y\)</span> を得ることができます.</p>
+<p>まずは, <span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(y\)</span> の同時確率分布 <span class="arithmatex">\(P(x,y)\)</span> を考えます.</p>
+<div class="arithmatex">\[
+P(x,y) = \frac{1}{2\pi}\exp\left(-\frac{x^2+y^2}{2}\right).
+\]</div>
+<p>ここで, <span class="arithmatex">\(x = r\cos\theta\)</span>, <span class="arithmatex">\(y = r\sin\theta\)</span> とおいて極座標系に変換してから累積確率分布を考えます. ただし, 確率は <span class="arithmatex">\(\theta\)</span> には依存しないため <span class="arithmatex">\([0,2\pi)\)</span> に一様に分布していると考えてよさそうです. 問題を簡単にするために <span class="arithmatex">\(\theta\)</span> は積分して消してしまって, <span class="arithmatex">\(r\)</span> に対する累積確率分布を考えます.</p>
+<div class="arithmatex">\[
+C(r) = \frac{1}{2\pi}\int_0^{2\pi}\mathrm{d}\theta'
+\int_0^r\mathrm{d}r' r\exp\left(-\frac{r^2}{2}\right)
+= 1 - \exp\left(-\frac{r^2}{2}\right).
+\]</div>
+<p>これで先ほどと同様に逆関数法を使うことができます. <span class="arithmatex">\([0,1)\)</span> の一様分布に従う乱数 <span class="arithmatex">\(u\)</span>, <span class="arithmatex">\(v\)</span> を使って <span class="arithmatex">\(r\)</span>, <span class="arithmatex">\(\theta\)</span> に変換します. さらに <span class="arithmatex">\(r\)</span>, <span class="arithmatex">\(\theta\)</span> を直行座標での値に変換することで, 正規分布に従う確率変数 <span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(y\)</span> を得ることができます.</p>
+<div class="arithmatex">\[
+\left\{~\begin{aligned}
+r &amp;= \sqrt{-2\log(1-u)} \\
+\theta &amp;= 2\pi v
+\end{aligned}\right.
+\quad\Rightarrow\quad
+\left\{~\begin{aligned}
+x &amp;= r\cos\theta \\
+y &amp;= r\sin\theta
+\end{aligned}\right..
+\]</div>
+<p>以下のサンプルでは一様分布から Box-Muller 変換によってサンプルした <span class="arithmatex">\(x\)</span> のヒストグラムと標準正規分布の確率分布関数を同じ図にプロットして相違がないことを確認しています.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">default_rng</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">gen</span> <span class="o">=</span> <span class="n">default_rng</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">X</span><span class="o">*</span><span class="n">X</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">30000</span><span class="p">))</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">30000</span><span class="p">))</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">u</span><span class="p">))</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">v</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;variable: x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<details class="summary"><summary>計算結果</summary><p><img alt="Box-Muller 変換による正規分布" src="../img/box-muller.png" /></p>
+</details>
+<p>逆関数法は特定の確率分布に従う乱数を生成する方法として極めて強力です. しかしながら, 逆関数法を適用するためには累積確率分布の逆関数を効率よく計算できるという条件を満たす必要があります. 限られたクラスの確率分布にしか適用することはできません.</p>
+<h2 id="_6">棄却法</h2>
+<h3 id="_7">棄却法による乱数生成</h3>
+<p>棄却法は極めてシンプルな手続きによって乱数を生成する方法です. 例えば以下のような手続きによって生成することができます.</p>
+<ol>
+<li>一様分布から候補 <span class="arithmatex">\(x\)</span> をサンプルする.</li>
+<li><span class="arithmatex">\([0,\alpha)\)</span> の一様分布 <span class="arithmatex">\({\operatorname{Unif}}(0,\alpha)\)</span> から <span class="arithmatex">\(u\)</span> をサンプルする.<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></li>
+<li><span class="arithmatex">\(u \leq P(x)\)</span> であれば <span class="arithmatex">\(x\)</span> を採用する. そうでなければ <span class="arithmatex">\(x\)</span> を棄却する.</li>
+<li>必要なサンプル数が揃うまで上記の手続きを繰り返す.</li>
+</ol>
+<p><span class="arithmatex">\(P(x)\)</span> の値に応じて採用される確率が高くなるため, 必然的に <span class="arithmatex">\(P(x)\)</span> に従う乱数を得ることができます. <span class="arithmatex">\(P(x)\)</span> の値を評価することができれば適用することができるため, ほぼ任意の形状の確率分布に対して使うことができます.</p>
+<p>また, この手続きでは確率変数 <span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(x'\)</span> が採用される確率の比 <span class="arithmatex">\(P(x)/P(x')\)</span> によって <span class="arithmatex">\(x\)</span> が従う確率分布の形状が決まります. そのため, 確率分布関数の形状はわかっているが規格化定数がわからない<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>というケースでも適用することができます.</p>
+<p>以下のサンプルでは確率分布 <span class="arithmatex">\(P(x) \propto \sqrt{1-x^2}\)</span> に従う乱数を棄却法によって生成しています. 生成した乱数のヒストグラムが確率分布と相違がないことを確認しています. また合計で 30000 件のデータを生成するために合計で何回上記の手続きを繰り返したのかを表示します.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">default_rng</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">gen</span> <span class="o">=</span> <span class="n">default_rng</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+
+<span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mf">2.0</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="n">trial</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">30000</span><span class="p">:</span>
+  <span class="n">u</span> <span class="o">=</span> <span class="n">gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+  <span class="n">v</span> <span class="o">=</span> <span class="n">gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">v</span><span class="o">&lt;</span><span class="n">func</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+  <span class="n">trial</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;total trial: </span><span class="si">{</span><span class="n">trial</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;variable: x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<details class="summary"><summary>計算結果</summary><p><div class="highlight"><pre><span></span><code><span class="n">total</span> <span class="n">trial</span><span class="p">:</span> <span class="mi">76247</span>
+</code></pre></div>
+<img alt="棄却法によって生成された乱数" src="../img/reject_uniform.png" /></p>
+</details>
+<h3 id="_8">提案分布による効率化</h3>
+<p>上記の手続きでは <span class="arithmatex">\(x\)</span> を一様な分布からサンプルしていました. ここで, 最初に <span class="arithmatex">\(x\)</span> を抽出する分布のことを提案分布と呼びます. 提案分布は一様分布である必要はありません. 提案分布として <span class="arithmatex">\(P(x)\)</span> に近い分布を用いることで, サンプリングを効率化する (棄却率を下げる) ことができます. 提案分布として <span class="arithmatex">\(Q(x)\)</span> をもちいた場合の手続きを以下に示します.<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup></p>
+<ol>
+<li>提案分布 <span class="arithmatex">\(Q(x)\)</span> から候補 <span class="arithmatex">\(x\)</span> をサンプルする.<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup></li>
+<li><span class="arithmatex">\([0,\alpha)\)</span> の一様分布 <span class="arithmatex">\({\operatorname{Unif}}(0,\alpha)\)</span> から <span class="arithmatex">\(u\)</span> をサンプルする.<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup></li>
+<li><span class="arithmatex">\(u \leq P(x)/Q(x)\)</span> であれば <span class="arithmatex">\(x\)</span> を採用する. そうでなければ <span class="arithmatex">\(x\)</span> を棄却する.</li>
+<li>必要なサンプル数が揃うまで上記の手続きを繰り返す.</li>
+</ol>
+<p>以下のサンプルでは標準正規分布を提案分布として採用した確率分布 <span class="arithmatex">\(P(x) \propto \sqrt{1-x^2}\)</span> に従う乱数を棄却法によって生成しています. 生成した乱数のヒストグラムが求める確率分布と相違ないことを確認しています. また合計で 30000 件のデータを生成するために合計で何回上記の手続きを繰り返したのかを表示します.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">default_rng</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">gen</span> <span class="o">=</span> <span class="n">default_rng</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+
+<span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mf">2.0</span>
+<span class="n">prop</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="n">trial</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">30000</span><span class="p">:</span>
+  <span class="n">u</span> <span class="o">=</span> <span class="n">gen</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">v</span> <span class="o">=</span> <span class="n">gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+  <span class="k">if</span> <span class="n">v</span><span class="o">&lt;</span><span class="n">func</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">/</span><span class="n">prop</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+  <span class="n">trial</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;total trial: </span><span class="si">{</span><span class="n">trial</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;variable: x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<details class="summary"><summary>計算結果</summary><p><div class="highlight"><pre><span></span><code><span class="n">total</span> <span class="n">trial</span><span class="p">:</span> <span class="mi">47650</span>
+</code></pre></div>
+<img alt="棄却法によって生成された乱数" src="../img/reject_normal.png" /></p>
+</details>
+<p>目的とする分布に近い分布を提案分布として用いることによって, 効率的にサンプリングできていることが分かります.</p>
+<h3 id="_9">棄却法の弱点</h3>
+<p>棄却法はシンプルであり幅広いクラスの問題に対して適用することができます. 一方で, 確率分布が局所的に高い値を持つ場合には, 棄却率が高くなってしまい, 効率的にサンプルすることができくなる可能性があります.</p>
+<p>以下のサンプルでは <span class="arithmatex">\(x \in [0,10)\)</span> で定義された <span class="arithmatex">\(\lambda = 3\)</span> の指数分布に対して <span class="arithmatex">\(\alpha = \lambda\)</span> として棄却法を試してみます. 10000 回繰り返したときに棄却された割合を計算してみます.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">default_rng</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">gen</span> <span class="o">=</span> <span class="n">default_rng</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+
+<span class="n">lam</span> <span class="o">=</span> <span class="mf">3.0</span>
+<span class="n">ub</span>  <span class="o">=</span> <span class="mf">10.0</span>
+<span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">lam</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">lam</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">lam</span><span class="o">*</span><span class="n">ub</span><span class="p">))</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ub</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10000</span><span class="p">))</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">lam</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10000</span><span class="p">))</span>
+<span class="n">rejected</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;rejected fraction: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rejected</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="n">rejected</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+</code></pre></div>
+<details class="summary"><summary>計算結果</summary><div class="highlight"><pre><span></span><code><span class="n">rejected</span> <span class="n">fraction</span><span class="p">:</span> <span class="mf">0.9693</span>
+</code></pre></div>
+</details>
+<p>今回のケースではおよそ 96% の試行が reject されました. 望んだ数だけ乱数を得るためにおよそ 30 倍以上の試行を費やさなければならないことになります. 棄却法は実装しやすく, 適用範囲の広い方法ではあるのですが, 問題によっては必ずしも効率の良い方法とは言えません.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>もちろん計算機によって生成される乱数は擬似乱数でしかないのですが, ここでは考えないことにしましょう.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>一般に累積確率分布を <span class="arithmatex">\(C(x)\)</span>, 確率分布を <span class="arithmatex">\(P(x)\)</span> で表すことにします.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>ただし <span class="arithmatex">\(\alpha \geq \max\limits_x P(x)\)</span> とします.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>確率を Bayes 的に評価しようとするとこのケースには頻繁に遭遇します. 特に多次元の量を扱っている場合には, 規格化するために多次元空間での積分が必要になるため「2 点の確率の比」さえ分かれば適用できる手法はとても有用です (そして今回 MCMC で用いる Metropolis-Hasting 法もこのケースに該当します).&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>ここでは例外的に確率分布関数に <span class="arithmatex">\(Q(x)\)</span> という表現を使っています. 実態を反映しているわけではないが <span class="arithmatex">\(P(x)\)</span> を近似するために使いやすい関数として採用しています.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>ここで <span class="arithmatex">\(P(x) &gt; 0\)</span> であるような <span class="arithmatex">\(x\)</span> については必ず <span class="arithmatex">\(Q(x) &gt; 0\)</span> であるような <span class="arithmatex">\(Q(x)\)</span> を選ぶ必要があります. 提案されることのない領域は決してサンプルに現れません.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>ただし <span class="arithmatex">\(\alpha \geq \max\limits_x {P(x)}/{Q(x)}\)</span> とします.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              はじめに
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../static_monte_carlo/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              静的なモンテカルロ法
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Ryou Ohsawa 2021
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+        <script src="../../js/config_mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

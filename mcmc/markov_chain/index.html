@@ -1,0 +1,706 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="FoPM Learning Program at Institute of Astronomy">
+      
+      
+      
+        <meta name="author" content="Ryou Ohsawa">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>動的なモンテカルロ法 - FoPM Learning Program &ndash; Institute of Astronomy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.7fa14f5b.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/config_local.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="deep-orange">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="FoPM Learning Program &amp;ndash; Institute of Astronomy" class="md-header__button md-logo" aria-label="FoPM Learning Program &ndash; Institute of Astronomy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FoPM Learning Program &ndash; Institute of Astronomy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              動的なモンテカルロ法
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="FoPM Learning Program &amp;ndash; Institute of Astronomy" class="md-nav__button md-logo" aria-label="FoPM Learning Program &ndash; Institute of Astronomy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    FoPM Learning Program &ndash; Institute of Astronomy
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        トップページ
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        実習テキスト
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="実習テキスト" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          実習テキスト
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      <label class="md-nav__link" for="__nav_2_1">
+        MCMC 入門
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="MCMC 入門" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          MCMC 入門
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        はじめに
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generate_random_variables/" class="md-nav__link">
+        乱数を生成する
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static_monte_carlo/" class="md-nav__link">
+        静的なモンテカルロ法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          動的なモンテカルロ法
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        動的なモンテカルロ法
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    マルコフ連鎖とは
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    マルコフ連鎖によるサンプル生成
+  </a>
+  
+    <nav class="md-nav" aria-label="マルコフ連鎖によるサンプル生成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metropolis-hastings-algorithm" class="md-nav__link">
+    Metropolis-Hastings algorithm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gibbs-sampling" class="md-nav__link">
+    Gibbs sampling
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scratchbuild_mcmc/" class="md-nav__link">
+        MCMC -- Do it Yourself
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/" class="md-nav__link">
+        参考文献
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.s.u-tokyo.ac.jp/ja/FoPM/" class="md-nav__link">
+        FoPM Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/FoPM-Astronomy-UTokyo/course" class="md-nav__link">
+        GitHub repository
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    マルコフ連鎖とは
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    マルコフ連鎖によるサンプル生成
+  </a>
+  
+    <nav class="md-nav" aria-label="マルコフ連鎖によるサンプル生成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metropolis-hastings-algorithm" class="md-nav__link">
+    Metropolis-Hastings algorithm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gibbs-sampling" class="md-nav__link">
+    Gibbs sampling
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="_1">動的なモンテカルロ法</h1>
+<p><a href="../static_monte_carlo/">前項</a> では問題の次元が大きくなると, 静的なモンテカルロ法ではターゲットとなる分布にヒットする確率が著しく下がるため, 効率よく計算することができないという問題について触れました.</p>
+<p>これはターゲットとなる確率分布を提案分布でうまく近似できていないことに起因します. そこで, 確率分布全体をうまく近似することをあきらめて, あるデータの近傍でのみうまく近似することを考えます. ごく近傍でしかつじつまが合っていなくても, その情報を適切につなぎ合わせることができれば, 確率分布全体をうまく表現することができるはずです.</p>
+<p>ここでは「マルコフ連鎖モンテカルロ法」について説明します. データを効率よくサンプリングするために, あるデータの近傍でのみ次のサンプルを探すという戦略をとります. 一回の操作では確率分布関数のごく一部しか探索することができませんが, この操作を多数回繰り返すことによって確率分布関数全体の形状をを浮かび上がらせることができます.</p>
+<h2 id="_2">マルコフ連鎖とは</h2>
+<p>マルコフ連鎖とはマルコフ過程によって生成された状態 (データ) の列 <span class="arithmatex">\(\{x_t\}_{t=0{\ldots}}\)</span> を表します.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> マルコフ過程とは &ldquo;現在の状態 <span class="arithmatex">\(x\)</span> から次の状態 <span class="arithmatex">\(x'\)</span> へ遷移する確率 <span class="arithmatex">\(\pi(x \to x')\)</span> が現在の状態によって決まる&rdquo; という過程を表しています.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
+<p>ある条件のもとでは十分に長い時間遷移を繰り返したときの <span class="arithmatex">\(\{x_t\}_{t=0{\ldots}}\)</span> の分布が (初期値 <span class="arithmatex">\(x_0\)</span> に依らず) ある分布 <span class="arithmatex">\(\mathcal{P}(x)\)</span> に収束することが期待されます.<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> この分布のことを定常分布と呼びます. ある時刻 <span class="arithmatex">\(t\)</span> までマルコフ連鎖を繰り返したときに期待される <span class="arithmatex">\(x\)</span> の確率分布関数を <span class="arithmatex">\(\mathcal{P}_t(x)\)</span> とします. ここから時刻 <span class="arithmatex">\(t+1\)</span> における分布 <span class="arithmatex">\(\mathcal{P}_{t+1}(x)\)</span> を計算すると以下の式になります.<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup></p>
+<div class="arithmatex">\[
+\mathcal{P}_{t+1}(x') = \int\mathrm{d}x\,\mathcal{P}_{t}(x)\pi(x \to x').
+\]</div>
+<p><span class="arithmatex">\(t \to \infty\)</span> のときに <span class="arithmatex">\(\mathcal{P}_{t}(x)\)</span> が定常分布に収束するのであれば <span class="arithmatex">\(\mathcal{P}(x)\)</span> は,</p>
+<div class="arithmatex">\[
+\mathcal{P}(x') = \int\mathrm{d}x\,\mathcal{P}(x)\pi(x \to x').
+\]</div>
+<p>を満たしていることが必要になります. また, こうした定常分布が存在するためには, 状態遷移のルールにも制約があります. まず, 存在するどの状態ペア <span class="arithmatex">\((x, x')\)</span> も有限回の操作で遷移できる (状態が分断されていない) ことが必要です. 加えて, 状態の遷移には非周期性も必要とされますが, ここでは詳細については省略します.<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup></p>
+<p>十分に長い時間マルコフ連鎖のステップを繰り返すことで, マルコフ連鎖列 <span class="arithmatex">\(\{x_t\}_{t=0{\ldots}}\)</span> を定常分布 <span class="arithmatex">\(\mathcal{P}(x)\)</span> からサンプルした乱数とみなすことができます. ここで状態遷移のルールをうまく設定することによって, 収束先の定常分布をコントロールすることができます. ターゲットとなる確率分布関数 <span class="arithmatex">\(P(x)\)</span> に収束するようなマルコフ連鎖を設計することができれば, 任意の確率分布関数からの乱数を効率よくサンプリングすることができそうです.</p>
+<details class="tip"><summary>分布の収束性についてのコメント</summary><p>ここでは操作を繰り返すことによって期待される分布がどのように変わっていくかを考えることで, 分布の収束性について説明します. <span class="arithmatex">\(t=0\)</span> のときに期待される <span class="arithmatex">\(x\)</span> の分布を <span class="arithmatex">\(\mathcal{P}_0{x}\)</span> とします. これは初期状態として定義しているだけで任意の分布です. 1 ステップ後の分布を以下のように書くことができます.</p>
+<div class="arithmatex">\[
+\mathcal{P}_1(x) = \int\mathrm{d}x'\,\mathcal{P}_0(x')\pi(x' \to x)
+= c\mathcal{P}(x) + (1-c)R_0(x).
+\]</div>
+<p>ただし <span class="arithmatex">\(0 &lt; c &lt; 1\)</span> で <span class="arithmatex">\(\mathcal{P}_0(x)\)</span> に依らない定数になります (この形で書けることの証明は省略します). <span class="arithmatex">\(\pi(x \to x')\)</span> の操作をすることによって <span class="arithmatex">\(\mathcal{P}_1(x)\)</span> から <span class="arithmatex">\(c\)</span> 倍だけ <span class="arithmatex">\(\mathcal{P}(x)\)</span> を削り出すことができます. 同じ状態遷移を実行すると,</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathcal{P}_2(x) &amp;= c\mathcal{P}(x)
+                    + (1-c)(c\mathcal{P}(x) + (1-c)R_1(x)) \\
+                 &amp;= \left(1 - (1-c)^2\right) \mathcal{P}(x)
+                    + (1-c)^2 R_1(x)
+\end{aligned}
+\]</div>
+<p>と変換できます. ただし <span class="arithmatex">\(R_0(x)\)</span> を初期分布として <span class="arithmatex">\(c\mathcal{P}(x)\)</span> を削りだす操作を再びおこっています. 状態遷移を <span class="arithmatex">\(m\)</span> 回繰り返すことによって以下の式を得ます.</p>
+<div class="arithmatex">\[
+\mathcal{P}_m(x) = \left(1 - (1-c)^m\right) \mathcal{P}(x)
+                   + (1-c)^m R_{m-1}(x).
+\]</div>
+<p><span class="arithmatex">\(m \to \infty\)</span> の極限で任意の分布 <span class="arithmatex">\(\mathcal{P}_0(x)\)</span> から <span class="arithmatex">\(\mathcal{P}(x)\)</span> に収束することが示せました.</p>
+</details>
+<h2 id="_3">マルコフ連鎖によるサンプル生成</h2>
+<p>ここまで, マルコフ連鎖によって定常分布 <span class="arithmatex">\(P(x)\)</span> に従う乱数を生成することができることを確認しました. 次に定常分布 <span class="arithmatex">\(\mathcal{P}(x)\)</span> を任意の確率分布関数 <span class="arithmatex">\(P(x)\)</span> にするための方法について紹介します. 定常分布が満たすべき式は</p>
+<div class="arithmatex">\[
+\mathcal{P}(x') = \int\mathrm{d}x\,\mathcal{P}(x)\pi(x \to x')
+\]</div>
+<p>です. この式が <span class="arithmatex">\(\mathcal{P}(x) \gets P(x)\)</span> で成立する遷移確率 <span class="arithmatex">\(\pi(x \to x')\)</span> を設計するためには, あらゆる遷移について矛盾が無いようにつじつまを合わせる必要があります. これを満たす遷移を考えるのはかなり難しいので, 上記のつりあいを満たすための十分条件として以下を考えます.</p>
+<div class="arithmatex">\[
+\mathcal{P}(x')\pi(x' \to x) = \mathcal{P}(x)\pi(x \to x').
+\]</div>
+<p>これを詳細つりあい条件と呼びます. 両辺を <span class="arithmatex">\(x\)</span> について積分すれば元の式に戻るため, 十分条件として成立していることは自明です. 任意の <span class="arithmatex">\((x, x')\)</span> について</p>
+<div class="arithmatex">\[
+{P}(x')\pi(x' \to x) = {P}(x)\pi(x \to x')
+\]</div>
+<p>が成り立つように状態遷移を設計することによってマルコフ連鎖から <span class="arithmatex">\(P(x)\)</span> に従う乱数をサンプリングすることができます. そのための手法のひとつが Metropolis-Hastings アルゴリズムです.</p>
+<h3 id="metropolis-hastings-algorithm">Metropolis-Hastings algorithm</h3>
+<p>Metropolis-Hastings アルゴリズムは以下の手順に従ってマルコフ連鎖を生成します.</p>
+<ol>
+<li>現在の状態 <span class="arithmatex">\(x_t\)</span> から次の状態の候補 <span class="arithmatex">\(x_p\)</span> を確率分布 <span class="arithmatex">\(Q(x_p; x_t)\)</span> からサンプリングする.<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup></li>
+<li><span class="arithmatex">\(P(x)\)</span>, <span class="arithmatex">\(Q(x_p; x)\)</span> から以下の量を計算する.<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup></li>
+</ol>
+<div class="arithmatex">\[
+\alpha = \frac{P(x_p)}{P(x_t)}\frac{Q(x_t;x_p)}{Q(x_p; x_t)}
+\]</div>
+<ol start="3">
+<li><span class="arithmatex">\([0,1)\)</span> の一様分布から乱数 <span class="arithmatex">\(u\)</span> をサンプリングする.<ol>
+<li><span class="arithmatex">\(u \leq \alpha\)</span> であれば提案された状態 <span class="arithmatex">\(x_p\)</span> を <span class="arithmatex">\(x_{t+1}\)</span> として採用する.</li>
+<li><span class="arithmatex">\(u &gt; \alpha\)</span> であれば現在の状態 <span class="arithmatex">\(x_t\)</span> を <span class="arithmatex">\(x_{t+1}\)</span> として採用する.</li>
+</ol>
+</li>
+</ol>
+<p>このように状態遷移を定義することによって, 確率分布 <span class="arithmatex">\(P(x)\)</span> に従う乱数をサンプリングできます. ただし, 次の状態を提案する確率分布 <span class="arithmatex">\(Q(x_p; x)\)</span> の選択によっては出力されるデータ列 <span class="arithmatex">\(\{x_t\}_{t=0{\ldots}}\)</span> の分布が <span class="arithmatex">\(P(x)\)</span> へと収束するまでに数多くの状態遷移が必要になります. 状態 <span class="arithmatex">\(x\)</span> の近傍を探索するためには, 提案分布 <span class="arithmatex">\(Q(x_p; x)\)</span> は <span class="arithmatex">\(x\)</span> を中心とした多次元正規分布のような分布が多く採用されます. この提案分布のステップ幅が広すぎると静的なモンテカルロ法で直面した問題が再燃して収束が遅くなります. 一方で, ステップ幅が狭すぎても確率分布を覆い尽くすまでに時間がかかるために収束が遅くなります. 提案分布の選択はある程度試行錯誤しながら決める必要があります.</p>
+<details class="tip"><summary>Metropolis-Hastings アルゴリズムが詳細つりあい条件を満たすことの確認</summary><p>まずは <span class="arithmatex">\(\alpha \leq 1\)</span> のケースを考えます. <span class="arithmatex">\(x_t \to x_p\)</span> へと遷移する確率 <span class="arithmatex">\(\pi(x_t \to x_p)\)</span> は <span class="arithmatex">\(Q(x_p; x_t)\)</span> から <span class="arithmatex">\(x_p\)</span> が選ばれ, かつ確率 <span class="arithmatex">\(\alpha\)</span> で採択されるという条件になります. 一方, <span class="arithmatex">\(x_p \to x_t\)</span> へと遷移する過程では <span class="arithmatex">\(\alpha\)</span> に相当する量がかならず 1 を超える (逆数になる) ので以下のように書けます.</p>
+<div class="arithmatex">\[
+\left\{~\begin{aligned}
+\pi(x_t \to x_p) &amp;= \alpha Q(x_p; x_t) \\
+\pi(x_p \to x_t) &amp;= Q(x_t; x_p)
+\end{aligned}\right.,
+\]</div>
+<p>よって <span class="arithmatex">\(P(x_t)\pi(x_t \to x_p)\)</span> を計算すると,</p>
+<div class="arithmatex">\[
+P(x_t)\pi(x_t \to x_p)
+= P(x_t) \frac{P(x_p)}{P(x_t)}\frac{Q(x_t; x_p)}{Q(x_p; x_t)}Q(x_p; x_t)
+= P(x_p)Q(x_t; x_p)
+\]</div>
+<p>となります. 同様に <span class="arithmatex">\(P(x_p)\pi(x_p \to x_t)\)</span> を計算すると,</p>
+<div class="arithmatex">\[
+P(x_p)\pi(x_p \to x_t) = P(x_p)Q(x_t; x_p)
+\]</div>
+<p>となるため, 詳細つりあい条件を満たしていることが分かります. <span class="arithmatex">\(\alpha &gt; 1\)</span> の場合も同様に示すことができます.</p>
+</details>
+<h3 id="gibbs-sampling">Gibbs sampling</h3>
+<p>Metropolis-Hastings アルゴリズムの特殊な例に Gibbs サンプリングという手法があります. 多次元の確率密度分布 <span class="arithmatex">\(P(x)\)</span> 全体を一度にモデル化することは難しいとしても, ある 1 次元だけ, あるいはある部分空間だけを抜き出した条件付き分布だけは厳密に求められるという場合があります. Gibbls サンプリングでは以下のようにしてマルコフ連鎖を生成します.</p>
+<ol>
+<li>現在の状態 <span class="arithmatex">\(x_t\)</span> から更新する次元 <span class="arithmatex">\(i\)</span> をランダムに選択する.<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup></li>
+<li>次の状態 <span class="arithmatex">\(x_p\)</span> を <span class="arithmatex">\(P(x_t^{(i)}|x_t^{({\neg}\,i)})\)</span> からサンプルする.</li>
+</ol>
+<p><span class="arithmatex">\(x^i\)</span>, <span class="arithmatex">\(x^{\neg i}\)</span> はそれぞれ <span class="arithmatex">\(x\)</span> の <span class="arithmatex">\(i\)</span> 番目の次元のみの成分と <span class="arithmatex">\(i\)</span> 番目の次元をを除いた成分を表しています. 次の状態 <span class="arithmatex">\(x_p\)</span> を選択する提案分布 <span class="arithmatex">\(Q(x_p; x)\)</span> は以下のように書けます.</p>
+<div class="arithmatex">\[
+Q(x_p; x_t) = P(i)P(x_p^{i}|x_t^{{\neg}i}), \quad
+Q(x_t; x_p) = P(i)P(x_t^{i}|x_t^{{\neg}i})
+\]</div>
+<p>ここで <span class="arithmatex">\(P(i)\)</span> は <span class="arithmatex">\(i\)</span> 番目の次元が選ばれる確率です. <span class="arithmatex">\(\alpha\)</span> の値は以下のように書けます.</p>
+<div class="arithmatex">\[
+\alpha = \frac{P(x_p)}{P(x_t)}
+\frac{P(i)P(x_t^{i}|x_t^{{\neg}i})}{P(i)P(x_p^{i}|x_t^{{\neg}i})}
+\]</div>
+<p>分母分子に <span class="arithmatex">\(P(x_t^{\neg{i}})\)</span> をかけると <span class="arithmatex">\(\alpha = 1\)</span> であることが確認できます. Gibbs サンプリングは提案分布に厳密な条件付き確率分布を用いることによって, 必ず採択されることが保証された Metropolis-Hastings アルゴリズムだと解釈することができます.</p>
+<p>また, マルコフ連鎖の初期のステップについては初期状態に依存している時期があります. 計算結果が初期状態に依らないことを期待して初期のいくらかの割合を捨て去るという作業をすることがあります. この過程を burn-in と呼びます.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>時系列っぽさを意識してなんとなく index を <span class="arithmatex">\(t\)</span> にしていますが, あまり深い意味はありません.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>時系列データをモデリングする場合 (状態空間モデル) などでは <span class="arithmatex">\(x_t\)</span> から <span class="arithmatex">\(x_{t+1}\)</span> への遷移確率を定める &ldquo;現在の状態&rdquo; として <span class="arithmatex">\(\tilde{x}_t = (x_{t-2},x_{t-1},x_{t})^T\)</span> のように過去の情報を含めることもあります.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>乱数をサンプリングしたい確率分布関数 <span class="arithmatex">\(P(x)\)</span> との混同を避けるために, マルコフ連鎖によって生成されるデータ列に期待される確率分布関数を <span class="arithmatex">\(\mathcal{P}(x)\)</span> とフォントを少し変えて記述しています.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>連続分布として書いていますが <span class="arithmatex">\(x\)</span> が離散的な場合は和に置き換えてください.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>チェッカーボードの上を 1 マスずつ移動するコマを考えてみます. コマの分布はこの場合 <span class="arithmatex">\(t\)</span> が奇数のときと偶数のときでそれぞれ定常分布に収束しますが, 全体で見たときは <span class="arithmatex">\(\mathcal{P}_\mathrm{odd}(x)\)</span>, <span class="arithmatex">\(\mathcal{P}_\mathrm{even}(x)\)</span> で振動してしまい収束しません. 非周期性はこうしたケースを排除するために要求されます.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p><span class="arithmatex">\(x\)</span> の近傍をサンプルしたいので <span class="arithmatex">\(x\)</span> をパラメタとして持ちます. 確率分布ではありますが物理的に意味があるわけではない (あるとは限らない) ので文字に <span class="arithmatex">\(Q\)</span> を使いました.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p><span class="arithmatex">\(\alpha\)</span> の計算では比をとるので <span class="arithmatex">\(P(x)\)</span> の規格化定数は未知のままで問題ありません.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p>必ずしもランダムである必要はなく順番に選んでも問題ありません.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../static_monte_carlo/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              静的なモンテカルロ法
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../scratchbuild_mcmc/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              MCMC -- Do it Yourself
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Ryou Ohsawa 2021
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+        <script src="../../js/config_mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,9 @@
+.md-typeset h2 {
+  border-bottom: 2px solid orange;
+}
+
+.md-typeset h3 {
+  padding-left: 0.3em;
+  background: #efefef;
+  border-left: 3px solid #666666;
+}
