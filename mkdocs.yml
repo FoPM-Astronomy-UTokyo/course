@@ -1,5 +1,5 @@
 site_name: FoPM Learning Program &ndash; Institute of Astronomy
-site_description: FoPM Learning Program
+site_description: FoPM Learning Program at Institute of Astronomy
 site_author: Ryou Ohsawa
 copyright: Ryou Ohsawa 2021
 nav:
@@ -11,7 +11,7 @@ nav:
       - mcmc/static_monte_carlo.md
       - mcmc/references.md
   - FoPM Home: https://www.s.u-tokyo.ac.jp/ja/FoPM/
-  - GitHub: https://github.com/FoPM-Astronomy-UTokyo/course
+  - GitHub repository: https://github.com/FoPM-Astronomy-UTokyo/course
 theme:
   name: 'material'
   language: 'en'
@@ -31,15 +31,14 @@ markdown_extensions:
   - smarty
   - sane_lists
   - meta
-  - markdown_checklist.extension
-  - pymdownx.arithmatex:
-      generic: true
   - pymdownx.details
   - pymdownx.highlight
   - pymdownx.inlinehilite
   - pymdownx.superfences
   - pymdownx.snippets:
       check_paths: True
+  - pymdownx.arithmatex:
+      generic: true
 plugins:
   - search:
       lang: 'ja'
