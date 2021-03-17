@@ -7,9 +7,9 @@ nav:
   - 実習テキスト:
     - MCMC 入門:
       - mcmc/index.md
-      - mcmc/generate.md
-      - mcmc/static_mcmc.md
-      - mcmc/refs.md
+      - mcmc/generate_random_variables.md
+      - mcmc/static_monte_carlo.md
+      - mcmc/references.md
   - FoPM Home: https://www.s.u-tokyo.ac.jp/ja/FoPM/
   - GitHub: https://github.com/FoPM-Astronomy-UTokyo/course
 theme:
