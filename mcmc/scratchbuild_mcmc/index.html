@@ -18,7 +18,7 @@
     
     
       
-        <title>MCMC -- Do it Yourself - FoPM Practical Course &ndash; Institute of Astronomy</title>
+        <title>MHMCMC チュートリアル - FoPM Practical Course &ndash; Institute of Astronomy</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mcmc-do-it-yourself" class="md-skip">
+        <a href="#mhmcmc" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MCMC -- Do it Yourself
+              MHMCMC チュートリアル
             
           </span>
         </div>
@@ -297,12 +297,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          MCMC -- Do it Yourself
+          MHMCMC チュートリアル
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        MCMC -- Do it Yourself
+        MHMCMC チュートリアル
       </a>
       
         
@@ -339,7 +339,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mhmcmc" class="md-nav__link">
+  <a href="#mhmcmc_1" class="md-nav__link">
     MHMCMC によるサンプリング
   </a>
   
@@ -499,7 +499,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mhmcmc" class="md-nav__link">
+  <a href="#mhmcmc_1" class="md-nav__link">
     MHMCMC によるサンプリング
   </a>
   
@@ -565,7 +565,7 @@
               
                 
                 
-                <h1 id="mcmc-do-it-yourself">MCMC &ndash; Do it Yourself</h1>
+                <h1 id="mhmcmc">MHMCMC チュートリアル</h1>
 <p>ここでは Metropolis-Hastings アルゴリズムを使ってマルコフ連鎖モンテカルロ計算をするためのプログラムを作成してみます. ただし, 実習時間内にすべてをスクラッチから作成するのは大変なので, 大まかな骨組みだけ Python のコードで用意しました. 核心となるパーツだけを Python で書くことで MCMC 計算を走らせることができます.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
 <h2 id="mhmcmc-sampler">MHMCMC Sampler クラス</h2>
 <p>MCMC 計算をするためのライブラリとして <a href="https://raw.githubusercontent.com/FoPM-Astronomy-UTokyo/course/main/code/mcmc/mhmcmc.py">mhmcmc.py</a> を用意しました. 各自ダウンロードして作業用ディレクトリに配置してください. ここでは以下の 2 つのクラスを使用します.</p>
@@ -637,7 +637,7 @@ estimated value: [4.988, 0.702]
   <span class="n">log_u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
   <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">proposal</span> <span class="k">if</span> <span class="p">(</span><span class="n">log_u</span> <span class="o">&lt;</span> <span class="n">log_alpha</span><span class="p">)</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
 </code></pre></div>
-<h2 id="mhmcmc">MHMCMC によるサンプリング</h2>
+<h2 id="mhmcmc_1">MHMCMC によるサンプリング</h2>
 <p>ここでは簡単な形状の確率分布関数に従う乱数を生成してみます.</p>
 <h3 id="1">演習: 1 次元のケース</h3>
 <p>確率変数 <span class="arithmatex">\(x\)</span> が 1 次元のケースについて実際にサンプリングしてみます. 以下の形状を持つ以下の形状を持つ確率分布関数を定義して MCMC によってサンプリングしてください. また, 得られたヒストグラムを確率分布関数から期待される形状と比べてください.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
