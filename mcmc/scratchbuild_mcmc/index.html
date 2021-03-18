@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="FoPM Learning Program at Institute of Astronomy">
+        <meta name="description" content="FoPM Practical Course at Institute of Astronomy">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>MCMC -- Do it Yourself - FoPM Learning Program &ndash; Institute of Astronomy</title>
+        <title>MCMC -- Do it Yourself - FoPM Practical Course &ndash; Institute of Astronomy</title>
       
     
     
@@ -79,7 +79,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="FoPM Learning Program &amp;ndash; Institute of Astronomy" class="md-header__button md-logo" aria-label="FoPM Learning Program &ndash; Institute of Astronomy" data-md-component="logo">
+    <a href="../.." title="FoPM Practical Course &amp;ndash; Institute of Astronomy" class="md-header__button md-logo" aria-label="FoPM Practical Course &ndash; Institute of Astronomy" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -92,7 +92,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            FoPM Learning Program &ndash; Institute of Astronomy
+            FoPM Practical Course &ndash; Institute of Astronomy
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -160,13 +160,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="FoPM Learning Program &amp;ndash; Institute of Astronomy" class="md-nav__button md-logo" aria-label="FoPM Learning Program &ndash; Institute of Astronomy" data-md-component="logo">
+    <a href="../.." title="FoPM Practical Course &amp;ndash; Institute of Astronomy" class="md-nav__button md-logo" aria-label="FoPM Practical Course &ndash; Institute of Astronomy" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
 
     </a>
-    FoPM Learning Program &ndash; Institute of Astronomy
+    FoPM Practical Course &ndash; Institute of Astronomy
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -323,6 +323,73 @@
     MHMCMC Sampler クラス
   </a>
   
+    <nav class="md-nav" aria-label="MHMCMC Sampler クラス">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    計算の流れ
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mhmcmc" class="md-nav__link">
+    MHMCMC によるサンプリング
+  </a>
+  
+    <nav class="md-nav" aria-label="MHMCMC によるサンプリング">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    演習: 1 次元のケース
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    演習: 2 次元のケース
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    各クラスの定義
+  </a>
+  
+    <nav class="md-nav" aria-label="各クラスの定義">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mhmcmcsampler" class="md-nav__link">
+    MHMCMCSampler
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaussianstep" class="md-nav__link">
+    GaussianStep
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -416,6 +483,73 @@
     MHMCMC Sampler クラス
   </a>
   
+    <nav class="md-nav" aria-label="MHMCMC Sampler クラス">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    計算の流れ
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mhmcmc" class="md-nav__link">
+    MHMCMC によるサンプリング
+  </a>
+  
+    <nav class="md-nav" aria-label="MHMCMC によるサンプリング">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    演習: 1 次元のケース
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    演習: 2 次元のケース
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    各クラスの定義
+  </a>
+  
+    <nav class="md-nav" aria-label="各クラスの定義">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mhmcmcsampler" class="md-nav__link">
+    MHMCMCSampler
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaussianstep" class="md-nav__link">
+    GaussianStep
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -432,33 +566,351 @@
                 
                 
                 <h1 id="mcmc-do-it-yourself">MCMC &ndash; Do it Yourself</h1>
-<p>ここでは Metropolis-Hastings アルゴリズムを使ってマルコフ連鎖モンテカルロ計算をするためのプログラムを自作してみます.</p>
+<p>ここでは Metropolis-Hastings アルゴリズムを使ってマルコフ連鎖モンテカルロ計算をするためのプログラムを作成してみます. ただし, 実習時間内にすべてをスクラッチから作成するのは大変なので, 大まかな骨組みだけ Python のコードで用意しました. 核心となるパーツだけを Python で書くことで MCMC 計算を走らせることができます.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
 <h2 id="mhmcmc-sampler">MHMCMC Sampler クラス</h2>
+<p>MCMC 計算をするためのライブラリとして <a href="https://raw.githubusercontent.com/FoPM-Astronomy-UTokyo/course/main/code/mcmc/mhmcmc.py">mhmcmc.py</a> を用意しました. 各自ダウンロードして作業用ディレクトリに配置してください. ここでは以下の 2 つのクラスを使用します.</p>
+<ul>
+<li><mark class="critic">MHMCMCSampler</mark>: Metropolis-Hastings アルゴリズムで MCMC 計算をするためのクラス.</li>
+<li><mark class="critic">GaussianStep</mark>: 正規分布でランダムウォークすることで状態を提案するクラス.</li>
+</ul>
+<p>それぞれのクラスの使い方の例は以下のとおりです.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">mhmcmc</span> <span class="kn">import</span> <span class="n">MHMCMCSampler</span><span class="p">,</span> <span class="n">GaussianStep</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">mu</span>  <span class="o">=</span> <span class="mf">5.0</span> <span class="c1"># 分布の中心</span>
+<span class="n">sig</span> <span class="o">=</span> <span class="mf">0.7</span> <span class="c1"># 分布の幅</span>
+
+<span class="c1"># 乱数をサンプルする確率分布を定義</span>
+<span class="k">def</span> <span class="nf">log_likelihood</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(((</span><span class="n">x</span><span class="o">-</span><span class="n">mu</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span><span class="o">/</span><span class="n">sig</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+
+<span class="c1"># sigma = 0.5 でランダムウォークする提案分布を作成</span>
+<span class="n">step</span> <span class="o">=</span> <span class="n">GaussianStep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># 確率分布と提案分布をあたえて MCMC 計算するモデルを作成</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MHMCMCSampler</span><span class="p">(</span><span class="n">log_likelihood</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>               <span class="c1"># [0] を初期状態に指定</span>
+<span class="n">model</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>           <span class="c1"># 初期状態を設定</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="mi">11000</span><span class="p">)</span> <span class="c1"># 11000 個のデータをサンプリング</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="mi">1000</span><span class="p">:]</span>         <span class="c1"># 最初の 1000 個を捨てる (burn-in)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ground truth   : [</span><span class="si">{}</span><span class="s1">, </span><span class="si">{}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sig</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;estimated value: [</span><span class="si">{}</span><span class="s1">, </span><span class="si">{}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">sample</span><span class="o">.</span><span class="n">std</span><span class="p">()))</span>
+</code></pre></div>
+<details class="summary"><summary>計算結果</summary><div class="highlight"><pre><span></span><code>ground truth   : [5.000, 0.700]
+estimated value: [4.988, 0.702]
+</code></pre></div>
+</details>
+<p>確率分布を与える <code>log_likelihood</code> は 1 次元の <code>numpy.ndarray()</code> を受け取って <code>float</code> を返す関数として定義してください. Metropolis-Hastings アルゴリズムでは確率分布の比さえ使えれば良いので, 確率分布は規格化されていなくても問題ありません.</p>
+<h3 id="_1">計算の流れ</h3>
+<p><mark class="critic">MHMCMCSampler</mark> では <code>generate()</code> という関数を呼ぶことで任意の個数のデータをサンプリングします. ここでは <code>step_forward()</code> という関数で現在の状態を更新した後に, <code>samples</code> に追加することを繰り返しています.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_sample</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+  <span class="sd">&#39;&#39;&#39; Generate N-samples</span>
+<span class="sd">  Parameters:</span>
+<span class="sd">    n_samples (int): Number of MCMC samples to generate.</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">    numpyn.ndarray: A table of generated MCMC samples.</span>
+<span class="sd">  &#39;&#39;&#39;</span>
+  <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;state is not initialized.&#39;</span><span class="p">)</span>
+  <span class="n">samples</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_sample</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">step_forward</span><span class="p">()</span>
+    <span class="n">samples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+</code></pre></div>
+<p><code>step_forward()</code> の処理内容を以下に示しました. <code>proposal_dist</code> (提案分布を生成するクラス) から <code>draw()</code> という関数で次の状態への提案 <code>proposal</code> を生成します. 次に, 確率分布 (尤度関数) の対数を計算する <code>log_likelihood()</code> と遷移確率の対数を計算する関数 <code>proposal_dist.eval()</code> をつかって <span class="arithmatex">\(\log\alpha\)</span> を計算します. また, <span class="arithmatex">\([0,1)\)</span> の一様分布からサンプルした値の対数 <span class="arithmatex">\(\log{u}\)</span> を計算します. <span class="arithmatex">\(\log{u} &lt; \log\alpha\)</span> であれば提案された <code>proposal</code> が次の状態として採択されます. そうでない場合には現在の状態にとどまります. <a href="../markov_chain/">前章</a> で説明した Metropolis-Hastings アルゴリズムがそのまま実装されていることがわかると思います.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">step_forward</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+  <span class="sd">&#39;&#39;&#39; Draw a next Monte-Carlo step.</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">    numpy.ndarray: The newly generated next state.</span>
+<span class="sd">  &#39;&#39;&#39;</span>
+  <span class="n">proposal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">proposal_dist</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
+  <span class="n">log_alpha</span> <span class="o">=</span> \
+    <span class="bp">self</span><span class="o">.</span><span class="n">log_likelihood</span><span class="p">(</span><span class="n">proposal</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_likelihood</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span> \
+    <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">proposal_dist</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="n">proposal</span><span class="p">)</span> \
+    <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">proposal_dist</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">proposal</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
+  <span class="n">log_u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+  <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">proposal</span> <span class="k">if</span> <span class="p">(</span><span class="n">log_u</span> <span class="o">&lt;</span> <span class="n">log_alpha</span><span class="p">)</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+</code></pre></div>
+<h2 id="mhmcmc">MHMCMC によるサンプリング</h2>
+<p>ここでは簡単な形状の確率分布関数に従う乱数を生成してみます.</p>
+<h3 id="1">演習: 1 次元のケース</h3>
+<p>確率変数 <span class="arithmatex">\(x\)</span> が 1 次元のケースについて実際にサンプリングしてみます. 以下の形状を持つ以下の形状を持つ確率分布関数を定義して MCMC によってサンプリングしてください. また, 得られたヒストグラムを確率分布関数から期待される形状と比べてください.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
+<ol>
+<li><span class="arithmatex">\(P(x) \propto \sqrt{1 - x^2}\)</span> に従う乱数.</li>
+</ol>
 <details>
-<summary>HMMCMCSampler.py</summary>
+<p><summary>Example</summary>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">default_rng</span>
+<span class="kn">from</span> <span class="nn">mhmcmc</span> <span class="kn">import</span> <span class="n">MHMCMCSampler</span><span class="p">,</span> <span class="n">GaussianStep</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
-<span class="k">class</span> <span class="nc">MHMCMCSampler</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">log_likelihood</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="mf">1e-15</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
+
+
+<span class="n">step</span> <span class="o">=</span> <span class="n">GaussianStep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MHMCMCSampler</span><span class="p">(</span><span class="n">log_likelihood</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+
+<span class="n">sample</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="mi">101000</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="mi">1000</span><span class="p">:]</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mf">2.0</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;random variable: x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;try_mhmcmc_sqrt.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<img alt="生成されたデータのヒストグラム" src="../img/try_mhmcmc_sqrt.png" /></p>
+</details>
+<ol start="2">
+<li><span class="arithmatex">\(P(x) \propto 1 ~ (lb &lt; x &lt; ub)\)</span> に従う乱数.</li>
+</ol>
+<details>
+<p><summary>Example</summary>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">mhmcmc</span> <span class="kn">import</span> <span class="n">MHMCMCSampler</span><span class="p">,</span> <span class="n">GaussianStep</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="n">lb</span><span class="p">,</span><span class="n">ub</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>
+
+<span class="k">def</span> <span class="nf">log_likelihood</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="p">(</span><span class="n">lb</span> <span class="o">&lt;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">ub</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span><span class="mi">9999</span>
+
+
+<span class="n">step</span> <span class="o">=</span> <span class="n">GaussianStep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MHMCMCSampler</span><span class="p">(</span><span class="n">log_likelihood</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+
+<span class="n">sample</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="mi">101000</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="mi">1000</span><span class="p">:]</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">((</span><span class="n">lb</span><span class="o">&lt;</span><span class="n">x</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">ub</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">ub</span><span class="o">-</span><span class="n">lb</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;random variable: x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;try_mhmcmc_uniform.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<img alt="生成されたデータのヒストグラム" src="../img/try_mhmcmc_uniform.png" /></p>
+</details>
+<ol start="3">
+<li><span class="arithmatex">\(P(x) \propto \exp(-\lambda x)\)</span> に従う乱数.</li>
+</ol>
+<details>
+<p><summary>Example</summary>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">mhmcmc</span> <span class="kn">import</span> <span class="n">MHMCMCSampler</span><span class="p">,</span> <span class="n">GaussianStep</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="n">lam</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="k">def</span> <span class="nf">log_likelihood</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">return</span> <span class="o">-</span><span class="n">lam</span><span class="o">*</span><span class="n">x</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="mi">9999</span>
+
+
+<span class="n">step</span> <span class="o">=</span> <span class="n">GaussianStep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MHMCMCSampler</span><span class="p">(</span><span class="n">log_likelihood</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+
+<span class="n">sample</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="mi">101000</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="mi">1000</span><span class="p">:]</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">lam</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">lam</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;random variable: x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;try_mhmcmc_exponential.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<img alt="生成されたデータのヒストグラム" src="../img/try_mhmcmc_exponential.png" /></p>
+</details>
+<h3 id="2">演習: 2 次元のケース</h3>
+<p>確率変数 <span class="arithmatex">\(x\)</span> が 2 次元のケースについてサンプリングしてみます. 以下の形状を持つ以下の形状を持つ確率分布関数を定義して MCMC によってサンプリングしてください. また, 得られたデータで散布図を作成して期待通りのデータが得られていることを確認してください.</p>
+<ol>
+<li>変数間に相関のある 2 次元正規分布.</li>
+</ol>
+<details>
+<p><summary>Example</summary>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">mhmcmc</span> <span class="kn">import</span> <span class="n">MHMCMCSampler</span><span class="p">,</span> <span class="n">GaussianStep</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="n">mu</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]])</span>
+
+<span class="k">def</span> <span class="nf">log_likelihood</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">mu</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">cov</span><span class="p">,</span><span class="n">x</span><span class="o">-</span><span class="n">mu</span><span class="p">))</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span>
+
+
+<span class="n">step</span> <span class="o">=</span> <span class="n">GaussianStep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MHMCMCSampler</span><span class="p">(</span><span class="n">log_likelihood</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+
+<span class="n">sample</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="mi">101000</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="mi">1000</span><span class="p">:]</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sample</span><span class="p">[::</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">sample</span><span class="p">[::</span><span class="mi">20</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;random variable: x0&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;random variable: x1&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;try_mhmcmc_normal.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<img alt="生成されたデータの散布図" src="../img/try_mhmcmc_normal.png" /></p>
+</details>
+<ol start="2">
+<li><span class="arithmatex">\(x_1 &lt; f(x_0)\)</span> という不等式で制約を加えた 2 次元正規分布.</li>
+</ol>
+<details>
+<p><summary>Example</summary>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">mhmcmc</span> <span class="kn">import</span> <span class="n">MHMCMCSampler</span><span class="p">,</span> <span class="n">GaussianStep</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="n">mu</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]])</span>
+
+<span class="k">def</span> <span class="nf">condition</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">9999</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">log_likelihood</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">mu</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">cov</span><span class="p">,</span><span class="n">x</span><span class="o">-</span><span class="n">mu</span><span class="p">))</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">condition</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+
+<span class="n">step</span> <span class="o">=</span> <span class="n">GaussianStep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MHMCMCSampler</span><span class="p">(</span><span class="n">log_likelihood</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+
+<span class="n">sample</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="mi">101000</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="mi">1000</span><span class="p">:]</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sample</span><span class="p">[::</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">sample</span><span class="p">[::</span><span class="mi">20</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;random variable: x0&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;random variable: x1&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;try_mhmcmc_conditional.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<img alt="生成されたデータの散布図" src="../img/try_mhmcmc_conditional.png" /></p>
+</details>
+<ol start="2">
+<li><span class="arithmatex">\(P(r) \propto \exp\left(-\frac{1}{2\sigma^2}(r-1)^2\right), ~~ r = \sqrt{x_0^2 + x_1^2}\)</span> に従う確率分布.</li>
+</ol>
+<details>
+<p><summary>Example</summary>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">mhmcmc</span> <span class="kn">import</span> <span class="n">MHMCMCSampler</span><span class="p">,</span> <span class="n">GaussianStep</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.2</span>
+
+<span class="k">def</span> <span class="nf">log_likelihood</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mf">2.0</span><span class="o">/</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span>
+
+
+<span class="n">step</span> <span class="o">=</span> <span class="n">GaussianStep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MHMCMCSampler</span><span class="p">(</span><span class="n">log_likelihood</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+
+<span class="n">sample</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="mi">101000</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="mi">1000</span><span class="p">:]</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sample</span><span class="p">[::</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">sample</span><span class="p">[::</span><span class="mi">20</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;random variable: x0&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;random variable: x1&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;try_mhmcmc_circle.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<img alt="生成されたデータの散布図" src="../img/try_mhmcmc_circle.png" /></p>
+</details>
+<h2 id="_2">各クラスの定義</h2>
+<p>参考までに <mark class="critic">MHMCMCSampler</mark> と <mark class="critic">GaussianStep</mark> の定義全体を以下に示しました. 必要に応じて機能を付け加えるなどの改造をしてみてください.</p>
+<h3 id="mhmcmcsampler">MHMCMCSampler</h3>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">MHMCMCSampler</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
   <span class="sd">&#39;&#39;&#39; MCMC sampler with the Metropolis-Hastings algorithm. &#39;&#39;&#39;</span>
 
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">likelihood</span><span class="p">,</span> <span class="n">proposal_dist</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">2021</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+      <span class="n">log_likelihood</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="nb">float</span><span class="p">],</span>
+      <span class="n">proposal_dist</span><span class="p">:</span> <span class="n">AbstractProposalDistribution</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">2021</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&#39;&#39;&#39; Generate a MCMC sampler instatnce.</span>
 
 <span class="sd">    Parameters:</span>
-<span class="sd">      likelihood (obj): Likelihood class.</span>
-<span class="sd">      proposal_dist (obj): ProposalDistribution class.</span>
+<span class="sd">      likelihood (function): An instance to calculate log-likelihood.</span>
+<span class="sd">        A sub-class of AbstractLikelihood is preferred.</span>
+<span class="sd">      proposal_dist (AbstractProposalDistribution):</span>
+<span class="sd">        An instance to draw from a proposal distribution.</span>
+<span class="sd">        A sub-class of AbstractProposalDistribution is preferred.</span>
 <span class="sd">      seed (float, optional): Random seed value.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span> <span class="o">=</span> <span class="n">likelihood</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">log_likelihood</span> <span class="o">=</span> <span class="n">log_likelihood</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">proposal_dist</span> <span class="o">=</span> <span class="n">proposal_dist</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">random</span> <span class="o">=</span> <span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
 
-  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x0</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x0</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&#39;&#39;&#39; Initialize state.</span>
 
 <span class="sd">    Parameters:</span>
@@ -466,53 +918,55 @@
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">x0</span>
 
-  <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">step_forward</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&#39;&#39;&#39; Draw a next Monte-Carlo step.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">      numpy.ndarray: the next state.</span>
+<span class="sd">      numpy.ndarray: The newly generated next state.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">proposal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">proposal_dist</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
     <span class="n">log_alpha</span> <span class="o">=</span> \
-      <span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">proposal</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span> \
+      <span class="bp">self</span><span class="o">.</span><span class="n">log_likelihood</span><span class="p">(</span><span class="n">proposal</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_likelihood</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span> \
       <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">proposal_dist</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="n">proposal</span><span class="p">)</span> \
       <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">proposal_dist</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">proposal</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
     <span class="n">log_u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">proposal</span> <span class="k">if</span> <span class="p">(</span><span class="n">log_u</span> <span class="o">&lt;</span> <span class="n">log_alpha</span><span class="p">)</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">proposal</span> <span class="k">if</span> <span class="p">(</span><span class="n">log_u</span> <span class="o">&lt;</span> <span class="n">log_alpha</span><span class="p">)</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
 
-  <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_sample</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_sample</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&#39;&#39;&#39; Generate N-samples</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">      n_samples (int): Number of MCMC samples to generate.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">samples</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_sample</span><span class="p">):</span>
-      <span class="n">samples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">AbstractLikelihood</span><span class="p">:</span>
-  <span class="sd">&#39;&#39;&#39; A template of likelihood function.&#39;&#39;&#39;</span>
-
-  <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39; Evaluate the log-likelihood for the state `x`.</span>
-
-<span class="sd">    Parameters:</span>
-<span class="sd">      x (numpy.ndarray): An input state (1-dimensional vector).</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">      float: The log-likelihood, logL(x).</span>
+<span class="sd">      numpyn.ndarray: A table of generated MCMC samples.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="k">pass</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;state is not initialized.&#39;</span><span class="p">)</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">tqdmfmt</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{l_bar}{bar}</span><span class="s1">| </span><span class="si">{n_fmt}</span><span class="s1">/</span><span class="si">{total_fmt}</span><span class="s1">&#39;</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">trange</span><span class="p">(</span><span class="n">n_sample</span><span class="p">,</span> <span class="n">bar_format</span><span class="o">=</span><span class="n">tqdmfmt</span><span class="p">):</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">step_forward</span><span class="p">()</span>
+      <span class="n">samples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="gaussianstep">GaussianStep</h3>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">GaussianStep</span><span class="p">(</span><span class="n">AbstractProposalDistribution</span><span class="p">):</span>
+  <span class="sd">&#39;&#39;&#39; A random-walk proposal distribution with Gaussian distribution. &#39;&#39;&#39;</span>
 
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+      <span class="bp">self</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2021</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&#39;&#39;&#39; Generate an instance.</span>
 
-<span class="k">class</span> <span class="nc">AbstractProposalDistribution</span><span class="p">:</span>
-  <span class="sd">&#39;&#39;&#39; A template of proposed distribution. &#39;&#39;&#39;</span>
+<span class="sd">    Args:</span>
+<span class="sd">      sigma (float or numpy.ndarray): Length of a Monte Carlo step.</span>
+<span class="sd">      seed (int, optional): Seed value for the random value generator.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">gen</span> <span class="o">=</span> <span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
 
-  <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x0</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39; Propose a new state.</span>
+  <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x0</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="sd">&#39;&#39;&#39; Propose a new state by random walk.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">      x0 (numpy.ndarray): The current state.</span>
@@ -520,96 +974,31 @@
 <span class="sd">    Returns:</span>
 <span class="sd">      numpy.ndarray: A newly-proposed state.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">x0</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gen</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">x0</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
-  <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x0</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39; Evaluate the log-probability for the state `x`.</span>
+  <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">x0</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="sd">&#39;&#39;&#39; Evaluate the log-transition probability for the state `x`.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">      x  (numpy.ndarray): The proposed state.</span>
 <span class="sd">      x0 (numpy.ndarray): The current state.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">      float: The log-probability, logQ(x, x0).</span>
+<span class="sd">      float: The log-transition probability, logQ(x, x0).</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-
-
-<span class="k">def</span> <span class="nf">display_results</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-  <span class="sd">&#39;&#39;&#39; Display the trace and histogram of samples.</span>
-
-<span class="sd">  Parameters:</span>
-<span class="sd">    res (numpy.ndarray): MCMC sample with the size of [Nample, Ndim].</span>
-<span class="sd">    dim (int, optional): Dimension to be investigated. If not specified,</span>
-<span class="sd">        The first dimension is selected by default.</span>
-<span class="sd">    skip (int, optional): Pick up every {skip} sample. If not specified,</span>
-<span class="sd">        Do not skip any samples by default.</span>
-<span class="sd">    output (str, optional): Save figure as image.</span>
-<span class="sd">  &#39;&#39;&#39;</span>
-  <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-  <span class="k">if</span> <span class="n">dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">dim</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-  <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span><span class="nb">list</span><span class="p">):</span> <span class="n">dim</span> <span class="o">=</span> <span class="p">[</span><span class="n">dim</span><span class="p">,]</span>
-  <span class="n">ndim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span>
-  <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-  <span class="n">axes</span> <span class="o">=</span> <span class="p">[]</span>
-  <span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dim</span><span class="p">):</span>
-    <span class="n">axes</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">ndim</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="mi">2</span><span class="p">),</span>
-                 <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">ndim</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="mi">2</span><span class="p">)])</span>
-  <span class="k">for</span> <span class="n">ax</span><span class="p">,</span><span class="n">d</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span><span class="n">dim</span><span class="p">):</span>
-    <span class="n">val</span> <span class="o">=</span> <span class="n">res</span><span class="p">[::</span><span class="n">skip</span><span class="p">,</span><span class="n">d</span><span class="p">]</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;trace of X</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">size</span><span class="o">/</span><span class="mi">25</span><span class="p">),</span><span class="mi">20</span><span class="p">)),</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;frequency of X</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-  <span class="k">if</span> <span class="n">output</span><span class="p">:</span> <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-  <span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">ArgumentParser</span> <span class="k">as</span> <span class="n">ap</span>
-  <span class="n">parser</span> <span class="o">=</span> <span class="n">ap</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;demo for HMMCMCSampler&#39;</span><span class="p">)</span>
-  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-    <span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="s1">&#39;--num&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
-    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;number of monte carlo samples.&#39;</span><span class="p">)</span>
-  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-    <span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="s1">&#39;--burnin&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;burn&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;number of burn-in steps.&#39;</span><span class="p">)</span>
-  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-    <span class="s1">&#39;--step&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
-    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;step width of a Monte Carlo step.&#39;</span><span class="p">)</span>
-  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-    <span class="s1">&#39;--png&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;output figure name.&#39;</span><span class="p">)</span>
-
-  <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-
-  <span class="k">class</span> <span class="nc">logL</span><span class="p">(</span><span class="n">AbstractLikelihood</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">center</span><span class="p">)</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-      <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mf">2.0</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-
-  <span class="k">class</span> <span class="nc">logQ</span><span class="p">(</span><span class="n">AbstractProposalDistribution</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="n">step</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">gen</span> <span class="o">=</span> <span class="n">default_rng</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x0</span><span class="p">):</span>
-      <span class="k">return</span> <span class="n">x0</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gen</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">x0</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x0</span><span class="p">):</span>
-      <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">x0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-
-  <span class="n">mcmc</span> <span class="o">=</span> <span class="n">MHMCMCSampler</span><span class="p">(</span><span class="n">logL</span><span class="p">(),</span> <span class="n">logQ</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">step</span><span class="p">))</span>
-
-  <span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-  <span class="n">mcmc</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
-
-
-  <span class="n">val</span> <span class="o">=</span> <span class="n">mcmc</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">num</span> <span class="o">+</span> <span class="n">args</span><span class="o">.</span><span class="n">burn</span><span class="p">)</span>
-  <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="n">args</span><span class="o">.</span><span class="n">burn</span><span class="p">:]</span>
-
-  <span class="n">display_results</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">png</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">x0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
 </code></pre></div>
-</details>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>ただし用意したコードはパフォーマンスについては何も考慮されていません. Python のパッケージとして使用可能な MCMC 計算ライブラリとは計算速度は雲泥の差があると思われます. ここでは, MCMC 計算の効率を体験するというよりは MCMC 計算のライブラリの中で何が起きているのかを意識しながらコードを書くことを目的としています.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>得られたデータ列の分布を議論する場合には, サンプル間の相関が結果に影響します. 時間的に十分離れた場所のサンプルだけに間引いてから扱うことでサンプル間の相関を切ることができます. そのためにはより多くのデータをサンプリングする必要があるため, ここではこの操作は省略します.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
               
               
