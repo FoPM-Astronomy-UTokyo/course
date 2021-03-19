@@ -11,6 +11,7 @@ nav:
       - mcmc/static_monte_carlo.md
       - mcmc/markov_chain.md
       - mcmc/scratchbuild_mcmc.md
+      - mcmc/chain_convergence.md
       - mcmc/references.md
   - FoPM Home: https://www.s.u-tokyo.ac.jp/ja/FoPM/
   - GitHub repository: https://github.com/FoPM-Astronomy-UTokyo/course

@@ -32,6 +32,7 @@ $$
 1. [静的なモンテカルロ法による計算](./static_monte_carlo.md)
 1. [マルコフ連鎖によるサンプリング](./markov_chain.md)
 1. [Metropolis-Hastings アルゴリズム実践](./scratchbuild_mcmc.md)
+1. [マルコフ連鎖の収束について](./chain_convergence.md)
 
 
 ## 動作環境
