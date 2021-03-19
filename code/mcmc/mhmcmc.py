@@ -190,7 +190,7 @@ def display_results(
   if dim is None: dim = list(range(res.shape[1]))
   if not isinstance(dim,list): dim = [dim,]
   ndim = len(dim)
-  fig = plt.figure()
+  fig = plt.figure(figsize=(12,5))
   axes = []
   for n,d in enumerate(dim):
     axes.append([fig.add_subplot(ndim,2,1+n*2),
