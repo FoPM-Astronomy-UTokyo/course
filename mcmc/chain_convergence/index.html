@@ -899,7 +899,7 @@ probability(x1[former] == x1[latter]): 0.966328
 </details>
 <p>前回と大きく変わって, 平均値が同じ分布からのサンプリングだとみなせる確率がそれぞれ 19%, 96% という結果になりました. 前半と後半で有意に違うとはみなせない程度の値になっています. 今回の例のように, サンプリングしたデータ間の相関が影響を与える場合には, データを間引いて独立したサンプリングだとみなせるデータだけを使用する必要があります.<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup></p>
 <h2 id="-">連鎖内-連鎖間分散の計算</h2>
-<p>時間が許せば MCMC を複数回実行して比較をするという方法が確実です. それぞれのマルコフ連鎖内部の分散 (within-chain) に比べて, 複数のマルコフ連鎖間の分散 (between-chain) が大きい場合には分布が収束していないとみなすことができます.</p>
+<p>時間が許せば MCMC を複数回実行して比較をするという方法が使えます. それぞれのマルコフ連鎖内部の分散 (within-chain) に比べて, 複数のマルコフ連鎖間の分散 (between-chain) が大きい場合には分布が収束していないとみなすことができます.</p>
 <p>合計 <span class="arithmatex">\(M\)</span> 回の MCMC を実行し, それぞれの chain で <span class="arithmatex">\(N\)</span> 個のデータをサンプリングしたとします. このとき,  within-chain variance <span class="arithmatex">\(\sigma^2_w\)</span> と between-chain variance <span class="arithmatex">\(\sigma^2_b\)</span> は以下のように書けます.</p>
 <div class="arithmatex">\[
 \left\{~\begin{aligned}
