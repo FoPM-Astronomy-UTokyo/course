@@ -171,7 +171,7 @@ class MHMCMCSampler(object):
     return np.vstack(samples)
 
 
-def display_results(
+def display_trace(
     res: np.ndarray,
     dim: Union[int, np.ndarray, None]=None,
     skip: int=1, output: str=None) -> None:
@@ -248,4 +248,4 @@ if __name__ == '__main__':
   print('  ground truth   : [0.80 0.50 0.40 1.20]')
   print('  estimated value: [{:.2f} {:.2f} {:.2f} {:.2f}]'.format(*std))
 
-  display_results(val, skip=30, output=args.png)
+  display_trace(val, skip=30, output=args.png)
