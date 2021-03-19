@@ -409,7 +409,7 @@ print(f'probability(x1[former] == x1[latter]): {pv[1]:g}')
 
 ## 連鎖内-連鎖間分散の計算
 
-時間が許せば MCMC を複数回実行して比較をするという方法が確実です. それぞれのマルコフ連鎖内部の分散 (within-chain) に比べて, 複数のマルコフ連鎖間の分散 (between-chain) が大きい場合には分布が収束していないとみなすことができます.
+時間が許せば MCMC を複数回実行して比較をするという方法が使えます. それぞれのマルコフ連鎖内部の分散 (within-chain) に比べて, 複数のマルコフ連鎖間の分散 (between-chain) が大きい場合には分布が収束していないとみなすことができます.
 
 合計 $M$ 回の MCMC を実行し, それぞれの chain で $N$ 個のデータをサンプリングしたとします. このとき,  within-chain variance $\sigma^2_w$ と between-chain variance $\sigma^2_b$ は以下のように書けます.
 
