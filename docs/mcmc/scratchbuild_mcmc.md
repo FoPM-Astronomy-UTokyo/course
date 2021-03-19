@@ -149,7 +149,9 @@ def step_forward(self) -> None:
 </details>
 
 
-2. 上記の正規分布に $x_1 < (x_0+1)^2+1$ という不等式制約を加えてください.
+2. 上記の正規分布に $x_{[1]} < (x_{[0]}+1)^2+1$ という不等式制約を加えてください.[^3]
+
+[^3]: 確率変数 $x$ の $i$ 番目の要素を $x_{[i]}$ で表現しています.
 
 <details markdown=1><summary>Example</summary>
 ``` python
@@ -159,7 +161,7 @@ def step_forward(self) -> None:
 </details>
 
 
-3. $P(r) \propto \exp\left(-\frac{1}{2\sigma^2}(r-1)^2\right), ~~ r = \sqrt{x_0^2 + x_1^2}$ から乱数を生成してください.
+3. $P(r) \propto \exp\left(-\frac{1}{2\sigma^2}(r-1)^2\right), ~~ r = \sqrt{x_{[0]}^2 + x_{[1]}^2}$ から乱数を生成してください.
 
 <details markdown=1><summary>Example</summary>
 ``` python
