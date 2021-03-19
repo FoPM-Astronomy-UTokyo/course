@@ -206,6 +206,26 @@ def display_trace(
   plt.show()
 
 
+def autocorrelation(x: np.ndarray) -> np.ndarray:
+  ''' Calculate auto-correlation of x
+
+  Parameters:
+    x (numpy.ndarray): Data in (M,N)-array, where M is the number of samples
+        and N is the number of dimensions.
+
+  Returns:
+    numpy.ndarray: The array of displacement `k`.
+    numpy.ndarray: Calculated auto-correlation in a (M,N)-array.
+  '''
+  if x.ndim==1: x = np.expand_dims(x,axis=1)
+  v = x - x.mean(axis=0)
+  M, N = v.shape
+  var  = v.var(axis=0)
+  corr = []
+  for n in range(N):
+    corr.append(np.correlate(v[:,n],v[:,n],mode='full')/var[n])
+  return np.arange(-(M-1),M), np.stack(corr).T/M
+
 
 if __name__ == '__main__':
   from argparse import ArgumentParser as ap
