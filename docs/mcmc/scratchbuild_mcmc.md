@@ -103,7 +103,7 @@ def step_forward(self) -> None:
 [^2]: 得られたデータ列の分布を議論する場合には, サンプル間の相関が結果に影響します. 時間的に十分離れた場所のサンプルだけに間引いてから扱うことでサンプル間の相関を切ることができます. そのためにはより多くのデータをサンプリングする必要があるため, ここではこの操作は省略します.
 
 
-1. $P(x) \propto \sqrt{1 - x^2}$ に従う乱数.
+1. 確率分布が $\sqrt{1-x^2}$ に比例する乱数を生成してください.
 
 <details markdown=1><summary>Example</summary>
 ``` python
@@ -112,7 +112,8 @@ def step_forward(self) -> None:
 ![生成されたデータのヒストグラム](img/try_mhmcmc_sqrt.png)
 </details>
 
-2. $P(x) \propto 1 ~ (lb < x < ub)$ に従う乱数.
+
+2. 範囲 $[-2, 3)$ に一様に分布する乱数を生成してください.
 
 <details markdown=1><summary>Example</summary>
 ``` python
@@ -121,7 +122,8 @@ def step_forward(self) -> None:
 ![生成されたデータのヒストグラム](img/try_mhmcmc_uniform.png)
 </details>
 
-3. $P(x) \propto \exp(-\lambda x)$ に従う乱数.
+
+3. スケールが $\lambda$ である指数分布に従う乱数を生成してください.
 
 <details markdown=1><summary>Example</summary>
 ``` python
@@ -136,7 +138,8 @@ def step_forward(self) -> None:
 
 確率変数 $x$ が 2 次元のケースについてサンプリングしてみます. 以下の形状を持つ以下の形状を持つ確率分布関数を定義して MCMC によってサンプリングしてください. また, 得られたデータで散布図を作成して期待通りのデータが得られていることを確認してください.
 
-1. 変数間に相関のある 2 次元正規分布.
+
+1. 分散がそれぞれ 5, 2, 共分散が 2 である 2 変数正規分布から乱数を生成してください.
 
 <details markdown=1><summary>Example</summary>
 ``` python
@@ -145,7 +148,8 @@ def step_forward(self) -> None:
 ![生成されたデータの散布図](img/try_mhmcmc_normal.png)
 </details>
 
-2. $x_1 < f(x_0)$ という不等式で制約を加えた 2 次元正規分布.
+
+2. 上記の正規分布に $x_1 < (x_0+1)^2+1$ という不等式制約を加えてください.
 
 <details markdown=1><summary>Example</summary>
 ``` python
@@ -154,7 +158,8 @@ def step_forward(self) -> None:
 ![生成されたデータの散布図](img/try_mhmcmc_conditional.png)
 </details>
 
-2. $P(r) \propto \exp\left(-\frac{1}{2\sigma^2}(r-1)^2\right), ~~ r = \sqrt{x_0^2 + x_1^2}$ に従う確率分布.
+
+3. $P(r) \propto \exp\left(-\frac{1}{2\sigma^2}(r-1)^2\right), ~~ r = \sqrt{x_0^2 + x_1^2}$ から乱数を生成してください.
 
 <details markdown=1><summary>Example</summary>
 ``` python
@@ -162,6 +167,7 @@ def step_forward(self) -> None:
 ```
 ![生成されたデータの散布図](img/try_mhmcmc_circle.png)
 </details>
+
 
 ## 各クラスの定義
 
