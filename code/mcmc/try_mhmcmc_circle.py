@@ -22,7 +22,7 @@ sample = sample[1000:]
 import matplotlib.pyplot as plt
 fig = plt.figure()
 ax = fig.add_subplot()
-ax.scatter(sample[::20,0], sample[::20,1], marker='.')
+ax.scatter(sample[::10,0], sample[::10,1], s=1, marker='.')
 ax.set_xlabel('random variable: x0')
 ax.set_ylabel('random variable: x1')
 fig.tight_layout()
