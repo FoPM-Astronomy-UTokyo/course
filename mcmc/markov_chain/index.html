@@ -365,6 +365,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../chain_convergence/" class="md-nav__link">
+        マルコフ連鎖の収束
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../references/" class="md-nav__link">
         参考文献
       </a>
@@ -589,7 +601,7 @@ Q(x_t; x_p) = P(i)P(x_t^{i}|x_t^{{\neg}i})
 \frac{P(i)P(x_t^{i}|x_t^{{\neg}i})}{P(i)P(x_p^{i}|x_t^{{\neg}i})}
 \]</div>
 <p>分母分子に <span class="arithmatex">\(P(x_t^{\neg{i}})\)</span> をかけると <span class="arithmatex">\(\alpha = 1\)</span> であることが確認できます. Gibbs サンプリングは提案分布に厳密な条件付き確率分布を用いることによって, 必ず採択されることが保証された Metropolis-Hastings アルゴリズムだと解釈することができます.</p>
-<p>また, マルコフ連鎖の初期のステップについては初期状態に依存している時期があります. 計算結果が初期状態に依らないことを期待して初期のいくらかの割合を捨て去るという作業をすることがあります. この過程を burn-in と呼びます.</p>
+<p>また, マルコフ連鎖の初期のステップについては初期状態に依存している時期があります. 計算結果が初期状態に依らないことを期待して, 計算を始めてからいくらかの割合を捨て去ることがあります. 初期状態を忘れるまでに費やす期間を warm up と呼んだり, 初期のサンプルを捨て去る作業を burn-in と呼んだりします.</p>
 <div class="footnote">
 <hr />
 <ol>

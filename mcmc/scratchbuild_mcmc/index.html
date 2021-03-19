@@ -405,6 +405,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../chain_convergence/" class="md-nav__link">
+        マルコフ連鎖の収束
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../references/" class="md-nav__link">
         参考文献
       </a>
@@ -642,7 +654,7 @@ estimated value: [4.988, 0.702]
 <h3 id="1">演習: 1 次元のケース</h3>
 <p>確率変数 <span class="arithmatex">\(x\)</span> が 1 次元のケースについて実際にサンプリングしてみます. 以下の形状を持つ以下の形状を持つ確率分布関数を定義して MCMC によってサンプリングしてください. また, 得られたヒストグラムを確率分布関数から期待される形状と比べてください.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
 <ol>
-<li><span class="arithmatex">\(P(x) \propto \sqrt{1 - x^2}\)</span> に従う乱数.</li>
+<li>確率分布が <span class="arithmatex">\(\sqrt{1-x^2}\)</span> に比例する乱数を生成してください.</li>
 </ol>
 <details>
 <p><summary>Example</summary>
@@ -682,7 +694,7 @@ estimated value: [4.988, 0.702]
 <img alt="生成されたデータのヒストグラム" src="../img/try_mhmcmc_sqrt.png" /></p>
 </details>
 <ol start="2">
-<li><span class="arithmatex">\(P(x) \propto 1 ~ (lb &lt; x &lt; ub)\)</span> に従う乱数.</li>
+<li>範囲 <span class="arithmatex">\([-2, 3)\)</span> に一様に分布する乱数を生成してください.</li>
 </ol>
 <details>
 <p><summary>Example</summary>
@@ -724,7 +736,7 @@ estimated value: [4.988, 0.702]
 <img alt="生成されたデータのヒストグラム" src="../img/try_mhmcmc_uniform.png" /></p>
 </details>
 <ol start="3">
-<li><span class="arithmatex">\(P(x) \propto \exp(-\lambda x)\)</span> に従う乱数.</li>
+<li>スケールが <span class="arithmatex">\(\lambda\)</span> である指数分布に従う乱数を生成してください.</li>
 </ol>
 <details>
 <p><summary>Example</summary>
@@ -768,7 +780,7 @@ estimated value: [4.988, 0.702]
 <h3 id="2">演習: 2 次元のケース</h3>
 <p>確率変数 <span class="arithmatex">\(x\)</span> が 2 次元のケースについてサンプリングしてみます. 以下の形状を持つ以下の形状を持つ確率分布関数を定義して MCMC によってサンプリングしてください. また, 得られたデータで散布図を作成して期待通りのデータが得られていることを確認してください.</p>
 <ol>
-<li>変数間に相関のある 2 次元正規分布.</li>
+<li>分散がそれぞれ 5, 2, 共分散が 2 である 2 変数正規分布から乱数を生成してください.</li>
 </ol>
 <details>
 <p><summary>Example</summary>
@@ -797,7 +809,7 @@ estimated value: [4.988, 0.702]
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sample</span><span class="p">[::</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">sample</span><span class="p">[::</span><span class="mi">20</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sample</span><span class="p">[::</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">sample</span><span class="p">[::</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;random variable: x0&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;random variable: x1&#39;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -807,7 +819,7 @@ estimated value: [4.988, 0.702]
 <img alt="生成されたデータの散布図" src="../img/try_mhmcmc_normal.png" /></p>
 </details>
 <ol start="2">
-<li><span class="arithmatex">\(x_1 &lt; f(x_0)\)</span> という不等式で制約を加えた 2 次元正規分布.</li>
+<li>上記の正規分布に <span class="arithmatex">\(x_{[1]} &lt; (x_{[0]}+1)^2+1\)</span> という不等式制約を加えてください.<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></li>
 </ol>
 <details>
 <p><summary>Example</summary>
@@ -839,7 +851,7 @@ estimated value: [4.988, 0.702]
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sample</span><span class="p">[::</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">sample</span><span class="p">[::</span><span class="mi">20</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sample</span><span class="p">[::</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">sample</span><span class="p">[::</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;random variable: x0&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;random variable: x1&#39;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -848,8 +860,8 @@ estimated value: [4.988, 0.702]
 </code></pre></div>
 <img alt="生成されたデータの散布図" src="../img/try_mhmcmc_conditional.png" /></p>
 </details>
-<ol start="2">
-<li><span class="arithmatex">\(P(r) \propto \exp\left(-\frac{1}{2\sigma^2}(r-1)^2\right), ~~ r = \sqrt{x_0^2 + x_1^2}\)</span> に従う確率分布.</li>
+<ol start="3">
+<li><span class="arithmatex">\(P(r) \propto \exp\left(-\frac{1}{2\sigma^2}(r-1)^2\right), ~~ r = \sqrt{x_{[0]}^2 + x_{[1]}^2}\)</span> から乱数を生成してください.</li>
 </ol>
 <details>
 <p><summary>Example</summary>
@@ -877,7 +889,7 @@ estimated value: [4.988, 0.702]
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sample</span><span class="p">[::</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">sample</span><span class="p">[::</span><span class="mi">20</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sample</span><span class="p">[::</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">sample</span><span class="p">[::</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;random variable: x0&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;random variable: x1&#39;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -997,6 +1009,9 @@ estimated value: [4.988, 0.702]
 <li id="fn:2">
 <p>得られたデータ列の分布を議論する場合には, サンプル間の相関が結果に影響します. 時間的に十分離れた場所のサンプルだけに間引いてから扱うことでサンプル間の相関を切ることができます. そのためにはより多くのデータをサンプリングする必要があるため, ここではこの操作は省略します.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
+<li id="fn:3">
+<p>確率変数 <span class="arithmatex">\(x\)</span> の <span class="arithmatex">\(i\)</span> 番目の要素を <span class="arithmatex">\(x_{[i]}\)</span> で表現しています.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
 </ol>
 </div>
                 
@@ -1031,13 +1046,13 @@ estimated value: [4.988, 0.702]
         </a>
       
       
-        <a href="../references/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../chain_convergence/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              参考文献
+              マルコフ連鎖の収束
             </div>
           </div>
           <div class="md-footer__button md-icon">
