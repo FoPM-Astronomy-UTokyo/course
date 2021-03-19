@@ -6,4 +6,5 @@
 1. [StanとRでベイズ統計モデリング](https://www.amazon.co.jp/dp/4320112423): 松浦健太郎
 1. [Bayesian Models for Astrophysical Data: Using R, JAGS, Python, and Stan
 Book](https://www.amazon.co.jp/dp/1107133084): Emille E. O. Ishida, Joseph M. Hilbe, and Rafael S. de Souza
-1. [Learning Hamiltonian Monte Carlo in R](https://arxiv.org/abs/2006.16194): Samuel T. and Wanzhu T.
+1. [Learning Hamiltonian Monte Carlo in R](https://arxiv.org/abs/2006.16194): Samuel Thomas and Wanzhu Tu
+1. [Bayesian Data Analysis : 3rd Edition](http://www.stat.columbia.edu/~gelman/book/): Andrew Gelman, John B. Carlin, Hal S. Stern, and Donald B. Rubin
