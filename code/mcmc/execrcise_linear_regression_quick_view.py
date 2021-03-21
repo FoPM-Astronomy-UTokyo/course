@@ -8,6 +8,7 @@ from mhmcmc import display_trace, autocorrelation
 
 
 table = pd.read_csv('../../data/mcmc/exercise_linear_regression.csv')
+print(table)
 
 fig = plt.figure(figsize=(8,6))
 ax = fig.add_subplot()

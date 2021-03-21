@@ -9,14 +9,15 @@ from mhmcmc import display_trace, autocorrelation
 
 table = pd.read_csv('../../data/mcmc/exercise_linear_regression.csv')
 
-def log_gamma(x,k,t):
+def log_gamma(x,k=1e-3,t=1e3):
   return (k-1)*np.log(x)-x/t if x>0 else -1e10
 
 def log_likelihood(x):
+  if x[2] < 0: return -1e10
   delta = table.logM_B - (x[0] + x[1]*(table.logsig-np.log10(200)))
   sqsig = table.logM_B_err**2 + x[1]**2*table.logsig_err**2 + x[2]
-  return -np.sum(delta**2/sqsig/2+np.log(sqsig)/2) \
-    + log_gamma(1/x[2],1e-3,1e3) if (sqsig > 0).all() else -1e10
+  logpdf = -(delta**2/sqsig/2+np.log(sqsig)/2)
+  return np.sum(logpdf)+log_gamma(1/x[2])
 
 
 step = GaussianStep(np.array([0.02, 0.15, 0.03]))
