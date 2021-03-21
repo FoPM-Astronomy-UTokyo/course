@@ -25,7 +25,7 @@
  logM_B    | 超大質量ブラックホールの質量 (対数) $\log_{10}{M_B}$ (${M_\odot}$)
  logM_B_err| 超大質量ブラックホールの質量の不定性 $\varepsilon_M$
 
-[^1]: 今回は使いません.
+[^1]: このカラムは今回は使いません.
 
 
 まずはデータの関係を図示します.
@@ -188,6 +188,13 @@ $$
     ![自己相関関数](img/execrcise_linear_regression_yerror_autocorr.png)
 
 
+??? tip "線形回帰直線が収束する様子"
+    ![収束するまでの gif アニメーション](img/execrcise_linear_regression_convergence.gif)
+
+    以下のサンプルコードで作成しました.
+    ``` python
+    --8<-- "code/mcmc/execrcise_linear_regression_convergence.py"
+    ```
 
 ### X,Y 軸の不定性を考慮した回帰
 
