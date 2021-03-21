@@ -279,6 +279,10 @@ S_i      &= {\varepsilon_{M,i}}^2 + \beta^2{\varepsilon_{\sigma,i}}^2 + \varepsi
 \end{aligned}
 $$
 
+$\tau$ が負値を取らないように事前分布として Gamma 分布を仮定しました. 以下のサンプルでは無情報であることを意味するため $k$, $\theta$ にそれぞれ $10^{-3}$, $10^3$ を与えています.[^3]
+
+[^3]: このとき $\tau$ が大きくない範囲では ${\operatorname{Gamma}(\tau,k,\theta)} \sim k\tau^{-1}$ と近似でき, Jefferys の無情報事前分布と一致します. Gamma 分布はパラメタの定義の仕方に $(k,\theta)$ と $(\alpha,\beta)$ の 2 通りあるので気をつけて使ってください.
+
 
 ??? note "Example"
     ``` python
