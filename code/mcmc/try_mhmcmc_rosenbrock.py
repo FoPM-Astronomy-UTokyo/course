@@ -38,7 +38,7 @@ ax.scatter(sample[::10,0], sample[::10,1], marker='.', s=1)
 ax.set_xlabel('random variable: x0')
 ax.set_ylabel('random variable: x1')
 fig.tight_layout()
-plt.savefig('try_mhmcmc_rosenbrock.png')
+fig.savefig('try_mhmcmc_rosenbrock.png')
 
 from mhmcmc import display_trace
 display_trace(sample, output='try_mhmcmc_rosenbrock_trace.png')
