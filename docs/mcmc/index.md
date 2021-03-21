@@ -30,9 +30,10 @@ $$
 ## コンテンツ
 1. [乱数生成 -- 逆関数法と棄却法](./generate_random_variables.md)
 1. [静的なモンテカルロ法による計算](./static_monte_carlo.md)
-1. [マルコフ連鎖によるサンプリング](./markov_chain.md)
-1. [Metropolis-Hastings アルゴリズム実践](./scratchbuild_mcmc.md)
-1. [マルコフ連鎖の収束について](./chain_convergence.md)
+1. [動的なモンテカルロ法 -- マルコフ連鎖によるサンプリング](./markov_chain.md)
+1. [Metropolis-Hastings アルゴリズムによる MCMC 実践](./scratchbuild_mcmc.md)
+1. [マルコフ連鎖の収束に関するあれこれ](./chain_convergence.md)
+1. [演習問題: 線形回帰](./linear_regression.md)
 
 
 ## 動作環境
@@ -42,6 +43,7 @@ $$
 astropy==4.2
 matplotlib==3.3.4
 numpy==1.20.1
+pandas==1.1.4
 scipy==1.3.0
 tqdm==4.59.0
 ```
