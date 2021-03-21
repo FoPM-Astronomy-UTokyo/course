@@ -332,9 +332,65 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          演習問題: 打ち切り回帰モデル
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         演習問題: 打ち切り回帰モデル
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    データ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    打ち切り回帰モデル
+  </a>
+  
+    <nav class="md-nav" aria-label="打ち切り回帰モデル">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    打ち切りデータを排除する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    打ち切りデータを含める
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -436,6 +492,48 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    データ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    打ち切り回帰モデル
+  </a>
+  
+    <nav class="md-nav" aria-label="打ち切り回帰モデル">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    打ち切りデータを排除する
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    打ち切りデータを含める
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -448,6 +546,305 @@
                 
                 
                 <h1 id="_1">演習問題: 打ち切り回帰モデル</h1>
+<p>ここでは超大質量ブラックホール (supermassive blackhole) と, 銀河バルジ (bulge) の速度分散の関係に少し手を加えたデータを使用します. 天文学に限らず, 実験によって得られるデータは装置性能の限界や実験時間の限界などによって一部しかデータが取得できないことがよくあります. ここではそのようなデータに対して適用することのできる打ち切り回帰モデル (censored regression) を</p>
+<h2 id="_2">データ</h2>
+<p>同じく <a href="https://doi.org/10.1088/0004-637X/772/2/82">Harris et al. (2013)</a> の<a href="https://www.physics.mcmaster.ca/~harris/GCS_table.txt">カタログ</a>を利用します. ただし今回はブラックホール質量が <span class="arithmatex">\(10^{8.5}M_\odot\)</span> 未満の天体は検出限界以下だったと仮定して値を 0 に改変しています.</p>
+<p>演習用に整形したデータを以下からダウンロードしてください.</p>
+<table>
+<thead>
+<tr>
+<th>ファイル名</th>
+<th>形式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://raw.githubusercontent.com/FoPM-Astronomy-UTokyo/course/main/data/mcmc/exercise_censored_regression.csv">exercise_censored_regression.csv</a></td>
+<td>csv</td>
+</tr>
+</tbody>
+</table>
+<p>データテーブルには以下のカラムが含まれています.</p>
+<table>
+<thead>
+<tr>
+<th>カラム名</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>galaxy</td>
+<td>銀河名/カタログ ID<sup id="fnref6:1"><a class="footnote-ref" href="#fn:1">1</a></sup></td>
+</tr>
+<tr>
+<td>ra</td>
+<td>赤経座標 (J2000)<sup id="fnref5:1"><a class="footnote-ref" href="#fn:1">1</a></sup></td>
+</tr>
+<tr>
+<td>dec</td>
+<td>赤緯座標 (J2000)<sup id="fnref4:1"><a class="footnote-ref" href="#fn:1">1</a></sup></td>
+</tr>
+<tr>
+<td>dist</td>
+<td>距離 (Mpc)<sup id="fnref3:1"><a class="footnote-ref" href="#fn:1">1</a></sup></td>
+</tr>
+<tr>
+<td>dist_err</td>
+<td>距離の不定性 (Mpc)<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup></td>
+</tr>
+<tr>
+<td>logsig</td>
+<td>銀河バルジの速度分散 (対数) <span class="arithmatex">\(\log_{10}\sigma_e\)</span> (km/s)</td>
+</tr>
+<tr>
+<td>logsig_err</td>
+<td>銀河バルジの速度分散の不定性 <span class="arithmatex">\(\varepsilon_\sigma\)</span></td>
+</tr>
+<tr>
+<td>logM_B</td>
+<td>超大質量ブラックホールの質量 (対数) <span class="arithmatex">\(\log_{10}{M_B}\)</span> (<span class="arithmatex">\({M_\odot}\)</span>)</td>
+</tr>
+<tr>
+<td>logM_B_err</td>
+<td>超大質量ブラックホールの質量の不定性 <span class="arithmatex">\(\varepsilon_M\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>まずはデータの関係を図示します.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./exercise_linear_regression.csv&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logsig</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logM_B</span><span class="p">,</span>
+  <span class="n">xerr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logsig_err</span><span class="p">,</span> <span class="n">yerr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logM_B_err</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$\log_</span><span class="si">{10}</span><span class="s1">\sigma_e$ (km/s)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$\log_</span><span class="si">{10}</span><span class="s1">M_B$ ($M_\odot$)&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<details class="summary"><summary>計算結果</summary><p><div class="highlight"><pre><span></span><code>      galaxy         ra        dec    dist  dist_err  logsig  logsig_err  logM_B  logM_B_err
+0   MilkyWay   0.000000   0.000000    0.00      0.00   2.021       0.076    0.00       0.000
+1     NGC221   0.711607  40.865165    0.76      0.07   1.875       0.017    0.00       0.000
+2     NGC224   0.712316  41.268883    0.77      0.02   2.204       0.021    0.00       0.000
+3     NGC253   0.792531 -25.288442    3.54      0.20   2.011       0.073    0.00       0.000
+4     NGC821   2.139199  10.995008   23.38      1.24   2.320       0.020    0.00       0.000
+5    NGC1023   2.673329  39.063253   11.43      1.00   2.320       0.020    0.00       0.000
+6    NGC1316   3.378256 -37.208211   21.09      0.30   2.357       0.006    0.00       0.000
+7    NGC1332   3.438111 -21.335276   22.91      0.20   2.506       0.018    9.17       0.060
+8    NGC1399   3.641408 -35.450626   20.68      0.50   2.528       0.020    8.69       0.065
+9    NGC2778   9.206775  35.027417   22.91      3.39   2.243       0.019    0.00       0.000
+10   NGC3031   9.925869  69.065438    3.55      0.07   2.155       0.021    0.00       0.000
+11   NGC3115  10.087214  -7.718556   10.00      0.50   2.362       0.020    8.96       0.170
+12   NGC3377  10.795104  13.985641   11.04      0.25   2.161       0.020    0.00       0.000
+13   NGC3379  10.797108  12.581611   10.20      0.50   2.314       0.021    0.00       0.000
+14   NGC3384  10.804699  12.629401   10.80      0.77   2.155       0.021    0.00       0.000
+15   NGC3414  10.854492  27.974833   25.23      4.14   2.374       0.014    0.00       0.000
+16   NGC3585  11.221418 -26.754864   21.20      1.73   2.328       0.020    8.51       0.140
+17   NGC3607  11.281816  18.051899   20.00      2.00   2.360       0.020    0.00       0.000
+18   NGC3608  11.283036  18.148538   23.00      2.00   2.260       0.021    8.67       0.095
+19   NGC3842  11.733936  19.949696   94.90      6.70   2.498       0.011    9.99       0.125
+20   NGC4261  12.323060   5.825041   31.62      2.89   2.498       0.020    8.71       0.085
+21   NGC4291  12.338247  75.370944   26.18      4.16   2.384       0.021    8.98       0.140
+22   NGC4350  12.399394  16.693471   15.50      0.78   2.256       0.017    8.74       0.100
+23   NGC4374  12.417685  12.887071   18.51      0.61   2.471       0.020    8.96       0.045
+24   NGC4459  12.483339  13.978556   16.01      0.55   2.223       0.020    0.00       0.000
+25   NGC4472  12.496331   8.000389   17.03      0.21   2.468       0.004    9.26       0.150
+26   NGC4473  12.496907  13.429397   15.25      0.51   2.279       0.020    0.00       0.000
+27   NGC4486  12.513724  12.391217   17.00      0.30   2.574       0.020    9.77       0.030
+28  NGC4486A  12.516033  12.270333   18.36      0.64   2.045       0.019    0.00       0.000
+29   NGC4552  12.594402  12.556115   15.89      0.55   2.402       0.006    8.68       0.045
+30   NGC4564  12.607493  11.439400   15.87      0.53   2.210       0.021    0.00       0.000
+31   NGC4594  12.666513 -11.623010    9.77      0.84   2.380       0.021    8.72       0.435
+32   NGC4621  12.700637  11.647308   14.85      0.50   2.352       0.006    8.60       0.065
+33   NGC4649  12.727789  11.552672   17.09      0.61   2.585       0.021    9.63       0.100
+34   NGC4697  12.809995  -5.800602   12.01      0.78   2.248       0.019    0.00       0.000
+35   NGC4889  13.002237  27.977031   96.60      6.80   2.603       0.006   10.32       0.435
+36   NGC5128  13.424479 -43.018118    3.80      0.07   2.176       0.020    0.00       0.000
+37    IC4296  13.610847 -33.965822   49.68      2.73   2.508       0.021    9.13       0.065
+38   NGC5813  15.019805   1.702009   32.21      2.78   2.374       0.006    8.84       0.070
+39   NGC5845  15.100215   1.633972   25.94      2.63   2.369       0.020    8.69       0.140
+40   NGC5846  15.108124   1.606291   24.89      2.40   2.379       0.008    9.04       0.080
+41   NGC6086  16.209883  29.484478  137.30      9.60   2.524       0.012    9.56       0.160
+42   NGC7332  22.623476  23.798260   23.01      2.22   2.097       0.011    0.00       0.000
+43    IC1459  22.952945 -36.462176   29.24      4.02   2.486       0.011    9.45       0.195
+44   NGC7457  23.016647  30.144889   13.24      1.34   1.826       0.019    0.00       0.000
+45   NGC7768  23.849610  27.147336  112.10      7.90   2.495       0.021    9.11       0.150
+</code></pre></div>
+<img alt="データの関係" src="../img/execrcise_censored_regression_quick_view.png" /></p>
+</details>
+<h2 id="_3">打ち切り回帰モデル</h2>
+<p><a href="../linear_regression/">線形回帰の場合</a>と同様に Harris et al. (2013) を参考にして以下の式を fitting の関数として採用します. ただし <span class="arithmatex">\(\sigma_0\)</span> は 200 km/s とします.</p>
+<div class="arithmatex">\[
+\log_{10} \frac{M_B}{M_\odot}
+= \alpha + \beta \log_{10}\frac{\sigma_e}{\sigma_0}.
+\]</div>
+<p>観測値が有効な場合には正規分布を仮定した尤度関数を使用します.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
+<div class="arithmatex">\[
+\begin{aligned}
+\log{L}_i(\alpha,\beta,\varepsilon; D) =
+-\frac{\Delta_i^2}{2S_i^2} -\frac{1}{2}\log{S_i^2} \qquad\qquad\\
+\left\{\begin{aligned}
+\Delta_i &amp;= \log_{10}{M_{B,i}} - \alpha - \beta\log_{10}\sigma_{e,i}, \\
+S_i^2    &amp;= {\varepsilon_{M,i}}^2 + \beta^2{\varepsilon_{\sigma,i}}^2 + \varepsilon^2, \\
+\tau~    &amp;= \varepsilon^{-2}.
+\end{aligned}\right.
+\end{aligned}
+\]</div>
+<p>観測値が無効な場合にも正規分布を仮定した確率を使用します. ただし, 検出限界 (今回は <span class="arithmatex">\(10^{8.5}M_\odot\)</span>) 以下である確率を使います.</p>
+<div class="arithmatex">\[
+\log\tilde{L}_i(\alpha,\beta,\varepsilon; D) =
+-\log{C}(M_\mathrm{lim},\alpha+\beta\log_{10}\sigma_{e,i},S_i).
+\]</div>
+<p>ここで <span class="arithmatex">\(C(m,\mu,\sigma)\)</span> は正規分布の累積確率分布関数, <span class="arithmatex">\(M_\mathrm{lim}\)</span> は検出限界質量です.</p>
+<p>全データについて合計した尤度関数は以下のようになります.</p>
+<div class="arithmatex">\[
+\log{L}(\alpha,\beta,\varepsilon; D) =
+\sum_{i=1}^n \left(v_i\log{L_i} + (1-v_i)\log\tilde{L}_i\right)
++ \log{\operatorname{Gamma}(\tau, k, \theta)}.
+\]</div>
+<p><span class="arithmatex">\(\tau\)</span> についての事前分布として Gamma 分布を仮定しました.</p>
+<h3 id="_4">打ち切りデータを排除する</h3>
+<p>打ち切りデータを含めないで解析した場合にどのような結果になるかを計算してください.</p>
+<details class="note"><summary>Example</summary><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">mhmcmc</span> <span class="kn">import</span> <span class="n">MHMCMCSampler</span><span class="p">,</span> <span class="n">GaussianStep</span>
+
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./exercise_censored_regression.csv&#39;</span><span class="p">)</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">logM_B</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,:]</span>
+
+<span class="k">def</span> <span class="nf">log_gamma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span><span class="n">t</span><span class="o">=</span><span class="mf">1e3</span><span class="p">):</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">t</span> <span class="k">if</span> <span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="mf">1e10</span>
+
+<span class="k">def</span> <span class="nf">log_likelihood</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="o">-</span><span class="mf">1e10</span>
+  <span class="n">delta</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logM_B</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">logsig</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">200</span><span class="p">)))</span>
+  <span class="n">sqsig</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logM_B_err</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">table</span><span class="o">.</span><span class="n">logsig_err</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+  <span class="n">logpdf</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">delta</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">sqsig</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sqsig</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">logpdf</span><span class="p">)</span><span class="o">+</span><span class="n">log_gamma</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+
+<span class="n">step</span> <span class="o">=</span> <span class="n">GaussianStep</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">]))</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MHMCMCSampler</span><span class="p">(</span><span class="n">log_likelihood</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">8.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+
+<span class="n">sample</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="mi">51000</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="mi">1000</span><span class="p">:]</span>
+<span class="n">sample</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sample</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">e</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">e</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">e</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">e</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">e</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.10</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_a</span><span class="p">,</span><span class="n">_b</span><span class="p">,</span><span class="n">_e</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">[::</span><span class="mi">1000</span><span class="p">,:]:</span>
+  <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">_a</span><span class="o">+</span><span class="n">_b</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logsig</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logM_B</span><span class="p">,</span>
+  <span class="n">xerr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logsig_err</span><span class="p">,</span> <span class="n">yerr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logM_B_err</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$\log_</span><span class="si">{10}</span><span class="s1">\sigma_e$ (km/s)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$\log_</span><span class="si">{10}</span><span class="s1">M_B$ ($M_\odot$)&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;MCMC inference: alpha=</span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">, beta=</span><span class="si">{</span><span class="n">b</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">, epsilon=</span><span class="si">{</span><span class="n">e</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="summary"><summary>計算結果</summary><p><div class="highlight"><pre><span></span><code>MCMC inference: alpha=8.612, beta=3.274, epsilon=0.345
+</code></pre></div>
+1-&sigma;, 3-&sigma; の不定性をグレーの領域で表しています.
+<img alt="データと回帰直線" src="../img/execrcise_censored_regression_remove.png" /></p>
+<p>参考までに上記のサンプルで出力したトレースと自己相関関数を示します.
+<img alt="トレース" src="../img/execrcise_censored_regression_remove_trace.png" />
+<img alt="自己相関関数" src="../img/execrcise_censored_regression_remove_autocorr.png" /></p>
+</details>
+<h3 id="_5">打ち切りデータを含める</h3>
+<p>打ち切りデータを含めて解析した場合にどのような結果になるか計算してください.</p>
+<details class="note"><summary>Example</summary><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">mhmcmc</span> <span class="kn">import</span> <span class="n">MHMCMCSampler</span><span class="p">,</span> <span class="n">GaussianStep</span>
+
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../data/mcmc/exercise_censored_regression.csv&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">log_gamma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">t</span> <span class="k">if</span> <span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="mf">1e10</span>
+
+<span class="k">def</span> <span class="nf">log_likelihood</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="n">valid</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">logM_B</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">)</span>
+  <span class="n">beta</span>  <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">logsig</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">200</span><span class="p">))</span>
+  <span class="n">delta</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logM_B</span> <span class="o">-</span> <span class="n">beta</span>
+  <span class="n">sqsig</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logM_B_err</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">table</span><span class="o">.</span><span class="n">logsig_err</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">sqsig</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span> <span class="k">return</span> <span class="o">-</span><span class="mf">1e10</span>
+  <span class="n">logpdf</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">delta</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">sqsig</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sqsig</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+  <span class="n">logcdf</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">logcdf</span><span class="p">(</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sqsig</span><span class="p">))</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">valid</span><span class="o">*</span><span class="n">logpdf</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">valid</span><span class="p">)</span><span class="o">*</span><span class="n">logcdf</span><span class="p">)</span><span class="o">+</span><span class="n">log_gamma</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="mf">1e-3</span><span class="p">,</span><span class="mf">1e3</span><span class="p">)</span>
+
+
+<span class="n">step</span> <span class="o">=</span> <span class="n">GaussianStep</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">]))</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MHMCMCSampler</span><span class="p">(</span><span class="n">log_likelihood</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">8.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+
+<span class="n">sample</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="mi">51000</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="mi">1000</span><span class="p">:]</span>
+<span class="n">sample</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sample</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">e</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">e</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">e</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">e</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">e</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.10</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_a</span><span class="p">,</span><span class="n">_b</span><span class="p">,</span><span class="n">_e</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">[::</span><span class="mi">1000</span><span class="p">,:]:</span>
+  <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">_a</span><span class="o">+</span><span class="n">_b</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logsig</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">200</span><span class="p">),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logM_B</span><span class="p">,</span>
+  <span class="n">xerr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logsig_err</span><span class="p">,</span> <span class="n">yerr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logM_B_err</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$\log_</span><span class="si">{10}</span><span class="s1">\sigma_e$ (km/s)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$\log_</span><span class="si">{10}</span><span class="s1">M_B$ ($M_\odot$)&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;MCMC inference: alpha=</span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">, beta=</span><span class="si">{</span><span class="n">b</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">, epsilon=</span><span class="si">{</span><span class="n">e</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="summary"><summary>計算結果</summary><p><div class="highlight"><pre><span></span><code>MCMC inference: alpha=7.920, beta=6.743, epsilon=0.573
+</code></pre></div>
+1-&sigma;, 3-&sigma; の不定性をグレーの領域で表しています.
+<img alt="データと回帰直線" src="../img/execrcise_censored_regression.png" /></p>
+<p>参考までに上記のサンプルで出力したトレースと自己相関関数を示します.
+<img alt="トレース" src="../img/execrcise_censored_regression_trace.png" />
+<img alt="自己相関関数" src="../img/execrcise_censored_regression_autocorr.png" /></p>
+</details>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><span class="arithmatex">\(\log{L}_i(\alpha,\beta; D)\)</span> は <span class="arithmatex">\(i\)</span> 番目のデータに対する対数尤度です.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref5:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref6:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>以下 <span class="arithmatex">\(\sigma_{e,i}\)</span> は <span class="arithmatex">\(\sigma_0\)</span> で規格化された値として扱います.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
               
               

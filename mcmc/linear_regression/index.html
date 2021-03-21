@@ -560,7 +560,7 @@
                 
                 
                 <h1 id="_1">演習問題: 線形回帰</h1>
-<p>ここでは最もシンプルな線形回帰問題にたいして MCMC を使用してみます. 題材として使用するのは銀河の中心にある超大質量ブラックホール (supermassive blackhole) と, 銀河バルジ (bulge) の速度分散の関係です.</p>
+<p>ここでは最もシンプルな線形回帰問題に対して MCMC を使用してみます. 題材として使用するのは銀河の中心にある超大質量ブラックホール (supermassive blackhole) と, 銀河バルジ (bulge) の速度分散の関係です.</p>
 <h2 id="_2">データ</h2>
 <p><a href="https://doi.org/10.1088/0004-637X/772/2/82">Harris et al. (2013)</a> は銀河における球状星団の性質を調べるために, 先行研究によって測定されたさまざまな銀河の物理量をまとめた<a href="https://www.physics.mcmaster.ca/~harris/GCS_table.txt">カタログ</a>を作成しました. 今回はそのなかから銀河バルジの速度分散 (主に可視光の分光観測から推定) と銀河中心の超大質量ブラックホールの質量 (X 線光度などから推定) の値を使用します.</p>
 <p>演習用に整形したデータを以下からダウンロードしてください.</p>
@@ -643,66 +643,64 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
-<details class="summary"><summary>計算結果</summary><p><div class="highlight"><pre><span></span><code>      galaxy         ra        dec  ...  logsig_err  logM_B  logM_B_err
-0   MilkyWay   0.000000   0.000000  ...       0.076    6.61       0.040
-1     NGC221   0.711607  40.865165  ...       0.017    6.46       0.090
-2     NGC224   0.712316  41.268883  ...       0.021    8.18       0.150
-3     NGC253   0.792531 -25.288442  ...       0.073    7.00       0.300
-4     NGC821   2.139199  10.995008  ...       0.020    8.23       0.205
-5    NGC1023   2.673329  39.063253  ...       0.020    7.64       0.040
-6    NGC1316   3.378256 -37.208211  ...       0.006    8.24       0.200
-7    NGC1332   3.438111 -21.335276  ...       0.018    9.17       0.060
-8    NGC1399   3.641408 -35.450626  ...       0.020    8.69       0.065
-9    NGC2778   9.206775  35.027417  ...       0.019    7.15       0.300
-10   NGC3031   9.925869  69.065438  ...       0.021    7.84       0.085
-11   NGC3115  10.087214  -7.718556  ...       0.020    8.96       0.170
-12   NGC3377  10.795104  13.985641  ...       0.020    8.25       0.240
-13   NGC3379  10.797108  12.581611  ...       0.021    8.04       0.240
-14   NGC3384  10.804699  12.629401  ...       0.021    7.04       0.210
-15   NGC3414  10.854492  27.974833  ...       0.014    8.40       0.070
-16   NGC3585  11.221418 -26.754864  ...       0.020    8.51       0.140
-17   NGC3607  11.281816  18.051899  ...       0.020    8.15       0.125
-18   NGC3608  11.283036  18.148538  ...       0.021    8.67       0.095
-19   NGC3842  11.733936  19.949696  ...       0.011    9.99       0.125
-20   NGC4261  12.323060   5.825041  ...       0.020    8.71       0.085
-21   NGC4291  12.338247  75.370944  ...       0.021    8.98       0.140
-22   NGC4350  12.399394  16.693471  ...       0.017    8.74       0.100
-23   NGC4374  12.417685  12.887071  ...       0.020    8.96       0.045
-24   NGC4459  12.483339  13.978556  ...       0.020    7.84       0.080
-25   NGC4472  12.496331   8.000389  ...       0.004    9.26       0.150
-26   NGC4473  12.496907  13.429397  ...       0.020    7.95       0.240
-27   NGC4486  12.513724  12.391217  ...       0.020    9.77       0.030
-28  NGC4486A  12.516033  12.270333  ...       0.019    7.15       0.120
-29   NGC4552  12.594402  12.556115  ...       0.006    8.68       0.045
-30   NGC4564  12.607493  11.439400  ...       0.021    7.92       0.120
-31   NGC4594  12.666513 -11.623010  ...       0.021    8.72       0.435
-32   NGC4621  12.700637  11.647308  ...       0.006    8.60       0.065
-33   NGC4649  12.727789  11.552672  ...       0.021    9.63       0.100
-34   NGC4697  12.809995  -5.800602  ...       0.019    8.28       0.090
-35   NGC4889  13.002237  27.977031  ...       0.006   10.32       0.435
-36   NGC5128  13.424479 -43.018118  ...       0.020    7.71       0.160
-37    IC4296  13.610847 -33.965822  ...       0.021    9.13       0.065
-38   NGC5813  15.019805   1.702009  ...       0.006    8.84       0.070
-39   NGC5845  15.100215   1.633972  ...       0.020    8.69       0.140
-40   NGC5846  15.108124   1.606291  ...       0.008    9.04       0.080
-41   NGC6086  16.209883  29.484478  ...       0.012    9.56       0.160
-42   NGC7332  22.623476  23.798260  ...       0.011    7.11       0.190
-43    IC1459  22.952945 -36.462176  ...       0.011    9.45       0.195
-44   NGC7457  23.016647  30.144889  ...       0.019    7.00       0.300
-45   NGC7768  23.849610  27.147336  ...       0.021    9.11       0.150
-
-[46 rows x 9 columns]
+<details class="summary"><summary>計算結果</summary><p><div class="highlight"><pre><span></span><code>      galaxy         ra        dec    dist  dist_err  logsig  logsig_err  logM_B  logM_B_err
+0   MilkyWay   0.000000   0.000000    0.00      0.00   2.021       0.076    6.61       0.040
+1     NGC221   0.711607  40.865165    0.76      0.07   1.875       0.017    6.46       0.090
+2     NGC224   0.712316  41.268883    0.77      0.02   2.204       0.021    8.18       0.150
+3     NGC253   0.792531 -25.288442    3.54      0.20   2.011       0.073    7.00       0.300
+4     NGC821   2.139199  10.995008   23.38      1.24   2.320       0.020    8.23       0.205
+5    NGC1023   2.673329  39.063253   11.43      1.00   2.320       0.020    7.64       0.040
+6    NGC1316   3.378256 -37.208211   21.09      0.30   2.357       0.006    8.24       0.200
+7    NGC1332   3.438111 -21.335276   22.91      0.20   2.506       0.018    9.17       0.060
+8    NGC1399   3.641408 -35.450626   20.68      0.50   2.528       0.020    8.69       0.065
+9    NGC2778   9.206775  35.027417   22.91      3.39   2.243       0.019    7.15       0.300
+10   NGC3031   9.925869  69.065438    3.55      0.07   2.155       0.021    7.84       0.085
+11   NGC3115  10.087214  -7.718556   10.00      0.50   2.362       0.020    8.96       0.170
+12   NGC3377  10.795104  13.985641   11.04      0.25   2.161       0.020    8.25       0.240
+13   NGC3379  10.797108  12.581611   10.20      0.50   2.314       0.021    8.04       0.240
+14   NGC3384  10.804699  12.629401   10.80      0.77   2.155       0.021    7.04       0.210
+15   NGC3414  10.854492  27.974833   25.23      4.14   2.374       0.014    8.40       0.070
+16   NGC3585  11.221418 -26.754864   21.20      1.73   2.328       0.020    8.51       0.140
+17   NGC3607  11.281816  18.051899   20.00      2.00   2.360       0.020    8.15       0.125
+18   NGC3608  11.283036  18.148538   23.00      2.00   2.260       0.021    8.67       0.095
+19   NGC3842  11.733936  19.949696   94.90      6.70   2.498       0.011    9.99       0.125
+20   NGC4261  12.323060   5.825041   31.62      2.89   2.498       0.020    8.71       0.085
+21   NGC4291  12.338247  75.370944   26.18      4.16   2.384       0.021    8.98       0.140
+22   NGC4350  12.399394  16.693471   15.50      0.78   2.256       0.017    8.74       0.100
+23   NGC4374  12.417685  12.887071   18.51      0.61   2.471       0.020    8.96       0.045
+24   NGC4459  12.483339  13.978556   16.01      0.55   2.223       0.020    7.84       0.080
+25   NGC4472  12.496331   8.000389   17.03      0.21   2.468       0.004    9.26       0.150
+26   NGC4473  12.496907  13.429397   15.25      0.51   2.279       0.020    7.95       0.240
+27   NGC4486  12.513724  12.391217   17.00      0.30   2.574       0.020    9.77       0.030
+28  NGC4486A  12.516033  12.270333   18.36      0.64   2.045       0.019    7.15       0.120
+29   NGC4552  12.594402  12.556115   15.89      0.55   2.402       0.006    8.68       0.045
+30   NGC4564  12.607493  11.439400   15.87      0.53   2.210       0.021    7.92       0.120
+31   NGC4594  12.666513 -11.623010    9.77      0.84   2.380       0.021    8.72       0.435
+32   NGC4621  12.700637  11.647308   14.85      0.50   2.352       0.006    8.60       0.065
+33   NGC4649  12.727789  11.552672   17.09      0.61   2.585       0.021    9.63       0.100
+34   NGC4697  12.809995  -5.800602   12.01      0.78   2.248       0.019    8.28       0.090
+35   NGC4889  13.002237  27.977031   96.60      6.80   2.603       0.006   10.32       0.435
+36   NGC5128  13.424479 -43.018118    3.80      0.07   2.176       0.020    7.71       0.160
+37    IC4296  13.610847 -33.965822   49.68      2.73   2.508       0.021    9.13       0.065
+38   NGC5813  15.019805   1.702009   32.21      2.78   2.374       0.006    8.84       0.070
+39   NGC5845  15.100215   1.633972   25.94      2.63   2.369       0.020    8.69       0.140
+40   NGC5846  15.108124   1.606291   24.89      2.40   2.379       0.008    9.04       0.080
+41   NGC6086  16.209883  29.484478  137.30      9.60   2.524       0.012    9.56       0.160
+42   NGC7332  22.623476  23.798260   23.01      2.22   2.097       0.011    7.11       0.190
+43    IC1459  22.952945 -36.462176   29.24      4.02   2.486       0.011    9.45       0.195
+44   NGC7457  23.016647  30.144889   13.24      1.34   1.826       0.019    7.00       0.300
+45   NGC7768  23.849610  27.147336  112.10      7.90   2.495       0.021    9.11       0.150
 </code></pre></div>
 <img alt="データの関係" src="../img/execrcise_linear_regression_quick_view.png" /></p>
 </details>
 <h2 id="_3">回帰直線の導出</h2>
 <h3 id="y">Y 軸の不定性を考慮した回帰</h3>
-<p>おおよそ線形の関係で近似できそうなことが分かりました. ここでは Harris et al. (2013) を参考にして以下の式を仮定します. ただし <span class="arithmatex">\(\sigma_0\)</span> は 200 km/s とします.</p>
+<p>おおよそ線形の関係で近似できそうなことが分かりました. ここでは Harris et al. (2013) を参考にして以下の式を採用します. ただし <span class="arithmatex">\(\sigma_0\)</span> は 200 km/s とします.</p>
 <div class="arithmatex">\[
 \log_{10} \frac{M_B}{M_\odot}
 = \alpha + \beta \log_{10}\frac{\sigma_e}{\sigma_0}.
 \]</div>
-<p>誤差は正規分布で近似できるという単純なモデルを採用します. まずは Y 軸 (<span class="arithmatex">\(\log{M_B}\)</span>) の不定性だけを考えて尤度関数 (確率) を導出します.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
+<p>誤差は正規分布で近似できるという単純なモデルを採用します. まずは Y 軸 (<span class="arithmatex">\(\log{M_B}\)</span>) の不定性だけを考えて尤度関数 (確率) を導出します.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup><sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></p>
 <div class="arithmatex">\[
 \log{L(\alpha,\beta; D)}
 = -\sum_{i=1}^n
@@ -876,21 +874,21 @@ S_i      &amp;= {\varepsilon_{M,i}}^2 + \beta^2{\varepsilon_{\sigma,i}}^2.
 <img alt="自己相関関数" src="../img/execrcise_linear_regression_xyerror_autocorr.png" /></p>
 </details>
 <h3 id="_4">モデルの不定性を考慮した回帰</h3>
-<p><ins class="critic">予備課題</ins> これまでの計算で <span class="arithmatex">\(\alpha\)</span>, <span class="arithmatex">\(\beta\)</span> の確率分布を求めましたが, 散布図に重ねてプロットをしてみると, 測定誤差では説明ができないほど傾向から外れた点も多いことが分かります. ひとつの可能性は測定誤差を過小評価しているということです. また別の可能性として, ここでは考慮できていない物理量があるため, 直線からのバラつきとして intrinsic scatter が現れていると見ることもできます.</p>
+<p>これまでの計算で <span class="arithmatex">\(\alpha\)</span>, <span class="arithmatex">\(\beta\)</span> の確率分布を求めましたが, 散布図に重ねてプロットをしてみると, 測定誤差では説明ができないほど傾向から外れた点も多いことが分かります. ひとつの可能性は測定誤差を過小評価しているということです. また別の可能性として, ここでは考慮できていない物理量があるため, 直線からのバラつきとして intrinsic scatter が現れていると見ることもできます.</p>
 <p>ここでは intrinsic scatter の大きさを見積もるために変数をひとつ増やして計算をしてみます. 線形回帰で得られる値に一様に不定性 <span class="arithmatex">\(\varepsilon\)</span> を加えて尤度関数を以下のように定義します.</p>
 <div class="arithmatex">\[
 \begin{aligned}
-\log{L(\alpha,\beta; D)} = -\sum_{i=1}^n
-\left[ \frac{\Delta_i^2}{2S_i^2} + \log{S_i}\right]
+\log{L(\alpha,\beta,\varepsilon; D)} = -\sum_{i=1}^n
+\left[ \frac{\Delta_i^2}{2S_i^2} + \frac{1}{2}\log{S_i^2}\right]
 + \log{\operatorname{Gamma}(\tau, k, \theta)},\qquad &amp;\\
 \left\{~\begin{aligned}
 \Delta_i &amp;= \log_{10}{M_{B,i}} - \alpha - \beta\log_{10}\sigma_{e,i}, \\
-S_i      &amp;= {\varepsilon_{M,i}}^2 + \beta^2{\varepsilon_{\sigma,i}}^2 + \varepsilon^2, \\
-\tau     &amp;= \varepsilon^{-2}.
+S_i^2    &amp;= {\varepsilon_{M,i}}^2 + \beta^2{\varepsilon_{\sigma,i}}^2 + \varepsilon^2, \\
+\tau~    &amp;= \varepsilon^{-2}.
 \end{aligned}\right.&amp;
 \end{aligned}
 \]</div>
-<p><span class="arithmatex">\(\tau\)</span> が負値を取らないように事前分布として Gamma 分布を仮定しました. 以下のサンプルでは無情報であることを意味するため <span class="arithmatex">\(k\)</span>, <span class="arithmatex">\(\theta\)</span> にそれぞれ <span class="arithmatex">\(10^{-3}\)</span>, <span class="arithmatex">\(10^3\)</span> を与えています.<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></p>
+<p><span class="arithmatex">\(\tau\)</span> が負値を取らないように事前分布として Gamma 分布を仮定しました. 以下のサンプルでは無情報であることを意味するため <span class="arithmatex">\(k\)</span>, <span class="arithmatex">\(\theta\)</span> にそれぞれ <span class="arithmatex">\(10^{-3}\)</span>, <span class="arithmatex">\(10^3\)</span> を与えています.<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup></p>
 <details class="note"><summary>Example</summary><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -898,14 +896,15 @@ S_i      &amp;= {\varepsilon_{M,i}}^2 + \beta^2{\varepsilon_{\sigma,i}}^2 + \var
 
 <span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../data/mcmc/exercise_linear_regression.csv&#39;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">log_gamma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">log_gamma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span><span class="n">t</span><span class="o">=</span><span class="mf">1e3</span><span class="p">):</span>
   <span class="k">return</span> <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">t</span> <span class="k">if</span> <span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="mf">1e10</span>
 
 <span class="k">def</span> <span class="nf">log_likelihood</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="o">-</span><span class="mf">1e10</span>
   <span class="n">delta</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logM_B</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">logsig</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">200</span><span class="p">)))</span>
   <span class="n">sqsig</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logM_B_err</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">table</span><span class="o">.</span><span class="n">logsig_err</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-  <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">delta</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">sqsig</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sqsig</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> \
-    <span class="o">+</span> <span class="n">log_gamma</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="mf">1e-3</span><span class="p">,</span><span class="mf">1e3</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">sqsig</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="k">else</span> <span class="o">-</span><span class="mf">1e10</span>
+  <span class="n">logpdf</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">delta</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">sqsig</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sqsig</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">logpdf</span><span class="p">)</span><span class="o">+</span><span class="n">log_gamma</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 
 <span class="n">step</span> <span class="o">=</span> <span class="n">GaussianStep</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">]))</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">MHMCMCSampler</span><span class="p">(</span><span class="n">log_likelihood</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
@@ -948,13 +947,16 @@ S_i      &amp;= {\varepsilon_{M,i}}^2 + \beta^2{\varepsilon_{\sigma,i}}^2 + \var
 <hr />
 <ol>
 <li id="fn:1">
-<p>このカラムは今回は使いません.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref5:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>今回はこのカラムは使いません.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref5:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>これは尤度関数なので事前分布を仮定して掛けないと正しく確率としては扱えませんが, ここでは一様な無情報事前分布を仮定したとして, このまま確率として計算をしてしまいます.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>以下 <span class="arithmatex">\(\sigma_{e,i}\)</span> は <span class="arithmatex">\(\sigma_0\)</span> で規格化された値とします.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>このとき <span class="arithmatex">\(\tau\)</span> が大きくない範囲では <span class="arithmatex">\({\operatorname{Gamma}(\tau,k,\theta)} \sim k\tau^{-1}\)</span> と近似でき, Jefferys の無情報事前分布と一致します. Gamma 分布はパラメタの定義の仕方に <span class="arithmatex">\((k,\theta)\)</span> と <span class="arithmatex">\((\alpha,\beta)\)</span> の 2 通りあるので気をつけて使ってください.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>これは尤度関数なので事前分布を仮定して掛けないと正しく確率としては扱えませんが, ここでは一様な無情報事前分布を仮定したとして, このまま確率として計算をしてしまいます.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>このとき <span class="arithmatex">\(\tau\)</span> が大きくない範囲では <span class="arithmatex">\({\operatorname{Gamma}(\tau,k,\theta)} \sim k\tau^{-1}\)</span> と近似でき, Jefferys の無情報事前分布と一致します. Gamma 分布はパラメタの定義の仕方に <span class="arithmatex">\((k,\theta)\)</span> と <span class="arithmatex">\((\alpha,\beta)\)</span> の 2 通りあるので気をつけて使ってください.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
