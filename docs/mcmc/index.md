@@ -34,6 +34,7 @@ $$
 1. [Metropolis-Hastings アルゴリズムによる MCMC 実践](./scratchbuild_mcmc.md)
 1. [マルコフ連鎖の収束に関するあれこれ](./chain_convergence.md)
 1. [演習問題: 線形回帰](./linear_regression.md)
+1. [演習問題: 打ち切り回帰モデル](./censored_regression.md)
 
 
 ## 動作環境
