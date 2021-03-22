@@ -1,4 +1,4 @@
-SDSS_objID,redshift,M_r,M_r_err,gr,gr_err,logab,fracDeV,red
+SDSS_objID,redshift,M_r,M_r_err,gr,gr_err,logab,fracDeV,redspiral
 587726033307107491,0.0486,-20.44,0.01,0.481,0.026,0.076,0.04,0
 587725551197946034,0.0729,-21.99,0.01,0.639,0.017,0.113,0.29,0
 587737809566630231,0.0448,-20.45,0.01,0.439,0.022,0.067,0.25,0
