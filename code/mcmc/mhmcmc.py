@@ -164,8 +164,7 @@ class MHMCMCSampler(object):
     if self.state is None:
       raise RuntimeError('state is not initialized.')
     samples = []
-    tqdmfmt = '{l_bar}{bar}| {n_fmt}/{total_fmt}'
-    for n in trange(n_sample, bar_format=tqdmfmt):
+    for n in trange(n_sample):
       self.step_forward()
       samples.append(self.state)
     return np.vstack(samples)
