@@ -1,4 +1,4 @@
-# 演習問題: 打ち切り回帰モデル
+# 演習問題: 打ち切り回帰
 
 ここでは超大質量ブラックホール (supermassive blackhole) と, 銀河バルジ (bulge) の速度分散の関係に少し手を加えたデータを使用します. 天文学に限らず, 実験によって得られるデータは装置性能の限界や実験時間の限界などによって一部しかデータが取得できないことがよくあります. ここではそのようなデータに対して適用することのできる打ち切り回帰モデル (censored regression) を
 
@@ -213,7 +213,7 @@ $\tau$ についての事前分布として Gamma 分布を仮定しました.
     1-&sigma;, 3-&sigma; の不定性をグレーの領域で表しています.
     ![データと回帰直線](img/execrcise_censored_regression_remove.png)
 
-    参考までに上記のサンプルで出力したトレースと自己相関関数を示します.
+    上記のサンプルで出力したトレースと自己相関関数を示します.
     ![トレース](img/execrcise_censored_regression_remove_trace.png)
     ![自己相関関数](img/execrcise_censored_regression_remove_autocorr.png)
 
@@ -283,7 +283,7 @@ $\tau$ についての事前分布として Gamma 分布を仮定しました.
     1-&sigma;, 3-&sigma; の不定性をグレーの領域で表しています.
     ![データと回帰直線](img/execrcise_censored_regression.png)
 
-    参考までに上記のサンプルで出力したトレースと自己相関関数を示します.
+    上記のサンプルで出力したトレースと自己相関関数を示します.
     ![トレース](img/execrcise_censored_regression_trace.png)
     ![自己相関関数](img/execrcise_censored_regression_autocorr.png)
 
