@@ -1,0 +1,959 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="FoPM Practical Course at Institute of Astronomy">
+      
+      
+      
+        <meta name="author" content="Ryou Ohsawa">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>演習問題: ロジスティック回帰 - FoPM Practical Course &ndash; Institute of Astronomy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.7fa14f5b.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/config_local.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="deep-orange">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="FoPM Practical Course &amp;ndash; Institute of Astronomy" class="md-header__button md-logo" aria-label="FoPM Practical Course &ndash; Institute of Astronomy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FoPM Practical Course &ndash; Institute of Astronomy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              演習問題: ロジスティック回帰
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="FoPM Practical Course &amp;ndash; Institute of Astronomy" class="md-nav__button md-logo" aria-label="FoPM Practical Course &ndash; Institute of Astronomy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    FoPM Practical Course &ndash; Institute of Astronomy
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        トップページ
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        実習テキスト
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="実習テキスト" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          実習テキスト
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      <label class="md-nav__link" for="__nav_2_1">
+        MCMC 入門
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="MCMC 入門" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          MCMC 入門
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        はじめに
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generate_random_variables/" class="md-nav__link">
+        乱数を生成する
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static_monte_carlo/" class="md-nav__link">
+        静的なモンテカルロ法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../markov_chain/" class="md-nav__link">
+        動的なモンテカルロ法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scratchbuild_mcmc/" class="md-nav__link">
+        MHMCMC チュートリアル
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chain_convergence/" class="md-nav__link">
+        マルコフ連鎖の収束
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linear_regression/" class="md-nav__link">
+        演習問題: 線形回帰
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../censored_regression/" class="md-nav__link">
+        演習問題: 打ち切り回帰
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          演習問題: ロジスティック回帰
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        演習問題: ロジスティック回帰
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    データ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    ロジスティック回帰
+  </a>
+  
+    <nav class="md-nav" aria-label="ロジスティック回帰">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1 変数による回帰
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    多変数をもちいた回帰
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../count_model.md" class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/" class="md-nav__link">
+        参考文献
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.s.u-tokyo.ac.jp/ja/FoPM/" class="md-nav__link">
+        FoPM Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/FoPM-Astronomy-UTokyo/course" class="md-nav__link">
+        GitHub repository
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    データ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    ロジスティック回帰
+  </a>
+  
+    <nav class="md-nav" aria-label="ロジスティック回帰">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1 変数による回帰
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    多変数をもちいた回帰
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="_1">演習問題: ロジスティック回帰</h1>
+<p>ここでは 2 値分類モデル (ロジスティック回帰) を扱います. 対象があるクラスに含まれる確率を説明変数によって表すことを目的としています. ここでは <a href="https://data.galaxyzoo.org/">SDSS Galaxy Zoo Data</a> によって公開されている &ldquo;Red Spirals&rdquo; というデータセットを使用します.</p>
+<p>通常, 銀河は赤い色をした楕円銀河と青い色をした渦巻銀河に分類されます. しかし, &ldquo;Red Spirals&rdquo; とは明らかに渦巻状の構造を有しているにも関わらず, 色が比較的赤い特徴を持った銀河です. <a href="https://arxiv.org/abs/0910.4113">Masters et al. (2010)</a> では Galaxy Zoo のデータに基づいて &ldquo;Red Spirals&rdquo; の特徴を議論しています. ここでは Galaxy Zoo Data で公開されている &ldquo;Red Spirals&rdquo; (<a href="https://data.galaxyzoo.org/data/redspirals/RedSpiralsA1.txt">data</a>) と &ldquo;Blue Spirals&rdquo; (<a href="https://data.galaxyzoo.org/data/redspirals/RedSpiralsA1.txt">data</a>) のデータをマージして, どのパラメタが &ldquo;Red Spirals&rdquo; であることと相関があるかを調べます.</p>
+<h2 id="_2">データ</h2>
+<p>演習用に整形したデータを以下からダウンロードしてください.</p>
+<table>
+<thead>
+<tr>
+<th>ファイル名</th>
+<th>形式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://raw.githubusercontent.com/FoPM-Astronomy-UTokyo/course/main/data/mcmc/exercise_logistic_regression.csv">exercise_logistic_regression.csv</a></td>
+<td>csv</td>
+</tr>
+</tbody>
+</table>
+<p>データテーブルには以下のカラムが含まれています.</p>
+<table>
+<thead>
+<tr>
+<th>カラム名</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SDSS_objID</td>
+<td>SDSS オブジェクト ID<sup id="fnref5:1"><a class="footnote-ref" href="#fn:1">1</a></sup></td>
+</tr>
+<tr>
+<td>redshift</td>
+<td>赤方偏移 (z)</td>
+</tr>
+<tr>
+<td>M_r</td>
+<td>SDSS <span class="arithmatex">\(r\)</span> バンド絶対等級<sup id="fnref4:1"><a class="footnote-ref" href="#fn:1">1</a></sup> <span class="arithmatex">\(M_r\)</span></td>
+</tr>
+<tr>
+<td>M_r_err</td>
+<td>SDSS <span class="arithmatex">\(r\)</span> バンド絶対等級の不定性<sup id="fnref3:1"><a class="footnote-ref" href="#fn:1">1</a></sup> <span class="arithmatex">\(\sigma_r\)</span></td>
+</tr>
+<tr>
+<td>gr</td>
+<td>SDSS <span class="arithmatex">\(g-r\)</span> カラー<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup></td>
+</tr>
+<tr>
+<td>gr_err</td>
+<td>SDSS <span class="arithmatex">\(g-r\)</span> カラーの不定性<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> <span class="arithmatex">\(\sigma_{gr}\)</span></td>
+</tr>
+<tr>
+<td>logab</td>
+<td>プロファイルフィットで求めた軸比 (対数) <span class="arithmatex">\(\log_{10}\mathrm{ax}\)</span></td>
+</tr>
+<tr>
+<td>fracDeV</td>
+<td>銀河バルジの大きさの指標<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> <span class="arithmatex">\(F\)</span></td>
+</tr>
+<tr>
+<td>redspiral</td>
+<td>Red Spiral 天体の場合は 1, そうでなければ 0</td>
+</tr>
+</tbody>
+</table>
+<p>まずはデータを <code>redspiral==1</code> と <code>redspiral==0</code> に分けてプロットして, データの傾向をつかんでください.</p>
+<details class="note"><summary>Example</summary><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">default_rng</span>
+
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./exercise_logistic_regression.csv&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+
+<span class="n">gen</span> <span class="o">=</span> <span class="n">default_rng</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+<span class="n">cl</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">redspiral</span><span class="o">+</span><span class="n">gen</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">))</span>
+<span class="n">rs</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">redshift</span><span class="o">+</span><span class="n">gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">))</span>
+<span class="n">ab</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logab</span><span class="o">+</span><span class="n">gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">))</span>
+<span class="n">fD</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">fracDeV</span><span class="o">+</span><span class="n">gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">))</span>
+<span class="n">R</span><span class="p">,</span><span class="n">B</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">redspiral</span><span class="o">==</span><span class="mi">1</span><span class="p">,</span> <span class="n">table</span><span class="o">.</span><span class="n">redspiral</span><span class="o">!=</span><span class="mi">1</span>
+<span class="n">sca</span> <span class="o">=</span> <span class="n">gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">rs</span><span class="p">[</span><span class="n">B</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span> <span class="n">cl</span><span class="p">[</span><span class="n">B</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;royalblue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">rs</span><span class="p">[</span><span class="n">R</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span> <span class="n">cl</span><span class="p">[</span><span class="n">R</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;redshift&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="s1">&#39;red&#39;</span><span class="p">])</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">ab</span><span class="p">[</span><span class="n">B</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span> <span class="n">cl</span><span class="p">[</span><span class="n">B</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;royalblue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">ab</span><span class="p">[</span><span class="n">R</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span> <span class="n">cl</span><span class="p">[</span><span class="n">R</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$\log(a/b)$&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="s1">&#39;red&#39;</span><span class="p">])</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">fD</span><span class="p">[</span><span class="n">B</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span> <span class="n">cl</span><span class="p">[</span><span class="n">B</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;royalblue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">fD</span><span class="p">[</span><span class="n">R</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span> <span class="n">cl</span><span class="p">[</span><span class="n">R</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;frac DeV&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="s1">&#39;red&#39;</span><span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+</details>
+<details class="summary"><summary>計算結果</summary><div class="highlight"><pre><span></span><code>              SDSS_objID  redshift    M_r  M_r_err     gr  gr_err  logab  fracDeV  redspiral
+0     587726033307107491    0.0486 -20.44     0.01  0.481   0.026  0.076     0.04          0
+1     587725551197946034    0.0729 -21.99     0.01  0.639   0.017  0.113     0.29          0
+2     587737809566630231    0.0448 -20.45     0.01  0.439   0.022  0.067     0.25          0
+3     588017625628278943    0.0834 -21.06     0.01  0.386   0.020  0.145     0.43          0
+4     588017948292022413    0.0707 -21.15     0.01  0.539   0.022  0.115     0.08          0
+...                  ...       ...    ...      ...    ...     ...    ...      ...        ...
+5427  587732579381542929    0.0448 -20.18     0.01  0.404   0.022  0.143     0.31          0
+5428  588017978895761514    0.0651 -20.41     0.01  0.415   0.020  0.163     0.00          0
+5429  588848899395682392    0.0364 -20.36     0.01  0.432   0.018  0.043     0.08          0
+5430  587732483293511892    0.0642 -21.31     0.01  0.491   0.019  0.111     0.04          0
+5431  587739609696174241    0.0433 -21.18     0.01  0.435   0.018  0.145     0.34          0
+
+[5432 rows x 9 columns]
+</code></pre></div>
+<p>データが重なってしまい分布がわかりにくいため scatter を与えています.
+<img alt="散布図" src="../img/execrcise_logistic_regression_overview.png" /></p>
+</details>
+<h2 id="_3">ロジスティック回帰</h2>
+<p>ロジスティック回帰とは <span class="arithmatex">\(i\)</span> 番目のデータがタイプ <span class="arithmatex">\(T\)</span> に属する確率 <span class="arithmatex">\(p_i\)</span> を以下の式で表現するモデルです. 説明変数 <span class="arithmatex">\(x_i\)</span> の線型結合によって <span class="arithmatex">\(z_i\)</span> を定義し, <span class="arithmatex">\(z_i\)</span> を S 字型 (sigmoid) の関数によって <span class="arithmatex">\([0,1)\)</span> にマッピングします. <span class="arithmatex">\(z_i \to p_i\)</span> の変換に使用している関数をロジスティック関数と呼びます.</p>
+<div class="arithmatex">\[
+p_i = {\operatorname{logistic}}\left(z_i\right)
+= \frac{1}{1+\mathrm{e}^{-z_i}}, ~~
+z_i = \beta_0 + \sum_{j=1}^{N} \beta_j x_{[j]}.
+\]</div>
+<p><span class="arithmatex">\(N\)</span> はデータの要素数を, <span class="arithmatex">\(x_{[j]}\)</span> は <span class="arithmatex">\(x\)</span> の <span class="arithmatex">\(j\)</span> 番目の要素を表しています.</p>
+<details class="tip"><summary>ロジスティック回帰のバックグラウンド</summary><p>ロジスティック回帰が仮定していることについて簡単に説明します. できることなら説明変数 <span class="arithmatex">\(x\)</span> を直接確率 <span class="arithmatex">\(p\)</span> と結び付けたいのですが, <span class="arithmatex">\(p\)</span> の domain は <span class="arithmatex">\([0,1]\)</span> なので線形変換によって結びつけることは困難です. そこで確率そのものではなく, 確率のオッズ (odds) を考えます.</p>
+<div class="arithmatex">\[
+\mathrm{odds} = \frac{p}{1-p}.
+\]</div>
+<p>odds の range は <span class="arithmatex">\([0,\infty)\)</span> です. まだ線形変換で結びつけるのは難しいので対数をとります.</p>
+<div class="arithmatex">\[
+z = {\operatorname{logit}}(p) = \log\frac{p}{1-p}.
+\]</div>
+<p>この関数を logit 関数と呼びます. これで range が <span class="arithmatex">\((-\infty,\infty)\)</span> になりました. 線形変換によって mapping できる可能性が出てきます.  とりあえずこの値を <span class="arithmatex">\(z\)</span> と置きました. この式を <span class="arithmatex">\(p\)</span> について解くと以下のようになります.</p>
+<div class="arithmatex">\[
+p = {\operatorname{logistic}}(z) = \frac{1}{1+\mathrm{e}^{-z}}.
+\]</div>
+<p>ここで先程の logistic 関数が出てきました. 上記のようなロジスティック回帰は, データがタイプ <span class="arithmatex">\(T\)</span> に属する確率 <span class="arithmatex">\(p\)</span> のオッズの対数は説明変数 <span class="arithmatex">\(x\)</span> の線型結合によって近似できるということを仮定として採用していることになります.</p>
+</details>
+<h3 id="1">1 変数による回帰</h3>
+<p>まずは <code>fracDeV</code> のみを説明変数とするモデルを作成します.</p>
+<div class="arithmatex">\[
+p_i = {\operatorname{logistic}}(z), ~~
+z_i = \beta_0 + \beta_1 {x_{[1],i}}.
+\]</div>
+<p>ここで <span class="arithmatex">\(x_{[1]}\)</span> は <code>fracDev</code> を表しています. Bernoulli 分布を採用すると <span class="arithmatex">\(y_i =\)</span> <code>redspiral</code> として尤度関数は以下のように書けます.</p>
+<div class="arithmatex">\[
+\log{L}(\beta;D) = \sum_i^n
+  \log\left({y_i}{p_i} + (1-y_i)(1-p_i)\right).
+\]</div>
+<p>この尤度関数を用いてパラメタ <span class="arithmatex">\(\beta\)</span> の分布を導出してください.</p>
+<details class="note"><summary>Example</summary><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">bernoulli</span> <span class="k">as</span> <span class="n">ber</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span> <span class="k">as</span> <span class="n">norm</span>
+<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">default_rng</span>
+<span class="kn">from</span> <span class="nn">mhmcmc</span> <span class="kn">import</span> <span class="n">MHMCMCSampler</span><span class="p">,</span> <span class="n">GaussianStep</span>
+
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./exercise_logistic_regression.csv&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">logistic</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+  <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">log_likelihood</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="n">p</span> <span class="o">=</span> <span class="n">logistic</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">table</span><span class="o">.</span><span class="n">fracDeV</span><span class="p">)</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">redspiral</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y</span><span class="o">*</span><span class="n">p</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)))</span>
+
+<span class="n">step</span> <span class="o">=</span> <span class="n">GaussianStep</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.50</span><span class="p">]))</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MHMCMCSampler</span><span class="p">(</span><span class="n">log_likelihood</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+
+<span class="n">sample</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="mi">51000</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="mi">1000</span><span class="p">:]</span>
+
+<span class="n">beta</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">fdev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">parr</span> <span class="o">=</span> <span class="n">logistic</span><span class="p">(</span><span class="n">sample</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+          <span class="o">+</span> <span class="n">sample</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">fdev</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
+<span class="n">psig</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">parr</span><span class="p">,</span> <span class="mi">100</span><span class="o">*</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">p</span>   <span class="o">=</span> <span class="n">parr</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">R</span><span class="p">,</span><span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">redspiral</span><span class="o">==</span><span class="mi">1</span><span class="p">),(</span><span class="n">table</span><span class="o">.</span><span class="n">redspiral</span><span class="o">!=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">gen</span> <span class="o">=</span> <span class="n">default_rng</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+<span class="n">scx</span> <span class="o">=</span> <span class="n">gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">table</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">scy</span> <span class="o">=</span> <span class="n">gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.10</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">table</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">sig</span> <span class="o">=</span> <span class="n">p</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span>
+
+<span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">nr</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">fracDeV</span><span class="p">[</span><span class="n">R</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
+<span class="n">nb</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">fracDeV</span><span class="p">[</span><span class="n">B</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
+<span class="n">frac</span> <span class="o">=</span> <span class="n">nr</span><span class="o">/</span><span class="p">(</span><span class="n">nr</span><span class="o">+</span><span class="n">nb</span><span class="p">)</span>
+<span class="n">efrac</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">nr</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">nr</span><span class="o">+</span><span class="n">nb</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">fdev</span><span class="p">,</span> <span class="n">psig</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">),</span> <span class="n">psig</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">fdev</span><span class="p">,</span> <span class="n">psig</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">psig</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+  <span class="n">bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">frac</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">efrac</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;forestgreen&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">fracDeV</span><span class="o">+</span><span class="n">scx</span><span class="p">)[</span><span class="n">R</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">redspiral</span><span class="o">+</span><span class="n">scy</span><span class="p">)[</span><span class="n">R</span><span class="p">],</span>
+  <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">fracDeV</span><span class="o">+</span><span class="n">scx</span><span class="p">)[</span><span class="n">B</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">redspiral</span><span class="o">-</span><span class="n">scy</span><span class="p">)[</span><span class="n">B</span><span class="p">],</span>
+  <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;royalblue&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fdev</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;frac DeV&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;prob (red spiral)&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;MCMC inference: beta0=</span><span class="si">{</span><span class="n">beta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1"> .3f</span><span class="si">}</span><span class="s1"> (const)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;              : beta1=</span><span class="si">{</span><span class="n">beta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1"> .3f</span><span class="si">}</span><span class="s1"> (fracDeV)&#39;</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="summary"><summary>計算結果</summary><p><div class="highlight"><pre><span></span><code>MCMC inference: beta0=-4.923 (const)
+              : beta1= 8.181 (fracDeV)
+</code></pre></div>
+緑色のデータ点が <code>fracDeV</code> に対する Red Spirals の割合です. オレンジ色の曲線はロジスティック回帰によって得られた曲線です. 1-&sigma;, 3-&sigma; 誤差範囲を灰色の領域で示しています.
+<img alt="データと回帰曲線" src="../img/execrcise_logistic_regression_single.png" /></p>
+<p>上記のサンプルで出力したトレースと自己相関関数を示します.
+<img alt="トレース" src="../img/execrcise_logistic_regression_single_trace.png" />
+<img alt="自己相関関数" src="../img/execrcise_logistic_regression_single_autocorr.png" /></p>
+</details>
+<h3 id="_4">多変数をもちいた回帰</h3>
+<p><code>redshift</code>,<code>logab</code>,<code>fracDeV</code> を説明変数とするモデルを作成します.</p>
+<div class="arithmatex">\[
+p_i = {\operatorname{logistic}}(z), ~~
+z_i = \beta_0 + \sum_{j=1}^3\beta_j {x_{[j],i}}.
+\]</div>
+<p>ここで <span class="arithmatex">\(x_{[1],i}\)</span> は <code>redshift</code>, <span class="arithmatex">\(x_{[2],i}\)</span> は <code>logab</code>, <span class="arithmatex">\(x_{[3],i}\)</span> は <code>fracDeV</code> とします. Bernoulli 分布を採用すると <span class="arithmatex">\(y_i =\)</span> <code>redspiral</code> として尤度関数は以下のように書けます.</p>
+<div class="arithmatex">\[
+\log{L}(\beta;D) = \sum_i^n
+  \log\left({y_i}{p_i} + (1-y_i)(1-p_i)\right).
+\]</div>
+<p>この尤度関数を用いてパラメタ <span class="arithmatex">\(\beta\)</span> の分布を導出してください.</p>
+<details class="note"><summary>Example</summary><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">default_rng</span>
+<span class="kn">from</span> <span class="nn">mhmcmc</span> <span class="kn">import</span> <span class="n">MHMCMCSampler</span><span class="p">,</span> <span class="n">GaussianStep</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../data/mcmc/exercise_logistic_regression.csv&#39;</span><span class="p">)</span>
+<span class="n">dat</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;redshift&#39;</span><span class="p">,</span><span class="s1">&#39;logab&#39;</span><span class="p">,</span><span class="s1">&#39;fracDeV&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">logistic</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+  <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">log_likelihood</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="n">p</span> <span class="o">=</span> <span class="n">logistic</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">redspiral</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">y</span><span class="o">*</span><span class="n">p</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">),</span><span class="mf">1e-30</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+
+
+<span class="n">step</span> <span class="o">=</span> <span class="n">GaussianStep</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]))</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MHMCMCSampler</span><span class="p">(</span><span class="n">log_likelihood</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+
+<span class="n">sample</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="mi">51000</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="mi">1000</span><span class="p">:]</span>
+
+<span class="n">beta</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">R</span><span class="p">,</span><span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">redspiral</span><span class="o">==</span><span class="mi">1</span><span class="p">),(</span><span class="n">table</span><span class="o">.</span><span class="n">redspiral</span><span class="o">!=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">gen</span> <span class="o">=</span> <span class="n">default_rng</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+
+<span class="n">rs</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">redshift</span>
+<span class="n">ab</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">logab</span><span class="o">+</span><span class="n">gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">table</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">fD</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">fracDeV</span><span class="o">+</span><span class="n">gen</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">table</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">lab_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">0.22</span><span class="p">,</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">fdV_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">0.52</span><span class="p">,</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">lab_mesh</span><span class="p">,</span><span class="n">fdV_mesh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">lab_arr</span><span class="p">,</span><span class="n">fdV_arr</span><span class="p">)</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span><span class="n">lab_mesh</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="n">fdV_mesh</span><span class="o">.</span><span class="n">flatten</span><span class="p">()))</span><span class="o">.</span><span class="n">T</span>
+<span class="n">z_mesh</span> <span class="o">=</span> <span class="n">beta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">beta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">rs</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">beta</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">300</span><span class="p">,</span><span class="mi">300</span><span class="p">))</span>
+<span class="n">p_mesh</span> <span class="o">=</span> <span class="n">logistic</span><span class="p">(</span><span class="n">z_mesh</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">ab</span><span class="p">[</span><span class="n">B</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">fD</span><span class="p">[</span><span class="n">B</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;royalblue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">ab</span><span class="p">[</span><span class="n">R</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">fD</span><span class="p">[</span><span class="n">R</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">levels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">0.29</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">cb</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">lab_arr</span><span class="p">,</span><span class="n">fdV_arr</span><span class="p">,</span><span class="n">p_mesh</span><span class="p">,</span><span class="n">levels</span><span class="o">=</span><span class="n">levels</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">clabel</span><span class="p">(</span><span class="n">cb</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$\log(a/b)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;frac DeV&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;MCMC inference: beta0=</span><span class="si">{</span><span class="n">beta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1"> .3f</span><span class="si">}</span><span class="s1"> (const)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;              : beta1=</span><span class="si">{</span><span class="n">beta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1"> .3f</span><span class="si">}</span><span class="s1"> (redshift)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;              : beta3=</span><span class="si">{</span><span class="n">beta</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s1"> .3f</span><span class="si">}</span><span class="s1"> (logab)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;              : beta4=</span><span class="si">{</span><span class="n">beta</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">:</span><span class="s1"> .3f</span><span class="si">}</span><span class="s1"> (fracDeV)&#39;</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="summary"><summary>計算結果</summary><p><div class="highlight"><pre><span></span><code>MCMC inference: beta0=-4.610 (const)
+              : beta1=-0.888 (redshift)
+              : beta3= 2.538 (logab)
+              : beta4= 6.559 (fracDeV)
+</code></pre></div>
+<code>logab</code> と <code>fracDeV</code> の平面にデータ点をプロットして確率の等高線を引きました.
+<img alt="データと回帰曲線" src="../img/execrcise_logistic_regression_multi.png" /></p>
+<p>上記のサンプルで出力したトレースと自己相関関数を示します.
+<img alt="トレース" src="../img/execrcise_logistic_regression_multi_trace.png" />
+<img alt="自己相関関数" src="../img/execrcise_logistic_regression_multi_autocorr.png" /></p>
+</details>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>今回はこのカラムは使いません.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref5:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>銀河の光度プロファイルを exponential law と de Vaucauleurs&rsquo;s law でフィッティングしたときの de Vaucaulerus&rsquo;s law の割合を表しています. de Vaucauleurs&rsquo;s law の割合が大きいほど, 銀河のバルジ成分が卓越していることを示唆しています. 詳細は <a href="https://arxiv.org/abs/0910.4113">Masters et al. (2010)</a> を参照してください.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../censored_regression/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              演習問題: 打ち切り回帰
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../references/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              参考文献
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Ryou Ohsawa 2021
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+        <script src="../../js/config_mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
