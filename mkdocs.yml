@@ -15,6 +15,7 @@ nav:
       - mcmc/linear_regression.md
       - mcmc/censored_regression.md
       - mcmc/logistic_regression.md
+      - mcmc/count_model.md
       - mcmc/references.md
   - FoPM Home: https://www.s.u-tokyo.ac.jp/ja/FoPM/
   - GitHub repository: https://github.com/FoPM-Astronomy-UTokyo/course

@@ -1,5 +1,5 @@
 #!/usr/bin/gnuplot
-set terminal pngcairo size 600,400 font 'Ubuntu,12'
+set terminal pngcairo size 800,600 font 'Ubuntu,14'
 set output 'inverse.png'
 
 
@@ -8,7 +8,7 @@ set yr [-0.3:1]
 set xlabel "Random variable: x'"
 set ylabel "Cumulative PDF C(x) / Random variable: u"
 set ytics 0,0.2,1 format '%4.1f'
-set xzeroaxis ls 1
+set xzeroaxis ls 1 lc rgb 'gray40'
 set key above right Right
 
 set sample 1e3
