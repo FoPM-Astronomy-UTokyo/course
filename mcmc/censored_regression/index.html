@@ -413,8 +413,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../count_model.md" class="md-nav__link">
-        None
+      <a href="../count_model/" class="md-nav__link">
+        演習問題: 整数データの回帰
       </a>
     </li>
   
@@ -677,7 +677,7 @@
 44   NGC7457  23.016647  30.144889   13.24      1.34   1.826       0.019    0.00       0.000
 45   NGC7768  23.849610  27.147336  112.10      7.90   2.495       0.021    9.11       0.150
 </code></pre></div>
-<img alt="データの関係" src="../img/execrcise_censored_regression_quick_view.png" /></p>
+<img alt="データの関係" src="../img/exercise_censored_regression_quick_view.png" /></p>
 </details>
 <h2 id="_3">打ち切り回帰モデル</h2>
 <p><a href="../linear_regression/">線形回帰の場合</a>と同様に Harris et al. (2013) を参考にして以下の式を fitting の関数として採用します. ただし <span class="arithmatex">\(\sigma_0\)</span> は 200 km/s とします.</p>
@@ -766,10 +766,10 @@ S_i^2    &amp;= {\varepsilon_{M,i}}^2 + \beta^2{\varepsilon_{\sigma,i}}^2 + \var
 <details class="summary"><summary>計算結果</summary><p><div class="highlight"><pre><span></span><code>MCMC inference: alpha=8.612, beta=3.274, epsilon=0.345
 </code></pre></div>
 1-&sigma;, 3-&sigma; の不定性をグレーの領域で表しています.
-<img alt="データと回帰直線" src="../img/execrcise_censored_regression_remove.png" /></p>
+<img alt="データと回帰直線" src="../img/exercise_censored_regression_remove.png" /></p>
 <p>上記のサンプルで出力したトレースと自己相関関数を示します.
-<img alt="トレース" src="../img/execrcise_censored_regression_remove_trace.png" />
-<img alt="自己相関関数" src="../img/execrcise_censored_regression_remove_autocorr.png" /></p>
+<img alt="トレース" src="../img/exercise_censored_regression_remove_trace.png" />
+<img alt="自己相関関数" src="../img/exercise_censored_regression_remove_autocorr.png" /></p>
 </details>
 <h3 id="_5">打ち切りデータを含める</h3>
 <p>打ち切りデータを含めて解析した場合にどのような結果になるか計算してください.</p>
@@ -829,10 +829,10 @@ S_i^2    &amp;= {\varepsilon_{M,i}}^2 + \beta^2{\varepsilon_{\sigma,i}}^2 + \var
 <details class="summary"><summary>計算結果</summary><p><div class="highlight"><pre><span></span><code>MCMC inference: alpha=7.920, beta=6.743, epsilon=0.573
 </code></pre></div>
 1-&sigma;, 3-&sigma; の不定性をグレーの領域で表しています.
-<img alt="データと回帰直線" src="../img/execrcise_censored_regression.png" /></p>
+<img alt="データと回帰直線" src="../img/exercise_censored_regression.png" /></p>
 <p>上記のサンプルで出力したトレースと自己相関関数を示します.
-<img alt="トレース" src="../img/execrcise_censored_regression_trace.png" />
-<img alt="自己相関関数" src="../img/execrcise_censored_regression_autocorr.png" /></p>
+<img alt="トレース" src="../img/exercise_censored_regression_trace.png" />
+<img alt="自己相関関数" src="../img/exercise_censored_regression_autocorr.png" /></p>
 </details>
 <div class="footnote">
 <hr />

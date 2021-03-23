@@ -1,0 +1,836 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="FoPM Practical Course at Institute of Astronomy">
+      
+      
+      
+        <meta name="author" content="Ryou Ohsawa">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>演習問題: 整数データの回帰 - FoPM Practical Course &ndash; Institute of Astronomy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.7fa14f5b.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/config_local.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="deep-orange">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="FoPM Practical Course &amp;ndash; Institute of Astronomy" class="md-header__button md-logo" aria-label="FoPM Practical Course &ndash; Institute of Astronomy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FoPM Practical Course &ndash; Institute of Astronomy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              演習問題: 整数データの回帰
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="FoPM Practical Course &amp;ndash; Institute of Astronomy" class="md-nav__button md-logo" aria-label="FoPM Practical Course &ndash; Institute of Astronomy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    FoPM Practical Course &ndash; Institute of Astronomy
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        トップページ
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        実習テキスト
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="実習テキスト" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          実習テキスト
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      <label class="md-nav__link" for="__nav_2_1">
+        MCMC 入門
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="MCMC 入門" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          MCMC 入門
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        はじめに
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generate_random_variables/" class="md-nav__link">
+        乱数を生成する
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../static_monte_carlo/" class="md-nav__link">
+        静的なモンテカルロ法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../markov_chain/" class="md-nav__link">
+        動的なモンテカルロ法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scratchbuild_mcmc/" class="md-nav__link">
+        MHMCMC チュートリアル
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chain_convergence/" class="md-nav__link">
+        マルコフ連鎖の収束
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linear_regression/" class="md-nav__link">
+        演習問題: 線形回帰
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../censored_regression/" class="md-nav__link">
+        演習問題: 打ち切り回帰
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logistic_regression/" class="md-nav__link">
+        演習問題: ロジスティック回帰
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          演習問題: 整数データの回帰
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        演習問題: 整数データの回帰
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    データ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#poisson" class="md-nav__link">
+    Poisson 分布による回帰
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    負の二項分布による回帰
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/" class="md-nav__link">
+        参考文献
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.s.u-tokyo.ac.jp/ja/FoPM/" class="md-nav__link">
+        FoPM Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/FoPM-Astronomy-UTokyo/course" class="md-nav__link">
+        GitHub repository
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    データ
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#poisson" class="md-nav__link">
+    Poisson 分布による回帰
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    負の二項分布による回帰
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="_1">演習問題: 整数データの回帰</h1>
+<p>ここでは大きさや明るさなどの連続的な量ではなく, 個数などの離散的な量に対する回帰問題を考えます. 数が大きい場合には近似的に正規分布などの連続的な確率分布で近似することができますが, 数が少ない場合には整数値であることを正しくモデル化する必要があります. 整数値を扱う方法のひとつとして, 整数値に対する確率分布 (Poisson 分布, 二項分布など) のパラメタに対して回帰するという手法を説明します.</p>
+<h2 id="_2">データ</h2>
+<p>ここでは <a href="https://doi.org/10.1088/0004-637X/772/2/82">Harris et al. (2013)</a> がまとめた<a href="https://www.physics.mcmaster.ca/~harris/GCS_table.txt">カタログ</a>から銀河の <span class="arithmatex">\(K\)</span>-バンド等級 (<span class="arithmatex">\(M_K\)</span>) と銀河に属する球状星団の個数の関係を調べます.</p>
+<p>演習用に整形したデータを以下からダウンロードしてください.</p>
+<table>
+<thead>
+<tr>
+<th>ファイル名</th>
+<th>形式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://raw.githubusercontent.com/FoPM-Astronomy-UTokyo/course/main/data/mcmc/exercise_linear_regression.csv">exercise_count_model_regression.csv</a></td>
+<td>csv</td>
+</tr>
+</tbody>
+</table>
+<p>データテーブルには以下のカラムが含まれています.</p>
+<table>
+<thead>
+<tr>
+<th>カラム名</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>galaxy</td>
+<td>銀河名/カタログ ID<sup id="fnref6:1"><a class="footnote-ref" href="#fn:1">1</a></sup></td>
+</tr>
+<tr>
+<td>ra</td>
+<td>赤経座標 (J2000)<sup id="fnref5:1"><a class="footnote-ref" href="#fn:1">1</a></sup></td>
+</tr>
+<tr>
+<td>dec</td>
+<td>赤緯座標 (J2000)<sup id="fnref4:1"><a class="footnote-ref" href="#fn:1">1</a></sup></td>
+</tr>
+<tr>
+<td>M_K</td>
+<td>銀河の <span class="arithmatex">\(K\)</span>-バンド等級 <span class="arithmatex">\(M_K\)</span></td>
+</tr>
+<tr>
+<td>M_K_err</td>
+<td>銀河の <span class="arithmatex">\(K\)</span>-バンド等級の不定性 <span class="arithmatex">\(\varepsilon_K\)</span></td>
+</tr>
+<tr>
+<td>N_gc</td>
+<td>球状星団の個数 <span class="arithmatex">\(N_\mathrm{GC}\)</span></td>
+</tr>
+<tr>
+<td>N_gc_err</td>
+<td>球状星団の個数の不定性 <span class="arithmatex">\(\varepsilon_\mathrm{GC}\)</span></td>
+</tr>
+<tr>
+<td>logM_T</td>
+<td>球状星団の総質量<sup id="fnref3:1"><a class="footnote-ref" href="#fn:1">1</a></sup> <span class="arithmatex">\(\log_{10}{M_T}\)</span> (<span class="arithmatex">\({M_\odot}\)</span>)</td>
+</tr>
+<tr>
+<td>logM_T_err</td>
+<td>球状星団の総質量の不定性<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup> <span class="arithmatex">\(\varepsilon_M\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>まずはデータの関係を図示します.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./exercise_count_model_regression.csv&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">M_K</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">N_gc</span><span class="p">,</span>
+  <span class="n">xerr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">M_K_err</span><span class="p">,</span> <span class="n">yerr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">N_gc_err</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;K-band magnitude: $M_K$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Globular Clusters&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">19.5</span><span class="p">,</span><span class="o">-</span><span class="mf">27.5</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mf">5e4</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<details class="summary"><summary>計算結果</summary><p><div class="highlight"><pre><span></span><code>     galaxy         ra        dec     M_K  M_K_err    N_gc  N_gc_err   M_T  M_T_err
+0    NGC205   0.672805  41.685379 -18.947    0.110    11.0       3.0  6.26     0.10
+1    NGC221   0.711607  40.865165 -19.327    0.101     0.0       1.0  6.26     0.10
+2    NGC224   0.712316  41.268883 -23.467    0.101   450.0     100.0  8.14     0.09
+3    NGC253   0.792531 -25.288442 -23.979    0.101    90.0      40.0  7.39     0.16
+4    NGC541   1.428978  -1.379491 -25.041    0.105  1620.0     450.0  8.73     0.11
+..      ...        ...        ...     ...      ...     ...       ...   ...      ...
+58  NGC7332  22.623476  23.798260 -23.811    0.101   175.0      15.0  7.67     0.04
+59   IC1459  22.952945 -36.462176 -25.530    0.103  2100.0     730.0  8.82     0.13
+60  NGC7457  23.016647  30.144889 -22.436    0.103   160.0      50.0  7.56     0.12
+61  NGC7626  23.345144   8.217056 -25.374    0.102  2833.0     300.0  8.98     0.04
+62  NGC7768  23.849610  27.147336 -25.927    0.104  3000.0    1300.0  9.04     0.16
+
+[63 rows x 9 columns]
+</code></pre></div>
+<img alt="データの関係" src="../img/exercise_count_model_regression_quick_view.png" /></p>
+</details>
+<h2 id="poisson">Poisson 分布による回帰</h2>
+<p>整数値を扱う確率分布としては Poisson 分布があります. Poisson 分布は 1 つのパラメタ <span class="arithmatex">\(\lambda\)</span> を持ちます. <span class="arithmatex">\(\lambda\)</span> は事象が発生するレート (確率) に相当します.</p>
+<div class="arithmatex">\[
+{\operatorname{Poisson}}(k; \lambda)
+= \frac{\lambda^k}{\Gamma(k{+}1)}\exp(-\lambda k)
+\]</div>
+<p><span class="arithmatex">\(\Gamma(x)\)</span> は Gamma 関数です. <span class="arithmatex">\(\lambda\)</span> は正の実数なので, ここでは <span class="arithmatex">\(\log\lambda\)</span> が銀河の K-バンド等級 <span class="arithmatex">\(M_K\)</span> によって線形回帰によって近似できるというモデルを考えます.</p>
+<div class="arithmatex">\[
+\log\lambda = \alpha + \beta M_K.
+\]</div>
+<p>このモデルに基づいて尤度関数を作成すると以下のようになります.</p>
+<div class="arithmatex">\[
+\log{L}(\alpha,\beta; D) = \sum_i^{n}\left(
+ N_{\mathrm{gc},i} \log\lambda_i
+ - \log\Gamma(N_{\mathrm{gc},i}{+}1) - \lambda_i N_{\mathrm{gc},i}
+\right).
+\]</div>
+<p>この尤度関数を用いてパラメタ <span class="arithmatex">\(\alpha\)</span>, <span class="arithmatex">\(\beta\)</span> の分布を導出してください.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+<details class="note"><summary>Example</summary><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.special</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">mhmcmc</span> <span class="kn">import</span> <span class="n">MHMCMCSampler</span><span class="p">,</span> <span class="n">GaussianStep</span>
+
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./exercise_count_model_regression.csv&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">log_likelihood</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">table</span><span class="o">.</span><span class="n">M_K</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">table</span><span class="o">.</span><span class="n">N_gc</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">gammaln</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">N_gc</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">p</span><span class="p">)</span>
+
+<span class="n">step</span> <span class="o">=</span> <span class="n">GaussianStep</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.002</span><span class="p">]))</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MHMCMCSampler</span><span class="p">(</span><span class="n">log_likelihood</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">21.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.2</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+
+<span class="n">sample</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="mi">51000</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="mi">1000</span><span class="p">:]</span>
+
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">19.5</span><span class="p">,</span><span class="o">-</span><span class="mf">27.5</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p</span><span class="p">,</span><span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">M</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">M</span><span class="p">))</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">p</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">e</span><span class="p">,</span> <span class="n">p</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">e</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">p</span><span class="o">-</span><span class="n">e</span><span class="p">,</span> <span class="n">p</span><span class="o">+</span><span class="n">e</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.10</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_a</span><span class="p">,</span><span class="n">_b</span> <span class="ow">in</span> <span class="n">sample</span><span class="p">[::</span><span class="mi">1000</span><span class="p">,:]:</span>
+  <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">_a</span><span class="o">+</span><span class="n">_b</span><span class="o">*</span><span class="n">M</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">M_K</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">N_gc</span><span class="p">,</span>
+  <span class="n">xerr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">M_K_err</span><span class="p">,</span> <span class="n">yerr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">N_gc_err</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;K-band magnitude: $M_K$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Globular Clusters&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">19.5</span><span class="p">,</span><span class="o">-</span><span class="mf">27.5</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mf">5e4</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;MCMC inference: alpha=</span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">, beta=</span><span class="si">{</span><span class="n">b</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="summary"><summary>計算結果</summary><p><div class="highlight"><pre><span></span><code>MCMC inference: alpha=-21.489, beta=-1.169
+</code></pre></div>
+1-&sigma;, 3-&sigma; の不定性をグレーの領域で示しています.
+<img alt="データと回帰曲線" src="../img/exercise_count_model_regression_poisson.png" /></p>
+<p>上記のサンプルで出力したトレースと自己相関関数を示します.
+<img alt="トレース" src="../img/exercise_count_model_regression_poisson_trace.png" />
+<img alt="自己相関関数" src="../img/exercise_count_model_regression_poisson_autocorr.png" /></p>
+</details>
+<h2 id="_3">負の二項分布による回帰</h2>
+<p>負の二項分布とは確率 <span class="arithmatex">\(p\)</span> で事象が発生する過程 (Bernoulli 過程) を繰り返したときに <span class="arithmatex">\(r\)</span> 回成功するまでに失敗する回数 <span class="arithmatex">\(k\)</span> の分布を表した確率分布です. 負の二項分布は 2 つのパラメタを持ちます.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
+<div class="arithmatex">\[
+\begin{aligned}
+{\operatorname{NegBinomial}}(k;r,p) &amp;=
+{k{+}r{-}1 \choose k}(1{-}p)^{k}p^r \\
+&amp;= \frac{\Gamma(k{+}r)}{\Gamma(r)\Gamma(k{+}1)}(1{-}p)^{k}p^r.
+\end{aligned}
+\]</div>
+<p>期待値は <span class="arithmatex">\(m = r(1-p)p^{-1}\)</span> で与えられるため, 確率 <span class="arithmatex">\(p\)</span> を</p>
+<div class="arithmatex">\[
+p = {r \over r+m}
+\]</div>
+<p>と与えることによって期待値が <span class="arithmatex">\(m\)</span> である負の二項分布を得ることができます. 以下に期待値が 20 である Poisson 分布と <span class="arithmatex">\(r\)</span> を変化させた負の二項分布を示しました. 平均値が一定になるように <span class="arithmatex">\(p\)</span> を与えた場合, 負の二項分布は <span class="arithmatex">\(r \to \infty\)</span> の極限で Poisson 分布に収束することが分かります.<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></p>
+<p><img alt="負の二項分布" src="../img/negative_binomial.png" /></p>
+<p>ここでは Poisson 分布によるモデルと同じく平均値 <span class="arithmatex">\(m\)</span> の対数が銀河の K-バンド等級 <span class="arithmatex">\(M_K\)</span> によって線形回帰によって近似できるというモデルを考えます. また <span class="arithmatex">\(r\)</span> は正の実数なので <span class="arithmatex">\(r = \mathrm{e}^\gamma\)</span> によって与えて正であることを保証します.</p>
+<div class="arithmatex">\[
+m = \alpha + \beta M_K, ~~
+p = \frac{\mathrm{e}^\gamma}{\mathrm{e}^\gamma + m}
+\]</div>
+<p>このモデルに基づいて尤度関数を作成します.</p>
+<div class="arithmatex">\[
+\begin{aligned}
+&amp; \log{L}(\alpha,\beta,\gamma; D) = \\
+&amp; \quad \sum_i^{n}\bigl(
+\log\Gamma(N_{\mathrm{gc},i}{+}\mathrm{e}^\gamma)
+{-} \log\Gamma(\mathrm{e}^\gamma) {-} \log\Gamma(N_{\mathrm{gc},i}{+}1)
+{+} k\log(1{-}p) {+} \mathrm{e}^\gamma\log{p}
+\bigr).
+\end{aligned}
+\]</div>
+<p>この尤度関数を用いてパラメタ <span class="arithmatex">\(\alpha\)</span>, <span class="arithmatex">\(\beta\)</span>, <span class="arithmatex">\(r\)</span> の分布を導出してください.</p>
+<details class="summary"><summary>計算結果</summary><p><div class="highlight"><pre><span></span><code>MCMC inference: alpha=-19.840, beta=-1.100, gamma=0.381
+</code></pre></div>
+1-&sigma;, 3-&sigma; の不定性をグレーの領域で示しています.
+<img alt="データと回帰曲線" src="../img/exercise_count_model_regression_negbin.png" /></p>
+<p>上記のサンプルで出力したトレースと自己相関関数を示します.
+<img alt="トレース" src="../img/exercise_count_model_regression_negbin_trace.png" />
+<img alt="自己相関関数" src="../img/exercise_count_model_regression_negbin_autocorr.png" /></p>
+</details>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>この例題はかなり収束が遅い問題でした. 得られた <span class="arithmatex">\(\alpha\)</span>, <span class="arithmatex">\(\beta\)</span> の分布を 2 次元の散布図に描くと強く相関していることが分かります. 掃かなければいけない空間はそこそこ広いのですが, ステップを大きくすると確率の低いところへすぐはみ出してしまうので歩幅を狭くせざるを得ません. 効率的にサンプリングするためには工夫が必要かもしれません.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref5:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref6:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>先頭の二項係数が <span class="arithmatex">\({-r \choose k}\)</span> と等しいためにこのように呼ばれます. 文献によって <span class="arithmatex">\(p\)</span> が成功確率だったり失敗確率だったりするので気をつけてください.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>このため <span class="arithmatex">\(r\)</span> は dispersion parameter とも呼ばれることもあります.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../logistic_regression/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              演習問題: ロジスティック回帰
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../references/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              参考文献
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Ryou Ohsawa 2021
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+        <script src="../../js/config_mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
