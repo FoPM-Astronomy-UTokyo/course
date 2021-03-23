@@ -46,4 +46,4 @@ def update(i, sample):
 import matplotlib.animation as animation
 ani = animation.FuncAnimation(
   fig, update, fargs = (sample,), interval=100, frames=60)
-ani.save('execrcise_linear_regression_convergence.gif', writer='imagemagick')
+ani.save('exercise_linear_regression_convergence.gif', writer='imagemagick')

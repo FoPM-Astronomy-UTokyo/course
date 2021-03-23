@@ -18,5 +18,5 @@ ax.errorbar(
 ax.set_xlabel('$\log_{10}\sigma_e$ (km/s)')
 ax.set_ylabel('$\log_{10}M_B$ ($M_\odot$)')
 fig.tight_layout()
-fig.savefig('execrcise_linear_regression_quick_view.png')
+fig.savefig('exercise_linear_regression_quick_view.png')
 plt.show()

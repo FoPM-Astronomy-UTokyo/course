@@ -33,8 +33,8 @@ ax2.set_ylabel('autocorr: beta')
 ax2.set_xlabel('displacement: k')
 ax2.set_xlim([-200,200])
 fig.tight_layout()
-fig.savefig('execrcise_linear_regression_yerror_autocorr.png')
-display_trace(sample, output='execrcise_linear_regression_yerror_trace.png')
+fig.savefig('exercise_linear_regression_yerror_autocorr.png')
+display_trace(sample, output='exercise_linear_regression_yerror_trace.png')
 
 
 x = np.linspace(-0.5,0.5,50)
@@ -51,7 +51,7 @@ ax.plot(x, a+b*x)
 ax.set_xlabel('$\log_{10}\sigma_e$ (km/s)')
 ax.set_ylabel('$\log_{10}M_B$ ($M_\odot$)')
 fig.tight_layout()
-fig.savefig('execrcise_linear_regression_yerror.png')
+fig.savefig('exercise_linear_regression_yerror.png')
 plt.show()
 
 p = np.polyfit(

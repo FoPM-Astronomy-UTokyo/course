@@ -101,7 +101,7 @@ plt.show()
     44   NGC7457  23.016647  30.144889   13.24      1.34   1.826       0.019    0.00       0.000
     45   NGC7768  23.849610  27.147336  112.10      7.90   2.495       0.021    9.11       0.150
     ```
-    ![データの関係](img/execrcise_censored_regression_quick_view.png)
+    ![データの関係](img/exercise_censored_regression_quick_view.png)
 
 
 ## 打ち切り回帰モデル
@@ -211,11 +211,11 @@ $\tau$ についての事前分布として Gamma 分布を仮定しました.
     MCMC inference: alpha=8.612, beta=3.274, epsilon=0.345
     ```
     1-&sigma;, 3-&sigma; の不定性をグレーの領域で表しています.
-    ![データと回帰直線](img/execrcise_censored_regression_remove.png)
+    ![データと回帰直線](img/exercise_censored_regression_remove.png)
 
     上記のサンプルで出力したトレースと自己相関関数を示します.
-    ![トレース](img/execrcise_censored_regression_remove_trace.png)
-    ![自己相関関数](img/execrcise_censored_regression_remove_autocorr.png)
+    ![トレース](img/exercise_censored_regression_remove_trace.png)
+    ![自己相関関数](img/exercise_censored_regression_remove_autocorr.png)
 
 
 ### 打ち切りデータを含める
@@ -281,11 +281,11 @@ $\tau$ についての事前分布として Gamma 分布を仮定しました.
     MCMC inference: alpha=7.920, beta=6.743, epsilon=0.573
     ```
     1-&sigma;, 3-&sigma; の不定性をグレーの領域で表しています.
-    ![データと回帰直線](img/execrcise_censored_regression.png)
+    ![データと回帰直線](img/exercise_censored_regression.png)
 
     上記のサンプルで出力したトレースと自己相関関数を示します.
-    ![トレース](img/execrcise_censored_regression_trace.png)
-    ![自己相関関数](img/execrcise_censored_regression_autocorr.png)
+    ![トレース](img/exercise_censored_regression_trace.png)
+    ![自己相関関数](img/exercise_censored_regression_autocorr.png)
 
 [^1]: $\log{L}_i(\alpha,\beta; D)$ は $i$ 番目のデータに対する対数尤度です.
 

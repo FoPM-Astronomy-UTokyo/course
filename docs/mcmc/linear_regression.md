@@ -101,7 +101,7 @@ plt.show()
     44   NGC7457  23.016647  30.144889   13.24      1.34   1.826       0.019    7.00       0.300
     45   NGC7768  23.849610  27.147336  112.10      7.90   2.495       0.021    9.11       0.150
     ```
-    ![データの関係](img/execrcise_linear_regression_quick_view.png)
+    ![データの関係](img/exercise_linear_regression_quick_view.png)
 
 
 ## 回帰直線の導出
@@ -183,19 +183,19 @@ $$
     MCMC inference: alpha=8.195, beta=5.001
     polyfit result: alpha=8.195, beta=5.002
     ```
-    ![データと回帰直線](img/execrcise_linear_regression_yerror.png)
+    ![データと回帰直線](img/exercise_linear_regression_yerror.png)
 
     参考までに上記のサンプルで出力したトレースと自己相関関数を示します.
-    ![トレース](img/execrcise_linear_regression_yerror_trace.png)
-    ![自己相関関数](img/execrcise_linear_regression_yerror_autocorr.png)
+    ![トレース](img/exercise_linear_regression_yerror_trace.png)
+    ![自己相関関数](img/exercise_linear_regression_yerror_autocorr.png)
 
 
 ??? tip "線形回帰直線が収束する様子"
-    ![収束するまでの gif アニメーション](img/execrcise_linear_regression_convergence.gif)
+    ![収束するまでの gif アニメーション](img/exercise_linear_regression_convergence.gif)
 
     以下のサンプルコードで作成しました.
     ``` python
-    --8<-- "code/mcmc/execrcise_linear_regression_convergence.py"
+    --8<-- "code/mcmc/exercise_linear_regression_convergence.py"
     ```
 
 
@@ -255,7 +255,7 @@ $$
     ax.set_xlabel('$\log_{10}\sigma_e$ (km/s)')
     ax.set_ylabel('$\log_{10}M_B$ ($M_\odot$)')
     fig.tight_layout()
-    fig.savefig('execrcise_linear_regression_xyerror.png')
+    fig.savefig('exercise_linear_regression_xyerror.png')
     plt.show()
     ```
 
@@ -263,11 +263,11 @@ $$
     ```
     MCMC inference: alpha=8.300, beta=4.919
     ```
-    ![データと回帰直線](img/execrcise_linear_regression_xyerror.png)
+    ![データと回帰直線](img/exercise_linear_regression_xyerror.png)
 
     参考までに上記のサンプルで出力したトレースと自己相関関数を示します.
-    ![トレース](img/execrcise_linear_regression_xyerror_trace.png)
-    ![自己相関関数](img/execrcise_linear_regression_xyerror_autocorr.png)
+    ![トレース](img/exercise_linear_regression_xyerror_trace.png)
+    ![自己相関関数](img/exercise_linear_regression_xyerror_autocorr.png)
 
 
 ### モデルの不定性を考慮した回帰
@@ -347,11 +347,11 @@ $\tau$ が負値を取らないように事前分布として Gamma 分布を仮
     MCMC inference: alpha=8.332, beta=4.430, epsilon=0.366
     ```
     1-&sigma;, 3-&sigma; の不定性をグレーの領域で表しています.
-    ![データと回帰直線](img/execrcise_linear_regression_epsilon.png)
+    ![データと回帰直線](img/exercise_linear_regression_epsilon.png)
 
     参考までに上記のサンプルで出力したトレースと自己相関関数を示します.
-    ![トレース](img/execrcise_linear_regression_epsilon_trace.png)
-    ![自己相関関数](img/execrcise_linear_regression_epsilon_autocorr.png)
+    ![トレース](img/exercise_linear_regression_epsilon_trace.png)
+    ![自己相関関数](img/exercise_linear_regression_epsilon_autocorr.png)
 
 
 [Harris2013]: https://doi.org/10.1088/0004-637X/772/2/82

@@ -95,7 +95,7 @@
     ```
 
     データが重なってしまい分布がわかりにくいため scatter を与えています.
-    ![散布図](img/execrcise_logistic_regression_overview.png)
+    ![散布図](img/exercise_logistic_regression_overview.png)
 
 
 ## ロジスティック回帰
@@ -227,11 +227,11 @@ $$
                   : beta1= 8.181 (fracDeV)
     ```
     緑色のデータ点が `fracDeV` に対する Red Spirals の割合です. オレンジ色の曲線はロジスティック回帰によって得られた曲線です. 1-&sigma;, 3-&sigma; 誤差範囲を灰色の領域で示しています.
-    ![データと回帰曲線](img/execrcise_logistic_regression_single.png)
+    ![データと回帰曲線](img/exercise_logistic_regression_single.png)
 
     上記のサンプルで出力したトレースと自己相関関数を示します.
-    ![トレース](img/execrcise_logistic_regression_single_trace.png)
-    ![自己相関関数](img/execrcise_logistic_regression_single_autocorr.png)
+    ![トレース](img/exercise_logistic_regression_single_trace.png)
+    ![自己相関関数](img/exercise_logistic_regression_single_autocorr.png)
 
 
 ### 多変数をもちいた回帰
@@ -323,11 +323,11 @@ $$
                   : beta4= 6.559 (fracDeV)
     ```
     `logab` と `fracDeV` の平面にデータ点をプロットして確率の等高線を引きました.
-    ![データと回帰曲線](img/execrcise_logistic_regression_multi.png)
+    ![データと回帰曲線](img/exercise_logistic_regression_multi.png)
 
     上記のサンプルで出力したトレースと自己相関関数を示します.
-    ![トレース](img/execrcise_logistic_regression_multi_trace.png)
-    ![自己相関関数](img/execrcise_logistic_regression_multi_autocorr.png)
+    ![トレース](img/exercise_logistic_regression_multi_trace.png)
+    ![自己相関関数](img/exercise_logistic_regression_multi_autocorr.png)
 
 
 
