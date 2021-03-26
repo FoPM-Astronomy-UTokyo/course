@@ -36,6 +36,7 @@ $$
 1. [演習問題: 線形回帰](./linear_regression.md)
 1. [演習問題: 打ち切り回帰](./censored_regression.md)
 1. [演習問題: ロジスティック回帰](./logistic_regression.md)
+1. [演習問題: 整数データの回帰](./count_model.md)
 
 
 ## 動作環境
