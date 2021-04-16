@@ -103,7 +103,11 @@ def step_forward(self) -> None:
 [^2]: 得られたデータ列の分布を議論する場合には, サンプル間の相関が結果に影響します. 時間的に十分離れた場所のサンプルだけに間引いてから扱うことでサンプル間の相関を切ることができます. そのためにはより多くのデータをサンプリングする必要があるため, ここではこの操作は省略します.
 
 
-1. 確率分布が $\sqrt{1-x^2}$ に比例する乱数を生成してください.
+__1. 確率分布が $\sqrt{1-x^2}$ に比例する乱数を生成してください.__
+
+対数尤度関数を $\log\sqrt{1-x^2}$ に比例するように定義してください. ただし $1-x^2 < 0$ の場合には値が正しく定義されないので $10^{-15}$ で置き換えることにします.[^1.1] 確率分布は規格化されていなくても問題ありません.
+
+[^1.1]: `numpy.clip(x, lower_bound, upper_bound)` という関数が使えます.
 
 <details markdown=1><summary>Example</summary>
 ``` python
@@ -113,7 +117,9 @@ def step_forward(self) -> None:
 </details>
 
 
-2. 範囲 $[-2, 3)$ に一様に分布する乱数を生成してください.
+__2. 範囲 $[-2, 3)$ に一様に分布する乱数を生成してください.__
+
+対数尤度関数として範囲内であれば 1 を, 範囲外であれば大きな負の値を返す関数を定義してください. 確率分布は規格化されていなくても問題ありません.
 
 <details markdown=1><summary>Example</summary>
 ``` python
@@ -123,7 +129,9 @@ def step_forward(self) -> None:
 </details>
 
 
-3. スケールが $\lambda$ である指数分布に従う乱数を生成してください.
+__3. スケールが $\lambda$ である指数分布に従う乱数を生成してください.__
+
+指数分布は確率分布 $p(x) = \lambda\exp(-\lambda x)$ によって定義されます. 対数尤度は $-\lambda x$ に比例します. ただし $x < 0$ の場合には大きな負の値に置き換えてください. 規格化定数 $\log\lambda$ は対数尤度関数に含まなくても問題ありません.
 
 <details markdown=1><summary>Example</summary>
 ``` python
@@ -139,7 +147,31 @@ def step_forward(self) -> None:
 確率変数 $x$ が 2 次元のケースについてサンプリングしてみます. 以下の形状を持つ以下の形状を持つ確率分布関数を定義して MCMC によってサンプリングしてください. また, 得られたデータで散布図を作成して期待通りのデータが得られていることを確認してください.
 
 
-1. 分散がそれぞれ 5, 2, 共分散が 2 である 2 変数正規分布から乱数を生成してください.
+__1. $P(r) \propto \exp\left(-\frac{1}{2\sigma^2}(r-1)^2\right), ~~ r = \sqrt{x_{[0]}^2 + x_{[1]}^2}$ から乱数を生成してください.__
+
+定義通りに対数尤度関数を定義してください. 確率分布は規格化されていなくても問題ありません.
+
+<details markdown=1><summary>Example</summary>
+``` python
+--8<-- "code/mcmc/try_mhmcmc_circle.py"
+```
+![生成されたデータの散布図](img/try_mhmcmc_circle.png)
+</details>
+
+
+__2. 平均が (-1, 2), 分散が (5, 2), 共分散が 2 である 2 変数正規分布から乱数を生成してください.__
+
+分散・共分散行列 $\Sigma$ と確率分布を以下のように定義すると $x$ の第 1 成分 $x_{[1]}$ の分散は 5, $x$ の第 2 成分 $x_{[2]}$ の分散は 2, $x_{[1]}$ と $x_{[2]}$ の共分散は 2 になります.
+
+$$
+\Sigma = \begin{pmatrix}5 & 2 \\ 2 & 2 \end{pmatrix},~~
+p(x) \propto \exp\left(-\frac{1}{2}x^T\Sigma^{-1}x\right)
+$$
+
+$\Sigma$ の逆行列を求めて[^2.1]おけば比較的簡単に定義できると思います. あるいは $b = \Sigma^{-1}x$ とおくと, $b$ は $\Sigma$ を係数とする連立一次方程式 $x = \Sigma{b}$ の解になるという関係を使うこともできます.[^2.2] 以下の例では後者を採用しています. 確率分布は規格化されていなくても問題ありません.
+
+[^2.1]: `numpy.linalg.inv(S)` という関数を使うことができます.
+[^2.2]: 連立一次方程式の解は `numpy.linalg.solve(S,x)` で計算できます.
 
 <details markdown=1><summary>Example</summary>
 ``` python
@@ -149,25 +181,15 @@ def step_forward(self) -> None:
 </details>
 
 
-2. 上記の正規分布に $x_{[1]} < (x_{[0]}+1)^2+1$ という不等式制約を加えてください.[^3]
+__3. 上記の正規分布に $x_{[1]} < (x_{[0]}+1)^2+1$ という不等式制約を加えてください.__
 
-[^3]: 確率変数 $x$ の $i$ 番目の要素を $x_{[i]}$ で表現しています.
+不等式制約を満たさなければ大きな負の値を加えるように対数尤度関数を修正してください. 確率分布は規格化されていなくても問題ありません.
 
 <details markdown=1><summary>Example</summary>
 ``` python
 --8<-- "code/mcmc/try_mhmcmc_conditional.py"
 ```
 ![生成されたデータの散布図](img/try_mhmcmc_conditional.png)
-</details>
-
-
-3. $P(r) \propto \exp\left(-\frac{1}{2\sigma^2}(r-1)^2\right), ~~ r = \sqrt{x_{[0]}^2 + x_{[1]}^2}$ から乱数を生成してください.
-
-<details markdown=1><summary>Example</summary>
-``` python
---8<-- "code/mcmc/try_mhmcmc_circle.py"
-```
-![生成されたデータの散布図](img/try_mhmcmc_circle.png)
 </details>
 
 
