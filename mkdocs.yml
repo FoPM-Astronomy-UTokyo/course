@@ -5,6 +5,7 @@ site_description: ->
 
 repo_name:  FoPM-Astronomy-UTokyo/course
 repo_url: https://github.com/FoPM-Astronomy-UTokyo/course
+edit_uri: ""
 
 copyright: Ryou Ohsawa 2021
 
