@@ -21,11 +21,16 @@ nav:
   - GitHub repository: https://github.com/FoPM-Astronomy-UTokyo/course
 theme:
   name: 'material'
+  icon:
+    logo: logo
   language: 'en'
   palette:
     scheme: default
     primary: teal
     accent: deep orange
+  features:
+    - navigation.instant
+    - header.autohide
 extra_css:
   - css/config_local.css
 extra_javascript:
@@ -43,6 +48,7 @@ markdown_extensions:
   - pymdownx.highlight
   - pymdownx.inlinehilite
   - pymdownx.superfences
+  - pymdownx.tabbed
   - pymdownx.snippets:
       check_paths: True
   - pymdownx.arithmatex:
