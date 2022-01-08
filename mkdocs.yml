@@ -66,5 +66,13 @@ nav:
       - mcmc/logistic_regression.md
       - mcmc/count_model.md
       - mcmc/references.md
+    - ガウス過程入門:
+      - gp/index.md
+      - gp/smooth_functions.md
+      - gp/different_kernels.md
+      - gp/parameter_inference.md
+      - gp/interpolation.md
+      - gp/extrapolation.md
+      - gp/references.md
   - FoPM Home: https://www.s.u-tokyo.ac.jp/ja/FoPM/
   - GitHub repository: https://github.com/FoPM-Astronomy-UTokyo/course
