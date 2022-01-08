@@ -19,7 +19,6 @@ theme:
     primary: teal
     accent: deep orange
   features:
-    - navigation.instant
     - header.autohide
 
 extra_css:
