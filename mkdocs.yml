@@ -34,6 +34,8 @@ markdown_extensions:
   - smarty
   - sane_lists
   - meta
+  - attr_list
+  - markdown_captions
   - pymdownx.details
   - pymdownx.critic
   - pymdownx.highlight
