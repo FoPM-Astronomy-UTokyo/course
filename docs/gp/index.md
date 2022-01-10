@@ -1,6 +1,6 @@
 # はじめに
 
-この実習ではガウス過程 (Gaussian Process) をとりあつかいます. Gaussian Process はデータが多次元正規分布からサンプリングされると仮定することによって, 互いに相関のあるデータ系列をモデル化できます.
+この実習ではガウス過程 (Gaussian Process) をとりあつかいます. Gaussian Process はデータが多次元正規分布からサンプリングされると仮定することによって, 互いに相関のあるデータ系列をモデルします.
 
 今回の実習でとりあつかうデータは以下のような系列です.
 
@@ -30,7 +30,7 @@ $X_i$, $X_j$ が __似ている__ ほど $Y_i$, $Y_j$ の相関が強くなる�
 
 1. [なめらかな関数](./smooth_functions.md)
 1. [さまざまなカーネル関数](./different_kernels.md)
-1. [カーネルを推定する](./parameter_inference.md)
+1. [カーネルを推定する](./parameter_estimation.md)
 1. [データを補間 (内挿) する](./interpolation.md)
 1. [データから予測 (外挿) する](./extrapolation.md)
 1. [参考資料](./references.md)

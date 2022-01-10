@@ -72,7 +72,7 @@ nav:
       - gp/index.md
       - gp/smooth_functions.md
       - gp/different_kernels.md
-      - gp/parameter_inference.md
+      - gp/parameter_estimation.md
       - gp/interpolation.md
       - gp/extrapolation.md
       - gp/references.md
