@@ -18,25 +18,25 @@ rng_key = random.PRNGKey(42)
 
 ``` python
 def display_kernel(key, kernel, N=5, **options):
-    fig,axes = plt.subplots(2,1,
-        figsize=(16,9), gridspec_kw={'height_ratios': [3, 5]})
+  fig,axes = plt.subplots(2,1,
+      figsize=(16,9), gridspec_kw={'height_ratios': [3, 5]})
 
-    z = jnp.linspace(-10,10,801)
-    axes[0].plot(z,kernel(jnp.array([0]),z,**options).T)
-    axes[0].set_xlabel('Distance $d$', fontsize=16)
-    axes[0].set_ylabel('Correlation', fontsize=16)
+  z = jnp.linspace(-10,10,801)
+  axes[0].plot(z,kernel(jnp.array([0]),z,**options).T)
+  axes[0].set_xlabel('Distance $d$', fontsize=16)
+  axes[0].set_ylabel('Correlation', fontsize=16)
 
-    keys = random.split(key, 5)
-    x = jnp.linspace(0,10,200)
-    for key in keys:
-        y = dist.MultivariateNormal(
-            loc = jnp.zeros(x.shape[0]),
-            covariance_matrix=kernel(x,x,**options)
-        ).sample(key)
-        axes[1].plot(x, y)
-    axes[1].set_xlabel('Explainatory Variable $x$', fontsize=16)
-    axes[1].set_ylabel('Explained Variable $y$', fontsize=16)
-    plt.show()
+  keys = random.split(key, 5)
+  x = jnp.linspace(0,10,200)
+  for key in keys:
+    y = dist.MultivariateNormal(
+      loc = jnp.zeros(x.shape[0]),
+      covariance_matrix=kernel(x,x,**options)
+    ).sample(key)
+    axes[1].plot(x, y)
+  axes[1].set_xlabel('Explainatory Variable $x$', fontsize=16)
+  axes[1].set_ylabel('Explained Variable $y$', fontsize=16)
+  plt.show()
 ```
 
 ## Noise Kernel
@@ -46,7 +46,7 @@ def display_kernel(key, kernel, N=5, **options):
 
 ``` python
 def noise_kernel(X, Z, noise):
-    return noise*(jnp.abs(X[:,None]-Z)==0)
+  return noise*(jnp.abs(X[:,None]-Z)==0)
 
 display_kernel(rng_key, noise_kernel, noise=1.0)
 ```
@@ -70,9 +70,9 @@ $\sigma^2$ は変動の大きさを表すパラメタです. また $l$ は相�
 
 ``` python
 def rbf_kernel(X, Z, var, length, jitter=1e-10):
-    dXsq = jnp.power((X[:, None] - Z) / length, 2.0)
-    K = var * jnp.exp(-0.5*dXsq)
-    return K + jitter*jnp.eye(X.size)
+  dXsq = jnp.power((X[:, None] - Z) / length, 2.0)
+  K = var * jnp.exp(-0.5*dXsq)
+  return K + jitter*jnp.eye(X.size)
 
 display_kernel(rng_key, rbf_kernel, var=0.3, length=1.0)
 ```
@@ -107,9 +107,9 @@ $$
 
 ``` python
 def matern12_kernel(X, Z, var, length, jitter=1e-10):
-    dX = jnp.abs((X[:, None] - Z) / length)
-    k = var * jnp.exp(-dX)
-    return k + jitter*jnp.eye(X.size)
+  dX = jnp.abs((X[:, None] - Z) / length)
+  k = var * jnp.exp(-dX)
+  return k + jitter*jnp.eye(X.size)
 
 display_kernel(rng_key, matern12_kernel, var=0.3, length=1.0)
 ```
@@ -130,9 +130,9 @@ $$
 
 ``` python
 def matern32_kernel(X, Z, var, length, jitter=1e-10):
-    dX = jnp.abs((X[:, None] - Z) / length)
-    k = var * (1+jnp.sqrt(3)*dX)*jnp.exp(-jnp.sqrt(3)*dX)
-    return k + jitter*jnp.eye(X.size)
+  dX = jnp.abs((X[:, None] - Z) / length)
+  k = var * (1+jnp.sqrt(3)*dX)*jnp.exp(-jnp.sqrt(3)*dX)
+  return k + jitter*jnp.eye(X.size)
 
 display_kernel(rng_key, matern32_kernel, var=0.3, length=1.0)
 ```
@@ -152,9 +152,9 @@ $$
 サンプルコードは以下のとおりです.
 ``` python
 def matern52_kernel(X, Z, var, length, jitter=1e-10):
-    dX = jnp.abs((X[:, None] - Z)/length)
-    k = var*(1+jnp.sqrt(5)*dX+5/3*jnp.power(dX,2))*jnp.exp(-jnp.sqrt(5)*dX)
-    return k + jitter*jnp.eye(X.size)
+  dX = jnp.abs((X[:, None] - Z)/length)
+  k = var*(1+jnp.sqrt(5)*dX+5/3*jnp.power(dX,2))*jnp.exp(-jnp.sqrt(5)*dX)
+  return k + jitter*jnp.eye(X.size)
 
 display_kernel(rng_key, matern52_kernel, var=0.3, length=1.0)
 ```
@@ -176,9 +176,9 @@ $$
 
 ``` python
 def rq_kernel(X, Z, var, alpha, length, jitter=1e-10):
-    dXsq = jnp.power((X[:, None] - Z) / length, 2.0)
-    k = var * jnp.power(1+dXsq/2/alpha, -alpha)
-    return k + jitter*jnp.eye(X.size)
+  dXsq = jnp.power((X[:, None] - Z) / length, 2.0)
+  k = var * jnp.power(1+dXsq/2/alpha, -alpha)
+  return k + jitter*jnp.eye(X.size)
 
 display_kernel(rng_key, rq_kernel, var=0.3, alpha=1.0, length=1.0)
 ```
@@ -230,9 +230,9 @@ $\sigma^2$ は変動の大きさを, $l$ は相関長を, $P$ は周期を表す
 
 ``` python
 def periodic_kernel(X, Z, var, length, period, jitter=1e-10):
-    pX = jnp.pi*jnp.abs((X[:, None] - Z))/period
-    k = var * jnp.exp(-2*jnp.power(jnp.sin(pX)/length,2))
-    return k + jitter*jnp.eye(X.size)
+  pX = jnp.pi*jnp.abs((X[:, None] - Z))/period
+  k = var * jnp.exp(-2*jnp.power(jnp.sin(pX)/length,2))
+  return k + jitter*jnp.eye(X.size)
 
 display_kernel(rng_key, periodic_kernel, var=0.3, length=1.0, period=3.0)
 ```
@@ -253,9 +253,9 @@ $$
 
 ``` python
 def bias_kernel(X, Z, bias, jitter=1e-10):
-    nx,nz = X.size,Z.size
-    k = bias*jnp.ones([nx,nz])
-    return k + jitter*jnp.eye(X.size)
+  nx,nz = X.size,Z.size
+  k = bias*jnp.ones([nx,nz])
+  return k + jitter*jnp.eye(X.size)
 
 display_kernel(rng_key, bias_kernel, bias=1.0)
 ```
@@ -275,8 +275,8 @@ $\sigma^2$ は変動の大きさを表すパラメタです. また, $c$ はゼ�
 
 ``` python
 def linear_kernel(X, Z, var, anchor, jitter=1e-10):
-    k = var*(X[:, None] - anchor)*(Z - anchor)
-    return k + jitter*jnp.eye(X.size)
+  k = var*(X[:, None] - anchor)*(Z - anchor)
+  return k + jitter*jnp.eye(X.size)
 
 display_kernel(rng_key, linear_kernel, var=1.0, anchor=5.0)
 ```
