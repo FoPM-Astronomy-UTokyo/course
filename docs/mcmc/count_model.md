@@ -1,6 +1,6 @@
 # 演習: 整数データの回帰
 
-ここでは大きさや明るさなどの連続的な量ではなく, 個数などの離散的な量に対する回帰問題を考えます. 数が大きい場合には近似的に正規分布などの連続的な確率分布で近似することができますが, 数が少ない場合には整数値であることを正しくモデル化する必要があります. 整数値を扱う方法のひとつとして, 整数値に対する確率分布 (Poisson 分布, 二項分布など) のパラメタに対して回帰するという手法を説明します.
+ここでは大きさや明るさなどの連続的な量ではなく, 個数などの離散的な量に対する回帰問題を考えます. 数が大きい場合には近似的に正規分布などの連続的な確率分布で近似できますが, 数が少ない場合には整数値であることを正しくモデル化する必要があります. 整数値を扱う方法のひとつとして, 整数値に対する確率分布 (Poisson 分布, 二項分布など) のパラメタに対して回帰するという手法を説明します.
 
 
 ## データ
@@ -40,8 +40,7 @@ import matplotlib.pyplot as plt
 table = pd.read_csv('./exercise_count_model_regression.csv')
 print(table)
 
-fig = plt.figure(figsize=(8,6))
-ax = fig.add_subplot()
+fig,ax = plt.subplots(figsize=(8,6))
 ax.errorbar(
   x = table.M_K, y = table.N_gc,
   xerr = table.M_K_err, yerr = table.N_gc_err, fmt='.')
@@ -130,8 +129,7 @@ $$
     a,b = sample.mean(axis=0)
     p,e = np.exp(a+b*M), np.sqrt(np.exp(a+b*M))
 
-    fig = plt.figure(figsize=(8,6))
-    ax = fig.add_subplot()
+    fig,ax = plt.subplots(figsize=(8,6))
     ax.fill_between(M, p-3*e, p+3*e, color='gray', alpha=0.05)
     ax.fill_between(M, p-e, p+e, color='gray', alpha=0.10)
     for _a,_b in sample[::1000,:]:

@@ -4,7 +4,7 @@
 
 
 ## 前提/一様乱数を生成する関数
-前提として私たちは $[0,1)$ の範囲に一様に分布する乱数を生成できるとします. まず, 何らかの乱数を発生させる能力がないと以下の議論は成立しません.[^1] Python では以下のようにして乱数生成器を生成することができます.
+前提として私たちは $[0,1)$ の範囲に一様に分布する乱数を生成できるとします. まず, 何らかの乱数を発生させる能力がないと以下の議論は成立しません.[^1] Python では以下のようにして乱数生成器を生成できます.
 
 ``` python
 from numpy.random import default_rng  # 乱数生成器
@@ -25,8 +25,7 @@ import matplotlib.pyplot as plt
 from numpy.random import default_rng
 gen = default_rng(2021)
 
-fig = plt.figure()
-ax = fig.add_subplot()
+fig,ax = plt.subplots()
 ax.plot(gen.uniform(0,1,size=(1000)), ls='', marker='.')
 ax.set_ylabel('uniform random value')
 ax.set_xlabel('sample number')
@@ -94,7 +93,7 @@ $$
 P(x;\lambda) = \lambda\exp(-{\lambda}x).
 $$
 
-累積確率分布は $C(x;\lambda) = 1-\exp(-{\lambda}x)$ となるので, 一様分布から生成した乱数 $u$ をつかって以下の変換をすることで指数分布に従う乱数を生成することができます.
+累積確率分布は $C(x;\lambda) = 1-\exp(-{\lambda}x)$ となるので, 一様分布から生成した乱数 $u$ をつかって以下の変換をすることで指数分布に従う乱数を生成できます.
 
 $$
 x' \gets -\frac{1}{\lambda}\log(1-u).
@@ -115,8 +114,7 @@ Y = lam*np.exp(-lam*X)
 u = gen.uniform(0,1,size=(10000))
 x = -1.0/lam*np.log(1.0-u)
 
-fig = plt.figure()
-ax = fig.add_subplot()
+fig,ax = plt.subplots()
 ax.hist(x, bins=50, density=True)
 ax.plot(X,Y)
 ax.set_ylabel('frequency')
@@ -180,8 +178,7 @@ t = 2*np.pi*v
 x = r*np.cos(t)
 y = r*np.sin(t)
 
-fig = plt.figure()
-ax = fig.add_subplot()
+fig,ax = plt.subplots()
 ax.hist(x, bins=50, density=True)
 ax.plot(X,Y)
 ax.set_ylabel('frequency')
@@ -201,7 +198,7 @@ plt.show()
 
 ### 棄却法による乱数生成
 
-棄却法は極めてシンプルな手続きによって乱数を生成する方法です. 例えば以下のような手続きによって生成することができます.
+棄却法は極めてシンプルな手続きによって乱数を生成する方法です. たとえば以下のような手続きによって生成できます.
 
 1. 一様分布から候補 $x$ をサンプルする.
 1. $[0,\alpha)$ の一様分布 ${\operatorname{Unif}}(0,\alpha)$ から $u$ をサンプルする.[^3]
@@ -212,7 +209,7 @@ plt.show()
 
 $P(x)$ の値に応じて採用される確率が高くなるため, 必然的に $P(x)$ に従う乱数を得ることができます. $P(x)$ の値を評価することができれば適用することができるため, ほぼ任意の形状の確率分布に対して使うことができます.
 
-また, この手続きでは確率変数 $x$, $x'$ が採用される確率の比 $P(x)/P(x')$ によって $x$ が従う確率分布の形状が決まります. そのため, 確率分布関数の形状はわかっているが規格化定数がわからない[^4]というケースでも適用することができます.
+また, この手続きでは確率変数 $x$, $x'$ が採用される確率の比 $P(x)/P(x')$ によって $x$ が従う確率分布の形状が決まります. そのため, 確率分布関数の形状はわかっているが規格化定数がわからない[^4]というケースでも適用できます.
 
 [^4]: 確率を Bayes 的に評価しようとするとこのケースには頻繁に遭遇します. 特に多次元の量を扱っている場合には, 規格化するために多次元空間での積分が必要になるため「2 点の確率の比」さえ分かれば適用できる手法はとても有用です (そして今回 MCMC で用いる Metropolis-Hasting 法もこのケースに該当します).
 
@@ -240,8 +237,7 @@ while len(x)<30000:
 x = np.array(x)
 print(f'total trial: {trial}')
 
-fig = plt.figure()
-ax = fig.add_subplot()
+fig,ax = plt.subplots()
 ax.hist(x, bins=50, density=True)
 ax.plot(X,Y)
 ax.set_ylabel('frequency')
@@ -296,8 +292,7 @@ while len(x)<30000:
 x = np.array(x)
 print(f'total trial: {trial}')
 
-fig = plt.figure()
-ax = fig.add_subplot()
+fig,ax = plt.subplots()
 ax.hist(x, bins=50, density=True)
 ax.plot(X,Y)
 ax.set_ylabel('frequency')
@@ -317,7 +312,7 @@ plt.show()
 
 ### 棄却法の弱点
 
-棄却法はシンプルであり幅広いクラスの問題に対して適用することができます. 一方で, 確率分布が局所的に高い値を持つ場合には, 棄却率が高くなってしまい, 効率的にサンプルすることができくなる可能性があります.
+棄却法はシンプルであり幅広いクラスの問題に対して適用できます. 一方で, 確率分布が局所的に高い値を持つ場合には, 棄却率が高くなってしまい, 効率的にサンプルできなくなる可能性があります.
 
 以下のサンプルでは $x \in [0,10)$ で定義された $\lambda = 3$ の指数分布に対して $\alpha = \lambda$ として棄却法を試してみます. 10000 回繰り返したときに棄却された割合を計算してみます.
 

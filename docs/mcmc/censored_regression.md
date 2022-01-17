@@ -1,6 +1,6 @@
 # 演習: 打ち切り回帰
 
-ここでは超大質量ブラックホール (supermassive blackhole) と, 銀河バルジ (bulge) の速度分散の関係に少し手を加えたデータを使用します. 天文学に限らず, 実験によって得られるデータは装置性能の限界や実験時間の限界などによって一部しかデータが取得できないことがよくあります. ここではそのようなデータに対して適用することのできる打ち切り回帰モデル (censored regression) を
+ここでは超大質量ブラックホール (supermassive blackhole) と, 銀河バルジ (bulge) の速度分散の関係に少し手を加えたデータを使用します. 天文学に限らず, 実験によって得られるデータは装置性能の限界や実験時間の限界などによって一部しかデータが取得できないことがよくあります. ここではそのようなデータに対して適用することのできる打ち切り回帰モデル (censored regression) を考えます.
 
 
 ## データ
@@ -40,8 +40,7 @@ import matplotlib.pyplot as plt
 table = pd.read_csv('./exercise_linear_regression.csv')
 print(table)
 
-fig = plt.figure()
-ax = fig.add_subplot()
+fig,ax = plt.subplots()
 ax.errorbar(
   x = table.logsig, y = table.logM_B,
   xerr = table.logsig_err, yerr = table.logM_B_err, fmt='.')
@@ -188,8 +187,7 @@ $\tau$ についての事前分布として Gamma 分布を仮定しました.
     x = np.linspace(-0.5,0.5,50)
     a,b,e = sample.mean(axis=0)
 
-    fig = plt.figure(figsize=(8,6))
-    ax = fig.add_subplot()
+    fig,ax = plt.subplots(figsize=(8,6))
     ax.fill_between(x, a+b*x-3*e, a+b*x+3*e, color='gray', alpha=0.05)
     ax.fill_between(x, a+b*x-e, a+b*x+e, color='gray', alpha=0.10)
     for _a,_b,_e in sample[::1000,:]:
@@ -259,8 +257,7 @@ $\tau$ についての事前分布として Gamma 分布を仮定しました.
     x = np.linspace(-0.5,0.5,50)
     a,b,e = sample.mean(axis=0)
 
-    fig = plt.figure(figsize=(8,6))
-    ax = fig.add_subplot()
+    fig,ax = plt.subplots(figsize=(8,6))
     ax.fill_between(x, a+b*x-3*e, a+b*x+3*e, color='gray', alpha=0.05)
     ax.fill_between(x, a+b*x-e, a+b*x+e, color='gray', alpha=0.10)
     for _a,_b,_e in sample[::1000,:]:

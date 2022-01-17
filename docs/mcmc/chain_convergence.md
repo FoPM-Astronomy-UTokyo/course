@@ -4,7 +4,7 @@
 
 
 ## トレースを確認する
-サンプリングされたデータの値を時系列に表示したものをトレースといいます. トレースを確認することで MCMC が機能している (効率よく状態遷移している) かを大まかに確認することができます.
+サンプリングされたデータの値を時系列に表示したものをトレースといいます. トレースを確認することで MCMC が機能している (効率よく状態遷移している) かを大まかに確認できます.
 
 
 ### 分布が適切に収束した場合
@@ -56,8 +56,7 @@ z = np.log(rosenbrock(xy).reshape(1000,1000))
 lv = np.linspace(-2,4,13)
 
 import matplotlib.pyplot as plt
-fig = plt.figure()
-ax = fig.add_subplot()
+fig,ax = plt.subplots()
 ax.contour(xx,yy,z,levels=lv, alpha=0.3)
 ax.scatter(sample[::20,0], sample[::20,1], marker='.', s=1)
 ax.set_xlabel('random variable: x0')
@@ -294,8 +293,7 @@ data = gen.normal(0, 1, size=(100))
 k, corr = autocorrelation(data)
 
 import matplotlib.pyplot as plt
-fig = plt.figure(figsize=(8,3))
-ax = fig.add_subplot()
+fig,ax = plt.subplots(figsize=(8,3))
 ax.plot(k, corr, marker='.')
 ax.set_xlabel('displacement: k')
 ax.set_ylabel('autocorr for N(0,1)')
@@ -336,16 +334,14 @@ sample = sample[1000:,:]
 k, corr = autocorrelation(sample)
 
 import matplotlib.pyplot as plt
-fig = plt.figure(figsize=(8,6))
-ax1 = fig.add_subplot(2,1,1)
-ax1.plot(k, corr[:,0], marker='')
-ax1.set_xlim([-800,800])
-ax1.set_ylabel('autocorr for x0')
-ax2 = fig.add_subplot(2,1,2)
-ax2.plot(k, corr[0,1], marker='')
-ax2.set_xlim([-800,800])
-ax2.set_ylabel('autocorr for x1')
-ax2.set_xlabel('displacement: k')
+fig,axes = plt.figure(2,1,figsize=(8,6))
+axes[0].plot(k, corr[:,0], marker='')
+axes[0].set_xlim([-800,800])
+axes[0].set_ylabel('autocorr for x0')
+axes[1].plot(k, corr[0,1], marker='')
+axes[1].set_xlim([-800,800])
+axes[1].set_ylabel('autocorr for x1')
+axes[1].set_xlabel('displacement: k')
 fig.tight_layout()
 plt.show()
 ```
@@ -421,7 +417,7 @@ $$
 \end{aligned}\right.
 $$
 
-ここで $\bar{x}_m$ は各 chain 内での平均値, $\bar{x}$ はデータ全てに対する平均値です. ここで全体の分散[^6][^7]と between-chain variance $\sigma^2_b$ の比の平方根として $\hat{R}$ を定義します.
+ここで $\bar{x}_m$ は各 chain 内での平均値, $\bar{x}$ はデータすべてに対する平均値です. ここで全体の分散[^6][^7]と between-chain variance $\sigma^2_b$ の比の平方根として $\hat{R}$ を定義します.
 
 [^6]: 全体の分散の "推定値" として $\sigma^2_{bw} = \left((n-1)\sigma^2_w + \sigma^2_b\right)/n$ という式を使っているようです. Gelman et al. (2013) によると "This quantity _overestimates_ the marginal posterior variance assuming the starting distributions in appropriately overdispersed, but is _unbiased_ ...". とのことでした.
 
