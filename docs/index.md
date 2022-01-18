@@ -13,3 +13,4 @@ description: The Forefront Physics and Mathematics Program to Drive Transformati
  実習年度 | 実習タイトル
  -------- | -----------
  2020     | [マルコフ連鎖モンテカルロ法入門](./mcmc/index.md)
+ 2021     | [ガウス過程入門](./gp/index.md)
