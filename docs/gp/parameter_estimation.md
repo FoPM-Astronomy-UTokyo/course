@@ -138,7 +138,7 @@ lengthscale      0.54      0.16      0.53      0.29      0.80    384.93      1.0
    variance      0.39      0.63      0.21      0.04      0.81    306.38      1.01
 ```
 
-??? tips "計算過程のもう少し詳しい説明"
+??? tip "モンテカルロ計算のもう少し詳しい説明"
     マルコフ連鎖モンテカルロ計算では, 現在の状態 (パラメタ) から次の状態 (パラメタ) へと確率的に移り変わることで事後確率分布に従うパラメタをサンプリングします. このとき, 現在地点から次に移動する状態を提案する関数をサンプラと呼びます.
 
     上記のコードではハミルトニアンモンテカルロ法 (Hamiltonial Monte Carlo; HMC) を使用しています. この手法では事後確率分布をポテンシャルとみなして, その中で質点が運動する過程をシミュレートすることで, 効率よくパラメタ空間を探索することができます. このとき, 現在地点から出発した質点がめぐりめぐってもとの位置に戻ってきてしまうと計算がまるまる無駄になってしまいます. そこで No-U-Turn Sampler (NUTS) というサンプラを使用します. NUTS は HMC のシミュレーション計算で無駄が起こりにくいようにやめ時を与えてくれるアルゴリズムです.
@@ -158,7 +158,7 @@ print('lengthscale = {:.4f}+/-{:.4f}'.format(
 print('noise       = {:.4f}+/-{:.4f}'.format(
     sample['noise'].mean(),sample['noise'].std()/sqrtN))
 ```
-??? summary "計算結果"
+??? success "計算結果"
     ``` python
     variance    = 0.3868+/-0.0199
     lengthscale = 0.5416+/-0.0050
@@ -200,13 +200,71 @@ plt.show()
 ![最適化されたカーネルからサンプルしたデータ系列](./img/inference_optkernel.png)
 
 
-## カーネルパラメタによる分類
+### 実習: カーネルパラメタの推定
 
-与えられたデータに対してカーネルのパラメタを推定する問題に取り組んでみましょう.
+与えられたデータに対してカーネルのパラメタを推定する問題に取り組んでみましょう. 相関のあるデータ系列を 5 つ用意しました. 以下のリンクからファイルを作業ディレクトリにダウンロードしてください.
 
+|ファイル名|データ形式|
+|---|---|
+|[excercise_1_sequence_1.txt][seq1]|text table|
+|[excercise_1_sequence_2.txt][seq2]|text table|
+|[excercise_1_sequence_3.txt][seq3]|text table|
+|[excercise_1_sequence_4.txt][seq4]|text table|
+|[excercise_1_sequence_5.txt][seq5]|text table|
 
-??? Summary "Example"
+[seq1]: https://raw.githubusercontent.com/FoPM-Astronomy-UTokyo/course/main/data/gp/excercise_1_sequence_1.txt
+[seq2]: https://raw.githubusercontent.com/FoPM-Astronomy-UTokyo/course/main/data/gp/excercise_1_sequence_2.txt
+[seq3]: https://raw.githubusercontent.com/FoPM-Astronomy-UTokyo/course/main/data/gp/excercise_1_sequence_3.txt
+[seq4]: https://raw.githubusercontent.com/FoPM-Astronomy-UTokyo/course/main/data/gp/excercise_1_sequence_4.txt
+[seq5]: https://raw.githubusercontent.com/FoPM-Astronomy-UTokyo/course/main/data/gp/excercise_1_sequence_5.txt
+
+データは `numpy` の `loadtxt()` という関数を使用することで読み込めます. いずれのデータも shape が (200,2) のアレイで与えられています. 以下のコードでデータを可視化します.
+
+``` python
+import numpy as np
+import matplotlib.pyplot as plt
+
+filenames = [
+    './data/excercise_1_sequence_1.txt',
+    './data/excercise_1_sequence_2.txt',
+    './data/excercise_1_sequence_3.txt',
+    './data/excercise_1_sequence_4.txt',
+    './data/excercise_1_sequence_5.txt',
+]
+
+datasets = []
+for fn in filenames:
+    datasets.append(np.loadtxt(fn))
+
+fig,axes = plt.subplots(5,1,figsize=(10,8), sharex=True, sharey=True)
+for n,d in enumerate(datasets):
+    axes[n].plot(d[:,0], d[:,1], '.-')
+    axes[n].set_title(f'sequence {n+1}', loc='left')
+
+axes[2].set_ylabel('Y', fontsize='16')
+axes[4].set_xlabel('X', fontsize='16')
+fig.tight_layout()
+plt.show()
+```
+
+??? success "計算結果"
+    ![5 つのデータ系列](./img/excercise_quick_look_sequence.png)
+
+いずれも相関のあるデータ系列でなめらかな変化をしています. このデータ系列であれば RBF kernel + Noise kernel で再現することができそうです.
+
+では実際にカーネルを最適化してみましょう. RBF + Noise kernel をもちいてパラメタを 5 つのデータ系列に対してそれぞれ最適化してください. MCMC で最適化をすることでパラメタの事後確率分布が得られます.[^4] 相関長パラメタ `lengthscale` と変動量パラメタ `variance` の散布図を作成してみましょう. 5 つのデータ系列を同じ散布図にプロットしてください. カーネルパラメタの分布から 5 つのデータ系列は同一だとみなすことができるか検討してください.
+
+[^4]: 正確には事後確率分布からサンプルしたデータが得られます.
+
+??? example
     ``` python
     --8<-- "code/gp/excercise_kernel_param.py"
     ```
+
+??? success "計算結果"
     ![MCMC によるカーネルパラメタの散布図](./img/excercise_kernel_param.png)
+
+    データ系列 4 は (lengthscale, variance) = (1.0, 3.0) として生成しました.
+    その他のデータ系列は (1.5, 3.0) として生成しています.
+    Kolmogorov–Smirnov 検定などをもちいてパラメタの事後確率分布を評価すれば,
+    データ系列が同一だとみなせるか判断できます.
