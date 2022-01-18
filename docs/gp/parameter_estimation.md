@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 from jax.config import config
 config.update("jax_enable_x64", True)
 
+import numpyro
 import jax.numpy as jnp
 import jax.random as random
 import numpyro.distributions as dist
@@ -62,9 +63,9 @@ def noise_kernel(X, Z, noise):
 
 ``` python
 def model(X, Y):
-  var    = numpyro.sample('variance', dist.LogNormal(0.0, 10.0))
-  length = numpyro.sample('lengthscale', dist.LogNormal(0.0, 10.0))
-  noise  = numpyro.sample('noise', dist.LogNormal(0.0, 10.0))
+  var    = numpyro.sample('variance', dist.LogNormal(0.0, 3.0))
+  length = numpyro.sample('lengthscale', dist.LogNormal(0.0, 3.0))
+  noise  = numpyro.sample('noise', dist.LogNormal(0.0, 3.0))
 
   K = rbf_kernel(X, X, var, length) + noise_kernel(X, X, noise)
 
@@ -105,7 +106,7 @@ $$
 
 現時点で各パラメタを推定するための事前情報はありません. ただしいずれのパラメタも正の値をとるため, 事前分布として[幅の広い対数正規分布][lognormal]を仮定しておくことにします. 正の値であるという以外はほとんど制約がない無情報事前分布になります.
 
-[lognormal]: https://www.wolframalpha.com/input/?i=log+normal+distribution+%280.0%2C+10.0%29
+[lognormal]: https://www.wolframalpha.com/input/?i=log+normal+distribution+%280.0%2C+3.0%29
 
 以上が `model()` 関数の説明です. 独特で少々ややこしい書式ですが, この作法でモデルを定義しておくことで `numpyro` の強力な最適化機能を使うことができます.
 
@@ -132,9 +133,9 @@ mcmc.print_summary()
 
 ```
                  mean       std    median      5.0%     95.0%     n_eff     r_hat
-lengthscale      0.52      0.16      0.51      0.25      0.76    273.81      1.00
-      noise      0.04      0.01      0.04      0.03      0.05    604.74      1.00
-   variance      0.34      0.63      0.18      0.04      0.70    255.65      1.00
+lengthscale      0.54      0.16      0.53      0.29      0.80    384.93      1.00
+      noise      0.04      0.01      0.04      0.03      0.05    495.49      1.00
+   variance      0.39      0.63      0.21      0.04      0.81    306.38      1.01
 ```
 
 ??? tips "計算過程のもう少し詳しい説明"
@@ -159,9 +160,9 @@ print('noise       = {:.4f}+/-{:.4f}'.format(
 ```
 ??? summary "計算結果"
     ``` python
-    variance    = 0.3450+/-0.0200
-    lengthscale = 0.5169+/-0.0051
-    noise       = 0.0402+/-0.0003
+    variance    = 0.3868+/-0.0199
+    lengthscale = 0.5416+/-0.0050
+    noise       = 0.0398+/-0.0003
     ```
 
 
@@ -192,7 +193,20 @@ fig.tight_layout()
 plt.show()
 ```
 
-サンプルしたデータ (青/緑/黄) を最初のデータセット (黒) と一緒にプロットしました. なお, カーネルが学習したのはデータセットの __なめらかさだけ__ だけです. サンプルしたデータ系列が最初データセットをフィットしているわけではないことに注意してください. サンプルしたデータと最初のデータセットが似ている, つまりノイズの大きさや変動の典型的なスケールが同程度であればカーネルはうまく最適化できています. 次の章ではいよいよ決定したカーネルを使用して, データを予測するための手法について解説します.
+サンプルしたデータ (青/緑/黄) を最初のデータセット (黒) と一緒にプロットしました. サンプルしたデータと最初のデータセットが似ている, つまりノイズの大きさや変動の典型的なスケールが同程度であればカーネルはうまく最適化できています.[^3]
 
+[^3]: カーネルが学習したのはデータセットの __なめらかさだけ__ だけです. サンプルしたデータ系列が最初データセットをフィットしているわけではないことに注意してください.
 
 ![最適化されたカーネルからサンプルしたデータ系列](./img/inference_optkernel.png)
+
+
+## カーネルパラメタによる分類
+
+与えられたデータに対してカーネルのパラメタを推定する問題に取り組んでみましょう.
+
+
+??? Summary "Example"
+    ``` python
+    --8<-- "code/gp/excercise_kernel_param.py"
+    ```
+    ![MCMC によるカーネルパラメタの散布図](./img/excercise_kernel_param.png)

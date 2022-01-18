@@ -65,7 +65,7 @@ fig.tight_layout()
 plt.show()
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ![サンプリング結果の散布図](img/try_mhmcmc_rosenbrock.png)
 
 
@@ -101,7 +101,7 @@ from mhmcmc import display_trace
 display_trace(sample)
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ![サンプリング結果のトレース](img/try_mhmcmc_rosenbrock_trace.png)
 
 
@@ -142,7 +142,7 @@ from mhmcmc import display_trace
 display_trace(sample)
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ![サンプリング結果のトレース](img/try_mhmcmc_rosenbrock_trace_small.png)
 
 
@@ -182,7 +182,7 @@ from mhmcmc import display_trace
 display_trace(sample)
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ![サンプリング結果のトレース](img/try_mhmcmc_rosenbrock_trace_large.png)
 
 
@@ -231,7 +231,7 @@ print(f'probability(x0[former] == x0[latter]): {pv[0]:g}')
 print(f'probability(x1[former] == x1[latter]): {pv[1]:g}')
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ```
     probability(x0[former] == x0[latter]): 0.0141046
     probability(x1[former] == x1[latter]): 2.97703e-05
@@ -301,7 +301,7 @@ fig.tight_layout()
 plt.show()
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ![標準正規分布の自己相関関数](img/sample_autocorr.png)
 
 
@@ -346,7 +346,7 @@ fig.tight_layout()
 plt.show()
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ![自己相関関数](img/try_mhmcmc_rosenbrock_autocorr.png)
 
 
@@ -392,7 +392,7 @@ print(f'probability(x0[former] == x0[latter]): {pv[0]:g}')
 print(f'probability(x1[former] == x1[latter]): {pv[1]:g}')
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ```
     probability(x0[former] == x0[latter]): 0.190402
     probability(x1[former] == x1[latter]): 0.966328
@@ -467,7 +467,7 @@ Rhat = np.sqrt(1 + (between_var/within_var-1)/nsample)
 print(f'Rhat values: {Rhat}')
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ```
     Rhat values: [1.00044594 1.00048218]
     ```

@@ -35,7 +35,7 @@
 まずはデータを `redspiral==1` と `redspiral==0` に分けてプロットして, データの傾向をつかんでください.
 
 
-??? note "Example"
+??? example
     ``` python
     import numpy as np
     import pandas as pd
@@ -73,7 +73,7 @@
     plt.show()
     ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ```
                   SDSS_objID  redshift    M_r  M_r_err     gr  gr_err  logab  fracDeV  redspiral
     0     587726033307107491    0.0486 -20.44     0.01  0.481   0.026  0.076     0.04          0
@@ -149,7 +149,7 @@ $$
 この尤度関数を用いてパラメタ $\beta$ の分布を導出してください.
 
 
-??? note "Example"
+??? example
     ``` python
     import numpy as np
     import pandas as pd
@@ -217,7 +217,7 @@ $$
     print(f'              : beta1={beta[1]: .3f} (fracDeV)')
     ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ```
     MCMC inference: beta0=-4.923 (const)
                   : beta1= 8.181 (fracDeV)
@@ -249,7 +249,7 @@ $$
 この尤度関数を用いてパラメタ $\beta$ の分布を導出してください.
 
 
-??? note "Example"
+??? example
     ``` python
     import numpy as np
     import pandas as pd
@@ -310,7 +310,7 @@ $$
     ```
 
 
-??? summary "計算結果"
+??? success "計算結果"
     ```
     MCMC inference: beta0=-4.610 (const)
                   : beta1=-0.888 (redshift)

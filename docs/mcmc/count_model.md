@@ -53,7 +53,7 @@ fig.tight_layout()
 plt.show()
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ```
          galaxy         ra        dec     M_K  M_K_err    N_gc  N_gc_err   M_T  M_T_err
     0    NGC205   0.672805  41.685379 -18.947    0.110    11.0       3.0  6.26     0.10
@@ -102,7 +102,7 @@ $$
 [^1]: この例題はかなり収束が遅い問題でした. 得られた $\alpha$, $\beta$ の分布を 2 次元の散布図に描くと強く相関していることが分かります. 掃かなければいけない空間はそこそこ広いのですが, ステップを大きくすると確率の低いところへすぐはみ出してしまうので歩幅を狭くせざるを得ません. 効率的にサンプリングするためには工夫が必要かもしれません.
 
 
-??? note "Example"
+??? example
     ``` python
     import numpy as np
     import scipy.special as sp
@@ -149,7 +149,7 @@ $$
     print(f'MCMC inference: alpha={a:.3f}, beta={b:.3f}')
     ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ```
     MCMC inference: alpha=-21.489, beta=-1.169
     ```
@@ -211,7 +211,7 @@ $$
 
 
 
-??? summary "計算結果"
+??? success "計算結果"
     ```
     MCMC inference: alpha=-19.840, beta=-1.100, gamma=0.381
     ```

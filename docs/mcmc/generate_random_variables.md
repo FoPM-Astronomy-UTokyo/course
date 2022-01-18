@@ -13,7 +13,7 @@ u = gen.uniform(0,1,size=(5))
 print(u)
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ``` python
     [0.75694783 0.94138187 0.59246304 0.31884171 0.62607384]
     ```
@@ -33,7 +33,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ![一様分布のサンプル](./img/uniform.png)
 
 
@@ -123,7 +123,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ![指数分布に従う乱数](img/exponential.png)
 
 
@@ -187,7 +187,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ![Box-Muller 変換による正規分布](img/box-muller.png)
 
 
@@ -246,7 +246,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ``` python
     total trial: 76247
     ```
@@ -301,7 +301,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ``` python
     total trial: 47650
     ```
@@ -332,7 +332,7 @@ rejected = a > func(x)
 print('rejected fraction: {}'.format(rejected.sum()/rejected.size))
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ``` python
     rejected fraction: 0.9693
     ```

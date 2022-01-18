@@ -50,7 +50,7 @@ fig.tight_layout()
 plt.show()
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ```
           galaxy         ra        dec    dist  dist_err  logsig  logsig_err  logM_B  logM_B_err
     0   MilkyWay   0.000000   0.000000    0.00      0.00   2.021       0.076    0.00       0.000
@@ -152,7 +152,7 @@ $\tau$ についての事前分布として Gamma 分布を仮定しました.
 打ち切りデータを含めないで解析した場合にどのような結果になるかを計算してください.
 
 
-??? note "Example"
+??? example
     ``` python
     import numpy as np
     import pandas as pd
@@ -204,7 +204,7 @@ $\tau$ についての事前分布として Gamma 分布を仮定しました.
     print(f'MCMC inference: alpha={a:.3f}, beta={b:.3f}, epsilon={e:.3f}')
     ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ```
     MCMC inference: alpha=8.612, beta=3.274, epsilon=0.345
     ```
@@ -220,7 +220,7 @@ $\tau$ についての事前分布として Gamma 分布を仮定しました.
 
 打ち切りデータを含めて解析した場合にどのような結果になるか計算してください.
 
-??? note "Example"
+??? example
     ``` python
     import numpy as np
     import pandas as pd
@@ -273,7 +273,7 @@ $\tau$ についての事前分布として Gamma 分布を仮定しました.
 
     print(f'MCMC inference: alpha={a:.3f}, beta={b:.3f}, epsilon={e:.3f}')
     ```
-??? summary "計算結果"
+??? success "計算結果"
     ```
     MCMC inference: alpha=7.920, beta=6.743, epsilon=0.573
     ```

@@ -105,7 +105,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     estimated area: 3.14508
     ![円周率](img/static_circle_dim2.png)
 
@@ -148,7 +148,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ```
     estimated area: 0.22938 (0.38144)
     ```

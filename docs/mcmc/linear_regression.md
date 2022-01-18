@@ -50,7 +50,7 @@ fig.tight_layout()
 plt.show()
 ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ```
           galaxy         ra        dec    dist  dist_err  logsig  logsig_err  logM_B  logM_B_err
     0   MilkyWay   0.000000   0.000000    0.00      0.00   2.021       0.076    6.61       0.040
@@ -131,7 +131,7 @@ $$
 [^3]: これは尤度関数なので事前分布を仮定して掛けないと正しく確率としては扱えませんが, ここでは一様な無情報事前分布を仮定したとして, このまま確率として計算をしてしまいます.
 
 
-??? note "Example"
+??? example
     ``` python
     import numpy as np
     import pandas as pd
@@ -176,7 +176,7 @@ $$
     print(f'polyfit result: alpha={p[1]:.3f}, beta={p[0]:.3f}')
     ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ```
     MCMC inference: alpha=8.195, beta=5.001
     polyfit result: alpha=8.195, beta=5.002
@@ -217,7 +217,7 @@ $$
 この尤度関数に対して MCMC を用いて $\alpha$, $\beta$ の分布を求めてください.
 
 
-??? note "Example"
+??? example
     ``` python
     import numpy as np
     import pandas as pd
@@ -256,7 +256,7 @@ $$
     plt.show()
     ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ```
     MCMC inference: alpha=8.300, beta=4.919
     ```
@@ -291,7 +291,7 @@ $\tau$ が負値を取らないように事前分布として Gamma 分布を仮
 [^4]: このとき $\tau$ が大きくない範囲では ${\operatorname{Gamma}(\tau,k,\theta)} \sim k\tau^{-1}$ と近似でき, Jefferys の無情報事前分布と一致します. Gamma 分布はパラメタの定義の仕方に $(k,\theta)$ と $(\alpha,\beta)$ の 2 通りあるので気をつけて使ってください.
 
 
-??? note "Example"
+??? example
     ``` python
     import numpy as np
     import pandas as pd
@@ -338,7 +338,7 @@ $\tau$ が負値を取らないように事前分布として Gamma 分布を仮
     print(f'MCMC inference: alpha={a:.3f}, beta={b:.3f}, epsilon={e:.3f}')
     ```
 
-??? summary "計算結果"
+??? success "計算結果"
     ```
     MCMC inference: alpha=8.332, beta=4.430, epsilon=0.366
     ```
