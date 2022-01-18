@@ -7,3 +7,14 @@
   background: #efefef;
   border-left: 3px solid #666666;
 }
+
+.md-typeset :is(.admonition, details):is(.example) {
+  border-color: #9e9e9e;
+}
+.md-typeset :is(.example) > :is(.admonition-title, summary) {
+  background-color: hsla(0,0%,62%,.1);
+  border-color: #9e9e9e;
+}
+.md-typeset :is(.example) > :is(.admonition-title, summary)::before {
+  background-color: #9e9e9e;
+}

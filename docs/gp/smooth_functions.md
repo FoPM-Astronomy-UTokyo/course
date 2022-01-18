@@ -37,7 +37,7 @@ key1,key2 = random.split(random.PRNGKey(42))
 y_1 = dist.Normal(0,1).sample(key1) # 標準正規分布から 1 つサンプル
 y_2 = dist.Normal(0,1).sample(key2)
 ```
-??? summary "計算結果"
+??? success "計算結果"
     ``` python
     (DeviceArray(0.64917078, dtype=float64),
      DeviceArray(1.70584208, dtype=float64))
@@ -68,7 +68,7 @@ ax.set_xlabel('Random Variable $Y_1$', fontsize=16)
 ax.set_ylabel('Random Variable $Y_2$', fontsize=16)
 plt.show()
 ```
-??? summary "計算結果"
+??? success "計算結果"
     ![相関のない 2 変数](./img/random_no_correlation.png)
 
 2 変数 $Y_1$, $Y_2$ に相関がないため, どちらの軸にも偏らない散布図が作成されました. 念のために生成したデータ $Y_1$ と $Y_2$ の間に相関がないことを確認してみましょう. データの共分散は `jax.numpy.cov(x,y)` で計算できます. ほぼ単位行列に近い結果が得られたと思います.
@@ -77,7 +77,7 @@ plt.show()
 print('Covariance of (Y_1, Y_2):')
 print(jnp.cov(y_1,y_2))
 ```
-??? summary "計算結果"
+??? success "計算結果"
     ``` python
     Covariance of (Y_1, Y_2):
     [[ 0.95353364 -0.00836174]
@@ -107,7 +107,7 @@ ax.set_xlabel('Random Variable $Z_1$', fontsize=16)
 ax.set_ylabel('Random Variable $Z_2$', fontsize=16)
 plt.show()
 ```
-??? summary "計算結果"
+??? success "計算結果"
     ![相関のある 2 変数](./img/random_with_correlation.png)
 
 今度は 2 変数に相関があるため, 散布図は $Z_1 = Z_2$ の直線に沿って偏った分布をしています. $Z_1$ が大きいときには $Z_2$ も大きくなるという傾向を反映しています.
@@ -118,7 +118,7 @@ plt.show()
 print('Covariance of (Z_1, Z_2):')
 print(jnp.cov(z_1,z_2))
 ```
-??? summary "計算結果"
+??? success "計算結果"
     ``` python
     Covariance of (Z_1, Z_2):
     [[0.97060369 0.56173953]
@@ -184,7 +184,7 @@ y = jnp.stack([y_1, y_2])
 z = L.T@y
 print(jnp.cov(z))
 ```
-??? summary "計算結果"
+??? success "計算結果"
     ``` python
     [[1.  0. ]
      [0.6 0.8]]
@@ -215,7 +215,7 @@ ax.set_xlabel('Dimension: $M$', fontsize=16)
 ax.set_ylabel('Random Variable $Y$', fontsize=16)
 plt.show()
 ```
-??? summary "計算結果"
+??? success "計算結果"
     ![相関のない 1000 次元データ](./img/random_1000dim_no_correlation.png)
 
 2 変数のときと同様に相関のあるデータを生成してみます. ここでは相関行列 $\Sigma$ を以下のように定義してみます.
@@ -244,7 +244,7 @@ ax.set_xlabel('Dimension: $M$', fontsize=16)
 ax.set_ylabel('Random Variable $Y$, $Z$', fontsize=16)
 plt.show()
 ```
-??? summary "計算結果"
+??? success "計算結果"
     ![相関のある 1000 次元データ (青色)](./img/random_1000dim_with_correlation.png)
 
 相関のないオリジナルのデータを灰色の散布図で, 相関を与えたデータを青色の線で示しました. このように行列の index が近いデータほど相関が強くなるということを要請すると, なめらかに変化するデータを得ることができました.
@@ -264,7 +264,7 @@ ax.set_xlabel('Dimension: $M$', fontsize=16)
 ax.set_ylabel('Random Variable $Y$, $Z$', fontsize=16)
 plt.show()
 ```
-??? summary "計算結果"
+??? success "計算結果"
     ![相関のある 1000 次元データ (オレンジ)](./img/random_1000dim_with_correlation-2.png)
 
 
